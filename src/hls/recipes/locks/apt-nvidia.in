@@ -1,0 +1,7 @@
+# NVIDIA-repo packages of both bases: Nsight Systems for CUDA 13.0 (Nsight Compute comes with
+# the devel base). cuda-nsight-systems-13-0 only depends on the release that carries the tool,
+# which apt would otherwise take at whatever version the live repository has, so both are
+# pinned. Pinned into apt-nvidia.txt by
+#   hls images lock-apt nvidia apt-nvidia
+cuda-nsight-systems-13-0
+nsight-systems-2025.3.2

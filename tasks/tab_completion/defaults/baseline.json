@@ -1,0 +1,145 @@
+{
+  "campaign": {
+    "task": "tasks.tab_completion.task",
+    "workload_fingerprint": "06cd15566f867d621a14d704f10092431659e08189dadf1be75d0aaa17d1a68b",
+    "load": {
+      "split": "test",
+      "tenants": [
+        {
+          "id": "commit_add",
+          "arrival": {
+            "rate_per_sec": 1.1394675925925926,
+            "kind": "Poisson"
+          },
+          "inter_turn_delay": {
+            "shape": 1.0,
+            "scale": 14.427,
+            "max_gap": 60.0,
+            "kind": "GammaInterTurn"
+          },
+          "slo": {
+            "ttft_ms": 600.0,
+            "tpot_ms": 10.0,
+            "kind": "StreamingLatencySLO"
+          }
+        },
+        {
+          "id": "commit_edit",
+          "arrival": {
+            "rate_per_sec": 1.1609669811320755,
+            "kind": "Poisson"
+          },
+          "inter_turn_delay": {
+            "shape": 1.0,
+            "scale": 14.427,
+            "max_gap": 60.0,
+            "kind": "GammaInterTurn"
+          },
+          "slo": {
+            "ttft_ms": 600.0,
+            "tpot_ms": 10.0,
+            "kind": "StreamingLatencySLO"
+          }
+        },
+        {
+          "id": "algo_block",
+          "arrival": {
+            "rate_per_sec": 6.153125,
+            "kind": "Poisson"
+          },
+          "inter_turn_delay": {
+            "kind": "NoDelay"
+          },
+          "slo": {
+            "ttft_ms": 250.0,
+            "tpot_ms": 10.0,
+            "kind": "StreamingLatencySLO"
+          }
+        },
+        {
+          "id": "algo_control",
+          "arrival": {
+            "rate_per_sec": 6.153125,
+            "kind": "Poisson"
+          },
+          "inter_turn_delay": {
+            "kind": "NoDelay"
+          },
+          "slo": {
+            "ttft_ms": 200.0,
+            "tpot_ms": 10.0,
+            "kind": "StreamingLatencySLO"
+          }
+        }
+      ]
+    },
+    "gpu_kind": "H200",
+    "baseline": {
+      "image": "hls-baseline-tab-completion",
+      "serve_command": [
+        "--served-model-name",
+        "served-model",
+        "--gpu-memory-utilization",
+        "0.92",
+        "--max-model-len",
+        "32768",
+        "--dtype",
+        "bfloat16",
+        "--enable-prefix-caching",
+        "--enable-chunked-prefill",
+        "--override-generation-config",
+        "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+      ]
+    }
+  },
+  "drives": [
+    {
+      "started_at": "2026-09-16T04:56:16.441585+00:00",
+      "duration_sec": 3359.658772732946,
+      "n_requests": 26317,
+      "n_units": null,
+      "mean_log_credit": 0.1791447097000555
+    },
+    {
+      "started_at": "2026-09-16T05:52:17.772144+00:00",
+      "duration_sec": 1209.3415479139658,
+      "n_requests": 26317,
+      "n_units": null,
+      "mean_log_credit": 0.18344647434285755
+    },
+    {
+      "started_at": "2026-09-16T06:12:28.808839+00:00",
+      "duration_sec": 1203.6706047260668,
+      "n_requests": 26317,
+      "n_units": null,
+      "mean_log_credit": 0.1836666475680988
+    },
+    {
+      "started_at": "2026-09-16T06:32:34.297303+00:00",
+      "duration_sec": 1193.8605868860614,
+      "n_requests": 26317,
+      "n_units": null,
+      "mean_log_credit": 0.18430052758379897
+    },
+    {
+      "started_at": "2026-09-16T06:52:29.893583+00:00",
+      "duration_sec": 1198.84130382305,
+      "n_requests": 26317,
+      "n_units": null,
+      "mean_log_credit": 0.18738787580333058
+    },
+    {
+      "started_at": "2026-09-16T07:12:30.534039+00:00",
+      "duration_sec": 1202.1538083049236,
+      "n_requests": 26317,
+      "n_units": null,
+      "mean_log_credit": 0.18498607773803716
+    }
+  ],
+  "created_at": "2026-09-20T05:07:33.523032+00:00",
+  "hardware": [
+    {
+      "gpu_model": "NVIDIA H200"
+    }
+  ]
+}

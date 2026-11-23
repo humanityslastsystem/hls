@@ -1,0 +1,575 @@
+{
+  "kind": "flips",
+  "task": "tasks.tab_completion.task",
+  "workload_fingerprint": "06cd15566f867d621a14d704f10092431659e08189dadf1be75d0aaa17d1a68b",
+  "workload": {
+    "model": {
+      "base_checkpoint": "JetBrains/Mellum2-12B-A2.5B-Base",
+      "arch": "MoE",
+      "chat_format": "none",
+      "revision": "271755e48ab6b2ed0ef224eaaabe2d25275fb8ee",
+      "chat_template_kwargs": {},
+      "fingerprint": "JetBrains/Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee#MoE?"
+    },
+    "contract": {
+      "path": "/v1/completions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "port": 8000,
+      "transport": "http-sse",
+      "protocol": {
+        "stop_token_ids": [
+          0
+        ],
+        "model": "served-model",
+        "kind": "OpenAICompletionProtocol"
+      },
+      "kind": "RequestResponseContract"
+    },
+    "seed": 42,
+    "tenants": [
+      {
+        "id": "commit_add",
+        "data_source": {
+          "dataset": {
+            "path": "gonglinyuan/real_fim_eval",
+            "subset": "add",
+            "revision": "a36062544c7ed6c4e5ffb8dad8536fc7777e1f36",
+            "id_column": null,
+            "source_split": "test",
+            "prompt": {
+              "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>",
+              "kind": "JinjaPromptTemplate"
+            },
+            "target": {
+              "template": "{{ middle }}",
+              "kind": "JinjaPromptTemplate"
+            },
+            "context_col": null,
+            "questions_col": null,
+            "answers_col": null,
+            "answers_text_key": "input_text",
+            "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+            "max_turns": 5,
+            "prefix_col": "prompt",
+            "suffix_col": "suffix",
+            "middle_col": "canonical_solution",
+            "max_steps": 8,
+            "kind": "FimSessionDataset"
+          },
+          "split": {
+            "dev": {
+              "value": 1280,
+              "kind": "Count"
+            },
+            "test": {
+              "value": 1241,
+              "kind": "Count"
+            }
+          },
+          "dev_dataset": null,
+          "removed_rows": []
+        },
+        "output_length_cap": {
+          "cap_tokens": 256,
+          "kind": "ShortOutputCap"
+        },
+        "history_char_budget": null,
+        "trim_rampdown": true,
+        "references": [
+          {
+            "decode": {
+              "frequency_penalty": 0.0,
+              "kind": "Greedy"
+            },
+            "query_chunk": 4096,
+            "kind": "HFReference"
+          }
+        ]
+      },
+      {
+        "id": "commit_edit",
+        "data_source": {
+          "dataset": {
+            "path": "gonglinyuan/real_fim_eval",
+            "subset": "edit",
+            "revision": "a36062544c7ed6c4e5ffb8dad8536fc7777e1f36",
+            "id_column": null,
+            "source_split": "test",
+            "prompt": {
+              "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>",
+              "kind": "JinjaPromptTemplate"
+            },
+            "target": {
+              "template": "{{ middle }}",
+              "kind": "JinjaPromptTemplate"
+            },
+            "context_col": null,
+            "questions_col": null,
+            "answers_col": null,
+            "answers_text_key": "input_text",
+            "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+            "max_turns": 5,
+            "prefix_col": "prompt",
+            "suffix_col": "suffix",
+            "middle_col": "canonical_solution",
+            "max_steps": 8,
+            "kind": "FimSessionDataset"
+          },
+          "split": {
+            "dev": {
+              "value": 1280,
+              "kind": "Count"
+            },
+            "test": {
+              "value": 1264,
+              "kind": "Count"
+            }
+          },
+          "dev_dataset": null,
+          "removed_rows": []
+        },
+        "output_length_cap": {
+          "cap_tokens": 256,
+          "kind": "ShortOutputCap"
+        },
+        "history_char_budget": null,
+        "trim_rampdown": true,
+        "references": [
+          {
+            "decode": {
+              "frequency_penalty": 0.0,
+              "kind": "Greedy"
+            },
+            "query_chunk": 4096,
+            "kind": "HFReference"
+          }
+        ]
+      },
+      {
+        "id": "algo_block",
+        "data_source": {
+          "dataset": {
+            "path": "gonglinyuan/safim",
+            "subset": "block",
+            "revision": "be132cc15372e90b6f03a608e77f2d940e384edb",
+            "id_column": "task_id",
+            "source_split": "test",
+            "prompt": {
+              "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>",
+              "kind": "JinjaPromptTemplate"
+            },
+            "target": {
+              "template": "{{ ground_truth }}",
+              "kind": "JinjaPromptTemplate"
+            },
+            "context_col": null,
+            "questions_col": null,
+            "answers_col": null,
+            "answers_text_key": "input_text",
+            "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+            "max_turns": 5,
+            "eval_prompt_col": "eval_prompt",
+            "placeholder": "{{completion}}",
+            "kind": "SafimDataset"
+          },
+          "split": {
+            "dev": {
+              "value": 1280,
+              "kind": "Count"
+            },
+            "test": {
+              "value": 6700,
+              "kind": "Count"
+            }
+          },
+          "dev_dataset": null,
+          "removed_rows": []
+        },
+        "output_length_cap": {
+          "cap_tokens": 256,
+          "kind": "ShortOutputCap"
+        },
+        "history_char_budget": null,
+        "trim_rampdown": false,
+        "references": [
+          {
+            "decode": {
+              "frequency_penalty": 0.0,
+              "kind": "Greedy"
+            },
+            "query_chunk": 4096,
+            "kind": "HFReference"
+          }
+        ]
+      },
+      {
+        "id": "algo_control",
+        "data_source": {
+          "dataset": {
+            "path": "gonglinyuan/safim",
+            "subset": "control",
+            "revision": "be132cc15372e90b6f03a608e77f2d940e384edb",
+            "id_column": "task_id",
+            "source_split": "test",
+            "prompt": {
+              "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>",
+              "kind": "JinjaPromptTemplate"
+            },
+            "target": {
+              "template": "{{ ground_truth }}",
+              "kind": "JinjaPromptTemplate"
+            },
+            "context_col": null,
+            "questions_col": null,
+            "answers_col": null,
+            "answers_text_key": "input_text",
+            "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+            "max_turns": 5,
+            "eval_prompt_col": "eval_prompt",
+            "placeholder": "{{completion}}",
+            "kind": "SafimDataset"
+          },
+          "split": {
+            "dev": {
+              "value": 1280,
+              "kind": "Count"
+            },
+            "test": {
+              "value": 6700,
+              "kind": "Count"
+            }
+          },
+          "dev_dataset": null,
+          "removed_rows": []
+        },
+        "output_length_cap": {
+          "cap_tokens": 256,
+          "kind": "ShortOutputCap"
+        },
+        "history_char_budget": null,
+        "trim_rampdown": false,
+        "references": [
+          {
+            "decode": {
+              "frequency_penalty": 0.0,
+              "kind": "Greedy"
+            },
+            "query_chunk": 4096,
+            "kind": "HFReference"
+          }
+        ]
+      }
+    ],
+    "agent": null,
+    "max_context_len": null
+  },
+  "gpu_kind": "H200",
+  "stack": {
+    "torch": "2.11.0+cu130",
+    "runtime": {
+      "cuda": "13.0",
+      "cudnn": "91900"
+    },
+    "device_name": "NVIDIA H200"
+  },
+  "preflight": {
+    "passed": true,
+    "flip_rate_vs_fp32": 0.001953125,
+    "max_gap_vs_fp32": 0.125,
+    "n_tokens": 512
+  },
+  "engines": {
+    "vllm": {
+      "version": "0.22.1",
+      "config": "VLLMEngine(dtype='auto'), clocked serving"
+    },
+    "sglang": {
+      "version": "0.5.16",
+      "config": "SGLangEngine(), clocked serving"
+    }
+  },
+  "draw": {
+    "max_sessions": null,
+    "serving_seeds": {
+      "vllm": [
+        1522204387,
+        214526239,
+        1040876867,
+        69043122,
+        68053456,
+        1300208166,
+        358060160,
+        1631724863
+      ],
+      "sglang": [
+        1522204387,
+        214526239,
+        1040876867,
+        69043122,
+        68053456,
+        1300208166,
+        358060160,
+        1631724863
+      ]
+    }
+  },
+  "tolerances": {
+    "eps": 0.05,
+    "mu_per_mtok": 0.3,
+    "delta": 0.001
+  },
+  "rate_side": {
+    "sglang": {
+      "mean": 0.004758511668949415,
+      "sd": 3.005592112244553e-05,
+      "draws": 8,
+      "rates": [
+        0.004763847437478526,
+        0.004760413699255802,
+        0.004700805685206946,
+        0.004753732132599616,
+        0.004801014359764353,
+        0.004740011451671553,
+        0.004786416934438244,
+        0.004761851651180278
+      ],
+      "tokens": [
+        1708493,
+        1699012,
+        1708856,
+        1711287,
+        1709847,
+        1713287,
+        1702944,
+        1703539
+      ],
+      "max_gap": 13.0
+    },
+    "vllm": {
+      "mean": 0.004649639665080276,
+      "sd": 6.883282072799776e-05,
+      "draws": 8,
+      "rates": [
+        0.004660059462520892,
+        0.004690076555952805,
+        0.0045855438707552735,
+        0.0046602004649787905,
+        0.00476601887724107,
+        0.004649708791470101,
+        0.004532811972675115,
+        0.004652697325048165
+      ],
+      "tokens": [
+        1726802,
+        1720441,
+        1718662,
+        1728681,
+        1723451,
+        1724194,
+        1718580,
+        1718573
+      ],
+      "max_gap": 13.0
+    }
+  },
+  "curve_side": {
+    "levels_nats": [
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      4.5,
+      5.0,
+      5.5,
+      7.0,
+      13.5
+    ],
+    "engines": {
+      "sglang": {
+        "exposure": 13657265,
+        "levels": [
+          {
+            "level_nats": 0.5,
+            "events": 6298,
+            "lambda_hat": 0.0004611465033445569,
+            "lambda_up": 0.0004726788230922724
+          },
+          {
+            "level_nats": 1.0,
+            "events": 1218,
+            "lambda_hat": 8.918330280623536e-05,
+            "lambda_up": 9.433607013744349e-05
+          },
+          {
+            "level_nats": 1.5,
+            "events": 356,
+            "lambda_hat": 2.606671247866978e-05,
+            "lambda_up": 2.892016043749911e-05
+          },
+          {
+            "level_nats": 2.0,
+            "events": 146,
+            "lambda_hat": 1.0690280960353335e-05,
+            "lambda_up": 1.2571757608153967e-05
+          },
+          {
+            "level_nats": 2.5,
+            "events": 111,
+            "lambda_hat": 8.127542373967262e-06,
+            "lambda_up": 9.787657513454988e-06
+          },
+          {
+            "level_nats": 3.0,
+            "events": 62,
+            "lambda_hat": 4.539708353026759e-06,
+            "lambda_up": 5.819701226837611e-06
+          },
+          {
+            "level_nats": 3.5,
+            "events": 42,
+            "lambda_hat": 3.075286303663288e-06,
+            "lambda_up": 4.156893695662392e-06
+          },
+          {
+            "level_nats": 4.0,
+            "events": 41,
+            "lambda_hat": 3.0020652011951148e-06,
+            "lambda_up": 4.072640427328232e-06
+          },
+          {
+            "level_nats": 4.5,
+            "events": 20,
+            "lambda_hat": 1.4644220493634707e-06,
+            "lambda_up": 2.261681083487404e-06
+          },
+          {
+            "level_nats": 5.0,
+            "events": 4,
+            "lambda_hat": 2.9288440987269415e-07,
+            "lambda_up": 7.499004138386195e-07
+          },
+          {
+            "level_nats": 5.5,
+            "events": 4,
+            "lambda_hat": 2.9288440987269415e-07,
+            "lambda_up": 7.499004138386195e-07
+          },
+          {
+            "level_nats": 7.0,
+            "events": 4,
+            "lambda_hat": 2.9288440987269415e-07,
+            "lambda_up": 7.499004138386195e-07
+          },
+          {
+            "level_nats": 13.5,
+            "events": 0,
+            "lambda_hat": 0.0,
+            "lambda_up": 2.701038205024163e-07
+          }
+        ]
+      },
+      "vllm": {
+        "exposure": 13779384,
+        "levels": [
+          {
+            "level_nats": 0.5,
+            "events": 6198,
+            "lambda_hat": 0.0004498024004556372,
+            "lambda_up": 0.0004611425467289133
+          },
+          {
+            "level_nats": 1.0,
+            "events": 1227,
+            "lambda_hat": 8.904607056454774e-05,
+            "lambda_up": 9.41714722246532e-05
+          },
+          {
+            "level_nats": 1.5,
+            "events": 375,
+            "lambda_hat": 2.7214569243443683e-05,
+            "lambda_up": 3.0113335969292705e-05
+          },
+          {
+            "level_nats": 2.0,
+            "events": 164,
+            "lambda_hat": 1.1901838282466037e-05,
+            "lambda_up": 1.386923839459482e-05
+          },
+          {
+            "level_nats": 2.5,
+            "events": 117,
+            "lambda_hat": 8.490945603954429e-06,
+            "lambda_up": 1.0176175451867548e-05
+          },
+          {
+            "level_nats": 3.0,
+            "events": 78,
+            "lambda_hat": 5.6606304026362865e-06,
+            "lambda_up": 7.064722925993619e-06
+          },
+          {
+            "level_nats": 3.5,
+            "events": 57,
+            "lambda_hat": 4.13661452500344e-06,
+            "lambda_up": 5.359463921098558e-06
+          },
+          {
+            "level_nats": 4.0,
+            "events": 32,
+            "lambda_hat": 2.322309908773861e-06,
+            "lambda_up": 3.27840867773338e-06
+          },
+          {
+            "level_nats": 4.5,
+            "events": 14,
+            "lambda_hat": 1.0160105850885641e-06,
+            "lambda_up": 1.7046931213932038e-06
+          },
+          {
+            "level_nats": 5.0,
+            "events": 8,
+            "lambda_hat": 5.805774771934652e-07,
+            "lambda_up": 1.1439690787478825e-06
+          },
+          {
+            "level_nats": 5.5,
+            "events": 7,
+            "lambda_hat": 5.080052925442821e-07,
+            "lambda_up": 1.0466850594846892e-06
+          },
+          {
+            "level_nats": 7.0,
+            "events": 3,
+            "lambda_hat": 2.1771655394754946e-07,
+            "lambda_up": 6.362601600871507e-07
+          },
+          {
+            "level_nats": 13.5,
+            "events": 0,
+            "lambda_hat": 0.0,
+            "lambda_up": 2.6771004089253433e-07
+          }
+        ]
+      }
+    }
+  },
+  "sizing": {
+    "c_m": 1.7971507316515405,
+    "stopped": "exposure target reached"
+  },
+  "capped_text": {
+    "events": 53271,
+    "tokens": 13637376
+  },
+  "q_max": 0.004758511668949415,
+  "created_at": "2026-09-07T11:59:06.021941+00:00"
+}

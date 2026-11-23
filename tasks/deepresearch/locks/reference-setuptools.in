@@ -1,0 +1,4 @@
+# setuptools alone, on the cuda base: the build backend the reference image builds langdetect
+# with, at the version the reference image holds. Compiled into reference-setuptools.txt by
+#   hls images lock-pip layer reference-setuptools --task deepresearch --server
+setuptools==81.0.0

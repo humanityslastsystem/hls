@@ -1,0 +1,26 @@
+{
+  "eval_id": "terminal",
+  "engines": [
+    {
+      "role": "reference",
+      "engine": "FakeTeacherEngine",
+      "stack": {
+        "torch": "2.4.0",
+        "runtime": {
+          "cuda": "12.4",
+          "cudnn": "90100"
+        },
+        "device_name": "B200"
+      },
+      "stack_error": null
+    }
+  ],
+  "answers_read": {},
+  "answers_written": {},
+  "libraries": {},
+  "calibration": {
+    "blob_sha": "a4af52bae0accadbde78bfe7aa1470fe15ab67d3",
+    "kind": "flips",
+    "workload_fingerprint": "c0b61d3333e3b6ea6e571d87d4f9b98d18b8f6ed2ce8aa8faf46ee1b7d406695"
+  }
+}

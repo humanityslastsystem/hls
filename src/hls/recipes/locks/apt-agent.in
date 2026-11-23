@@ -1,0 +1,7 @@
+# Ubuntu packages of the agent cap: Ubuntu's nodejs and npm,
+# with all they pull in, stay the agent's node and npm. The CLIs install and run on the pinned
+# Node in its own prefix (pins.NODE), which claude-code 2.1.251 needs. Pinned into apt-agent.txt by
+#   hls images lock-apt ubuntu apt-agent
+nodejs
+npm
+tmux

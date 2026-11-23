@@ -1,0 +1,119 @@
+{
+  "rollout_id": "20260602T075745Z-4363e2",
+  "task_id": "sample_task",
+  "created_at": 1780387065.042848,
+  "finished_at": 1780387600.0034509,
+  "status": "ok",
+  "config": {
+    "task_id": "sample_task",
+    "split": "dev",
+    "image_digests": {
+      "artifact": "im-ahCeIBaC26F19jcaRiVPM3",
+      "driver": "im-983v9uYbkeeh9URVhPld4L",
+      "reference": "im-983v9uYbkeeh9URVhPld4L"
+    },
+    "model_fingerprint": "Qwen/Qwen2.5-0.5B-Instruct@TX",
+    "wire_protocol": "OpenAIChatProtocol",
+    "hls_commit": "66e27d9",
+    "harbor_commit": "4893bcd",
+    "rollout_overrides": {
+      "source.builder.model_name": "claude-sonnet-4-5"
+    },
+    "accelerator": "H200",
+    "agent_implementer_model": "claude-sonnet-4-5",
+    "max_turns": 40,
+    "artifact_mode": "git-repo",
+    "backend": "modal",
+    "request_timeout_sec": 600.0,
+    "startup_timeout_sec": 900.0,
+    "modal_region": "us-east",
+    "seed": 42,
+    "accelerator_count": 1,
+    "output_cap_max_tokens": 4,
+    "dataset_dev_size": 5,
+    "dataset_test_size": 10,
+    "transport": "http",
+    "oracle_fingerprint": "c0d071b6_greedy",
+    "oracle_decode": "Greedy()",
+    "oracle_max_new_tokens": 4
+  },
+  "build": {
+    "started_at": 1780387065.101032,
+    "finished_at": 1780387284.951518,
+    "artifact_image": "hls-artifact-c6e5fe77a9ad",
+    "n_input_tokens": 75875,
+    "n_output_tokens": 1893,
+    "cost_usd": 0.1658742,
+    "total_steps": 8,
+    "has_trajectory": true,
+    "logs": {
+      "agent": "build/agent/"
+    },
+    "source": {
+      "tree_path": "build/source/",
+      "bundle_path": "build/source.bundle",
+      "commit": "c6e5fe77a9ad5f75f711f38ef597f7f24ef1ba08",
+      "git_origin": "harness",
+      "main_resolved": true,
+      "files": [
+        "pyproject.toml",
+        "server.py"
+      ],
+      "n_files": 2,
+      "total_bytes": 3141,
+      "truncated": false
+    }
+  },
+  "evals": [
+    {
+      "eval_id": "terminal",
+      "triggered_by": "harness",
+      "checkpoint": "modal:Image(<function _Image.run_commands.<locals>.build_dockerfile at 0x10c52e340>)",
+      "anchor": {
+        "turn_index": 8
+      },
+      "started_at": 1780387524.1243992,
+      "finished_at": 1780387599.999722,
+      "trace_path": "evals/terminal/trace.json",
+      "verdict_summary": {
+        "gate_passed": true,
+        "aggregate_passed": true,
+        "diagnostics": {
+          "0:AccuracyVsReference+RelativeBar": {
+            "artifact_agg": 0.4,
+            "reference_agg": 0.4,
+            "tol": 0.0
+          }
+        }
+      },
+      "score": {
+        "value": 0.5333196170637383,
+        "achieved": 0.5333196170637383,
+        "sol": 1.0,
+        "unit": "request",
+        "gate_passed": true,
+        "zero_reason": null,
+        "breakdown": {
+          "slo": {
+            "p99_ms": 884.6045739992405,
+            "target_ms": 1000000,
+            "n": 5
+          },
+          "verdict": {
+            "0:AccuracyVsReference+RelativeBar": {
+              "artifact_agg": 0.4,
+              "reference_agg": 0.4,
+              "tol": 0.0
+            }
+          }
+        }
+      },
+      "container_logs": {
+        "artifact": "evals/terminal/artifact.log",
+        "driver": "evals/terminal/driver.log"
+      },
+      "error": null
+    }
+  ],
+  "error": null
+}

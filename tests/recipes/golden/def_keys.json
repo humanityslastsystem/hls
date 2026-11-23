@@ -1,0 +1,74 @@
+{
+  "catalog": {
+    "cuda": {
+      "def_sha256": "4452eedafc4c5e530ef9a6991bfde99f0ef529faf2500e5749ef0c7f3c44f11e",
+      "key": "cuda-2cb9226732dbd588"
+    },
+    "cuda-setuptools": {
+      "def_sha256": "8b397ca6c62d9fc2afdf06c45531e3c8349881d84379359044d3197918da5848",
+      "key": "cuda-setuptools-586c99dd0159de1a"
+    },
+    "s-a": {
+      "def_sha256": "230a7dcbc30be2ea1b0ad560b9decde8cf77e87bcbef875f5c39fb04b35497b9",
+      "key": "s-a-33d76d95efa7a688"
+    },
+    "s-a-tf-4-57-3-qwen-tts": {
+      "def_sha256": "3720c41cdfb12c3444ed381e5d7c8e9e649a1ac8747286510a68b2c0162528b7",
+      "key": "s-a-tf-4-57-3-qwen-tts-f43031a04e857c83"
+    },
+    "s-a-tf-4-57-3-qwen-tts-agent": {
+      "def_sha256": "55b354e2a70eae92edbd257f49655c6862e31aa9c108b4afebd696ab8183b40b",
+      "key": "s-a-tf-4-57-3-qwen-tts-agent-6d10fc437dc0a3ac"
+    },
+    "s-a-tf-5-13-1": {
+      "def_sha256": "9b935214eaac72fabaa444b1009ef10f1c7f506576c87af3b75dcaa2afc7aec6",
+      "key": "s-a-tf-5-13-1-05e4c31117ebfa14"
+    },
+    "s-a-tf-5-13-1-agent": {
+      "def_sha256": "55b354e2a70eae92edbd257f49655c6862e31aa9c108b4afebd696ab8183b40b",
+      "key": "s-a-tf-5-13-1-agent-d0ac25bae75953c1"
+    },
+    "s-a-tf-5-9-0": {
+      "def_sha256": "25a65865896fcbfd20e17492def3ed408660232797eb80a6aef45bd0c924138b",
+      "key": "s-a-tf-5-9-0-35ac7e3266fa08a7"
+    },
+    "s-a-tf-5-9-0-agent": {
+      "def_sha256": "55b354e2a70eae92edbd257f49655c6862e31aa9c108b4afebd696ab8183b40b",
+      "key": "s-a-tf-5-9-0-agent-d49bb783a4488ce5"
+    },
+    "s0": {
+      "def_sha256": "7230aa1d6d9fff3eb277f98824040d3de386e8dc5cc439db14eaffda5ecd66e0",
+      "key": "s0-c633872695321115"
+    },
+    "s0-tf-5-17-0": {
+      "def_sha256": "02ae2341969739ce50e5299501241198dc940daac7e5a7735609032dd06e639b",
+      "key": "s0-tf-5-17-0-6fad25e3b347adf4"
+    },
+    "s0-tf-5-17-0-agent": {
+      "def_sha256": "55b354e2a70eae92edbd257f49655c6862e31aa9c108b4afebd696ab8183b40b",
+      "key": "s0-tf-5-17-0-agent-9a5c69cc0688f2eb"
+    }
+  },
+  "test": {
+    "nvidia-base": {
+      "def_sha256": "f67726ba07188bb7b3cbcc1948d3cba3140e235b4abdd4223c07b3dd90d142d3",
+      "key": "nvidia-base-2aa913254dc3e5c1"
+    },
+    "plain-base": {
+      "def_sha256": "8041f81cb1e15551ebf115715e97cd718fd27ace9899b51448c29d50f3fab8a1",
+      "key": "plain-base-041fea436b5de89a"
+    },
+    "sdist-layer": {
+      "def_sha256": "70f778dbdfff569060b3781fa18a775e267a4181d6a912375c8061d9a4926a4d",
+      "key": "sdist-layer-31cdd0ee3cc18b98"
+    },
+    "test-agent": {
+      "def_sha256": "2012390b45ad9361de408f266595bc6c4f8edaa6d3992d9bf6c472f1c15198c3",
+      "key": "test-agent-74c7d0147a1f66b9"
+    },
+    "wheels-layer": {
+      "def_sha256": "de53c5a2387b0eadd5fc63114c3dc67efd98b85c7f0a37e0feb46eb61e2c323b",
+      "key": "wheels-layer-50cad05286ae09d0"
+    }
+  }
+}

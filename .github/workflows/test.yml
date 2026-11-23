@@ -1,0 +1,62 @@
+name: test
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  pytest:
+    # An explicit image, so moving to a newer one is a change made here.
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # harbor is a uv workspace member, so `uv sync` needs the submodule present.
+          submodules: recursive
+      - uses: astral-sh/setup-uv@v7
+      # uv installs the Python that .python-version names, the clusters' version, not the image's own.
+      - run: uv sync
+      # Ubuntu's AppArmor refuses unprivileged user namespaces by default; the sandbox's isolation
+      # tests (tests/agent/test_sandbox_attack.py, test_probe.py) make them as the build sandbox's
+      # spawner does, and fail rather than skip under CI when they are refused.
+      - run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+      # testpaths (pyproject.toml) names tests/ and every task's tests/.
+      - run: uv run pytest -m "not gpu"
+  pytest-torch:
+    # The tests of the reference's report reduction import torch, which `uv sync` does not install,
+    # so they skip in the job above. This job installs the CPU build and runs those files.
+    name: pytest, report reduction on CPU torch
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync
+      - run: uv pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+      # --no-sync keeps the torch just installed. The import fails the job where a skip would pass it.
+      - run: uv run --no-sync python -c "import torch"
+      - run: >-
+          uv run --no-sync pytest
+          tests/unit/test_vllm_report.py
+          tests/unit/test_report_reduction_agrees.py
+          tests/unit/test_implied_end_of_turn.py
+          tests/unit/test_continuation_reference_render.py
+  vitest:
+    name: viewer vitest
+    runs-on: ubuntu-26.04
+    defaults:
+      run:
+        working-directory: apps/viewer
+    steps:
+      - uses: actions/checkout@v6
+      # The viewer's dependencies are locked by apps/viewer/bun.lock, the file `hls view` installs from.
+      # bun installs them; vitest runs on node, as vite 7 requires 20.19+.
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      # --frozen-lockfile fails when package.json and bun.lock disagree.
+      - run: bun install --frozen-lockfile
+      - run: bun run test

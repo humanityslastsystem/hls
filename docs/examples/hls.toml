@@ -1,0 +1,237 @@
+# A site's hls.toml: the cluster, run policy, resource changes, and the arms that build.
+#
+# The hls commands read this file from ./hls.toml, or from the path given with --config. It
+# holds no secret: credentials and base URLs live in the secrets file named by
+# site.secrets_path (see docs/examples/secrets.toml), and a route here names them. The loader
+# is strict: a misspelled key, a key in the wrong table and any top-level table other than the
+# six below are refused, naming the key's dotted path. Lines that start with "#" show an
+# optional setting at its default or as an example; uncomment one to set it.
+# docs/configuration.md describes every setting.
+
+[site]
+# What the site runs allocations on: "slurm" (a Slurm cluster, with Apptainer) or "docker" (one
+# host's Docker). Slurm is the default.
+# substrate = "slurm"
+# The Slurm partition every GPU allocation is submitted to.
+partition = "gpu"
+# The Slurm account; leave unset for the user's default.
+# account = "mylab"
+# The Slurm QOS; leave unset for the account's default. Under qos_by_hours it must be one of
+# the QOS listed there.
+# qos = "normal"
+# Each QOS a job may run under, with the most hours a job may ask for under it. The planner
+# keeps an allocation under qos while that QOS holds its time, else picks the QOS with the
+# least limit that holds it. An allocation the run's gpu_policy groups that none holds is
+# split into a chain of allocations the longest limit holds; a stage none holds alone, and an
+# allocation a pipeline lays out itself that none holds, are refused. Empty (the default) runs
+# every allocation under qos.
+# qos_by_hours = { normal = 24, long = 168 }
+# The store's root on the shared filesystem. Plans, stage outputs, records and the cache live
+# under it. Paths are absolute, or start with ~.
+store_root = "/shared/hls/store"
+# Node-local scratch on the compute nodes, where stages copy cache entries and extract images.
+node_scratch = "/tmp"
+# The secrets file: mode 0600, owned by you, outside the checkout and the store.
+secrets_path = "~/.config/hls/secrets.toml"
+# The Docker Hub user name the images stage pulls base images with, and the sandbox_images stage
+# a task's sandbox images. Set it together with REGISTRY_PASSWORD grants to stage.images and
+# stage.sandbox_images in the secrets file, or leave all of them out to pull anonymously. It is
+# not a secret.
+# registry_username = "mylab-builds"
+# Each GPU kind to the Slurm gres name of that GPU on this cluster (the default shown).
+# gpu_gres = { H200 = "h200", H100 = "h100", B200 = "b200", A100 = "a100", L40 = "l40", L40S = "l40s" }
+# The fewest GPUs a job may ask for on this cluster; 0 when jobs without a GPU are allowed.
+# min_gpus_per_job = 0
+# true holds a scored server's CPUs to one socket: the allocation asks for two tasks of the
+# server's CPUs with at most one task per socket, and a server whose CPUs still span two NUMA
+# nodes is refused and retried. Only for nodes with one NUMA node per socket and at least twice
+# a server's CPUs per GPU.
+# evaluation_socket_tasks = false
+# Extra sbatch arguments for every allocation on partition, each "--<name>=<value>" with name
+# one of exclude, constraint, reservation, nodelist, nice, mail-type, mail-user; each option
+# at most once.
+# sbatch_extra = ["--constraint=h200", "--exclude=node017"]
+# The partition for the pipelines that need no GPU: the cache warmers (hls provision,
+# hls images build, hls package) and hls export. Unset, they run on partition, with a warning.
+# cpu_partition = "cpu"
+# The pasta program the network seal runs, as hls build-pasta stages it. Unset, pasta
+# is found on the allocation's PATH.
+# pasta_path = "/shared/hls/pasta-build/pasta"
+# Seconds allowed for each role's Slurm step to start. Beyond its stages' own times, an
+# allocation's time limit holds this once for every role each of its stages may start.
+# step_launch_allowance_sec = 150
+# An HTTP proxy, "http://<host>:<port>" without credentials, through which the network seal
+# reaches the internet. Unset, the seal connects directly.
+# egress_upstream_proxy = "http://proxy.example:3128"
+# The most processes and threads of your user on a node that a contestant's step (the served
+# submission, a pip step of the package stage, a build command in the agent's sandbox) may grow
+# your count to. Unset, each node gets 131,072, or 4,096 for each evaluation of the step's size it
+# holds when that is more. A value you set must hold 4,096 for each evaluation of a step's size
+# its node holds: a plan is refused a value under 4,096, and an allocation whose node holds more
+# than it can is refused when it starts.
+# nproc_max = 131072
+# With warmers_one_at_a_time on, the Slurm job name every cache warmer runs under, which
+# Slurm's singleton dependency holds them behind; with it off, each runs under its own --job-name.
+# warmer_job_name = "hls-warmer"
+# true runs the cache warmers one at a time (Slurm's singleton dependency on warmer_job_name),
+# so cold warmers do not share one node's scratch.
+# warmers_one_at_a_time = true
+# How the node's kernel counts the build sandbox's commands against their process ceiling: "uid",
+# against every process of your user on the node (kernels before 5.14, such as el8), or
+# "user_namespace", against the commands' own (5.14 and later, such as el9). It has no default,
+# and the line below is an example: unset, each stage decides from its node's kernel release and
+# its nproc_accounting event records which it used. Every build checks the choice against the
+# node's kernel and refuses a mismatch.
+# nproc_accounting = "uid"
+# Caps on what the build sandbox's commands may hold at once, below their share of the node: the
+# namespaces of each kind (at least 16), inotify instances (at least 2) and inotify watches (at
+# least 8192). Unset, the share alone limits them.
+# sandbox_namespaces = 64
+# sandbox_inotify_instances = 8
+# sandbox_inotify_watches = 65536
+# The per-uid kernel limits of the nodes that grade a served submission, the least of them: the
+# namespaces of each kind (user.max_user_namespaces), inotify instances and inotify watches
+# (fs.inotify.max_user_instances, max_user_watches). A graded server's limits are its share of
+# these; a build states them in its brief and its grading holds the server to them. Read each with
+# sysctl on a grading node.
+# grading_node_namespaces = 1048576
+# grading_node_inotify_instances = 128
+# grading_node_inotify_watches = 1048576
+
+# One host's Docker in place of Slurm. Set substrate = "docker" in [site], leave out partition and
+# the other Slurm settings (qos, qos_by_hours, account, gpu_gres, min_gpus_per_job,
+# evaluation_socket_tasks, sbatch_extra, cpu_partition, pasta_path), and give both tables below.
+# substrate = "docker"
+#
+# [site.docker]
+# The Docker daemon's socket.
+# socket = "/var/run/docker.sock"
+# The image a build's BuildKit builder runs, which buildx starts privileged: pinned by its digest
+# (or an image ID), never a tag alone. Unset, BuildKit v0.35.1. A job builds the step image every
+# harness role runs in with it when the store holds none for the recipe, which needs the Docker CLI
+# with buildx on the host.
+# buildkit_image = "moby/buildkit@sha256:<64 hex digits>"
+# A label, key=value, every role container carries, such as one a GPU manager reads.
+# owner_label = "owner=hls"
+# GiB each sealed role's gateway holds beside the role, in the allocation's memory.
+# gateway_memory_gib = 2
+#
+# [site.local]
+# The local scheduler's state directory: this user's own, mode 0700, on a local disk.
+# state_dir = "/var/lib/hls/state"
+# GiB of the host's memory no allocation is given.
+# kept_memory_gib = 16
+
+[run]
+# "max" runs a whole run in one allocation sized to its largest stage, with a warning naming
+# the GPU-hours that idle; "split" starts a new allocation at each change in GPU count. Under
+# either, an allocation no QOS of qos_by_hours holds is split into a chain the longest holds.
+# gpu_policy = "max"
+# Seconds between runner heartbeats.
+# heartbeat_sec = 30
+# Seconds after its last renewal at which an orchestrator's lease on an instance may be taken
+# over by hls resume.
+# lease_ttl_sec = 120
+# Seconds between the orchestrator's looks at the store and at Slurm.
+# poll_sec = 30
+# Seconds added to every allocation's time limit for the runner's start and shutdown.
+# allocation_overhead_sec = 900
+# Seconds without a heartbeat after which a running allocation is cancelled and its stage
+# retried; at least 3 x heartbeat_sec.
+# allocation_dead_after_sec = 600
+# GiB of each stage's declared memory left to the runner, which shares the job's memory
+# limit with the stage's roles.
+# runner_memory_gib = 4
+# Processes and threads of your user held back on a node for each evaluation the node can hold
+# (its harness, its runner and srun), which a contestant's step may not take.
+# nproc_reserve = 1024
+# Whether an agent build whose sandbox runs out of its own memory is graded on what the agent last
+# committed; false scores such a build zero, with nothing graded. A
+# write past the sandbox's disk cap is graded on the last commit either way. The plan keeps the
+# value it was made with.
+# grade_after_sandbox_oom = true
+# Seconds an agent build keeps after the agent's hard limit to collect it: stop the sandbox, bundle
+# the repository, copy the transcript. A collection that does not end in time voids the build,
+# never the contestant's fault; the brief states the value. A plan is refused a value under 2350.
+# collect_allowance_sec = 3600
+
+# How one stage is retried after an infrastructure fault. A stage without a table retries
+# once for agent_build and twice for every other stage.
+# [run.retry.package]
+# Retries after the first attempt; unset takes the stage's default.
+# max = 2
+# false turns retries off for the stage.
+# enabled = true
+# Seconds to wait before submitting the retry.
+# backoff_sec = 0
+
+# [resources.<task id>.<stage>] changes one stage's declared shape for one task: the fields it
+# sets replace the declared ones and the rest are kept. The task is named by its TaskSpec id
+# (multimodal-asr for tasks/multimodal_asr) and the stage by its name in the plan, such as
+# agent_build or verify; a task id the checkout does not know and a stage name no pipeline has
+# are refused. The plan records which stages a table changed.
+# [resources.multimodal-omni.verify]
+# GPUs; 0 also clears the GPU kind.
+# gpus = 1
+# The GPU kind, one of H200, H100, B200, A100, L40, L40S.
+# gpu_kind = "H200"
+# CPU cores.
+# cpus = 16
+# Memory limit in GiB.
+# memory_gib = 256
+# Free node-local disk in GiB the stage needs.
+# disk_gib = 100
+# Wall-clock limit in seconds.
+# time_sec = 7200
+
+# A route says how an arm's agent reaches its model, by the names of secrets in the secrets
+# file only. The agent is granted exactly these secrets and nothing else.
+[routes.anthropic]
+# The secret that holds the credential.
+credential = "anthropic_key"
+# The secret that holds the API's base URL, for a route through a relay or gateway; unset for
+# the harness's own provider (api.anthropic.com for claude-code, api.openai.com for codex). A
+# base URL is a secret like the credential, so records name the route, never the URL.
+# base_url = "anthropic_relay_url"
+# How the credential is presented: "api_key" or "bearer". codex takes only "api_key".
+auth = "api_key"
+
+[routes.openai]
+credential = "openai_key"
+auth = "api_key"
+
+# An arm is the agent that builds a submission: its harness, its model and its route.
+# hls run --arm <name> names one.
+[arms.claude]
+# "claude-code" or "codex".
+harness = "claude-code"
+# The model id exactly as the provider names it, with no window suffix.
+model = "claude-opus-5"
+# The context window in tokens. claude-code takes 200000 or 1000000; codex any window.
+context_window = 1000000
+# The most output tokens of one model response.
+output_limit = 64000
+# The reasoning effort: low, medium, high, xhigh or max. Unset takes the task's setting.
+effort = "max"
+# The [routes.<name>] table the agent reaches its model through.
+route = "anthropic"
+
+[arms.codex]
+harness = "codex"
+model = "gpt-5.6-sol"
+context_window = 272000
+output_limit = 128000
+effort = "max"
+route = "openai"
+
+# The directory of each store a task's sandboxes start from, by the name its tool runner gives
+# it: lowercase letters, digits and hyphens. A drive binds each into the driver's container at
+# the path the runner declares, and a plan whose drive binds a store not named here is refused.
+# Every sandbox can reach these, so each stands apart from store_root, the secrets file's
+# directory, the checkout and the other stores. A site that runs no sandboxed task needs none.
+# agentic_coding names these four:
+# [sandbox_stores]
+# agentic-coding-images = "/shared/agentic-coding/images"
+# agentic-coding-overlays = "/shared/agentic-coding/overlays"
+# agentic-coding-prefixes = "/shared/agentic-coding/prefixes"
+# agentic-coding-runtime = "/shared/agentic-coding/runtime"

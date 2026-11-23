@@ -1,0 +1,155 @@
+{
+  "kind": "report",
+  "task": "tasks.multimodal_tts.task",
+  "workload_fingerprint": "c521957c6543c87e6e5813c5131eca5c54e39c1899d23934528da99d3bd8d98e",
+  "workload": {
+    "model": {
+      "base_checkpoint": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+      "arch": "TX",
+      "chat_format": "qwen3-tts",
+      "revision": "0c0e3051f131929182e2c023b9537f8b1c68adfe",
+      "chat_template_kwargs": {},
+      "fingerprint": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice@0c0e3051f131929182e2c023b9537f8b1c68adfe#TX?"
+    },
+    "contract": {
+      "path": "/v1/audio/speech",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "audio"
+      ],
+      "port": 8000,
+      "transport": "http-sse",
+      "protocol": {
+        "stop_token_ids": null,
+        "model": "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
+        "voice": "default",
+        "return_token_ids": false,
+        "return_codec_codes": true,
+        "return_logprobs": true,
+        "top_logprobs": 65,
+        "codec_groups": 16,
+        "codec_codebook_size": 2048,
+        "codec_eos_id": 2150,
+        "kind": "TTSStreamProtocol"
+      },
+      "kind": "RequestResponseContract"
+    },
+    "seed": 42,
+    "tenants": [
+      {
+        "id": "t0",
+        "data_source": {
+          "dataset": {
+            "path": "mythicinfinity/libritts",
+            "subset": "clean",
+            "revision": "35f26bdafa9883b5524f17931216af78632db8eb",
+            "id_column": null,
+            "source_split": "dev.clean",
+            "prompt": {
+              "template": "{{ text_normalized }}",
+              "kind": "JinjaPromptTemplate"
+            },
+            "target": {
+              "template": "{{ text_normalized }}",
+              "kind": "JinjaPromptTemplate"
+            },
+            "context_col": null,
+            "questions_col": null,
+            "answers_col": null,
+            "answers_text_key": "input_text",
+            "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+            "max_turns": 5,
+            "keep_columns": [
+              "text_normalized"
+            ],
+            "kind": "ColumnProjectedHFDataset"
+          },
+          "split": {
+            "dev": {
+              "value": 64,
+              "kind": "Count"
+            },
+            "test": {
+              "value": 2400,
+              "kind": "Count"
+            }
+          },
+          "dev_dataset": null,
+          "removed_rows": []
+        },
+        "output_length_cap": {
+          "cap_tokens": 1280,
+          "kind": "ShortOutputCap"
+        },
+        "history_char_budget": null,
+        "trim_rampdown": false,
+        "references": [
+          {
+            "decode": {
+              "temperature": 1.0,
+              "kind": "Sample"
+            },
+            "speaker": "Ryan",
+            "language": "English",
+            "instruct": "",
+            "repetition_penalty": 1.0,
+            "subtalker_sample": true,
+            "temperature": 1.0,
+            "top_k": 0,
+            "subtalker_temperature": 1.0,
+            "subtalker_top_k": 0,
+            "batch_size": 16,
+            "dtype": null,
+            "kind": "Qwen3TTSReference"
+          }
+        ]
+      }
+    ],
+    "agent": null,
+    "max_context_len": null
+  },
+  "gpu_kind": "H200",
+  "stack": {
+    "torch": "2.11.0+cu130",
+    "runtime": {
+      "cuda": "13.0",
+      "cudnn": "91900"
+    },
+    "device_name": "NVIDIA H200"
+  },
+  "engines": {
+    "vllm_omni": {
+      "n_servings": 2,
+      "n_replies": 4800,
+      "n_tokens": 6934144,
+      "mean_kl": 0.0013902917944868863,
+      "se_kl": 3.1322088637677857e-06,
+      "upper": 0.0013954442780677843,
+      "precision_passed": true,
+      "outside_rate": 0.34277569084230153,
+      "se_outside": 0.0009064151031643627,
+      "outside_upper": 0.3442667436870069
+    }
+  },
+  "kappa": 0.0013954442780677843,
+  "outside_ceiling": 0.3442667436870069,
+  "eps": 0.05,
+  "end_of_turn": {
+    "ids": [
+      2150
+    ],
+    "eps": 0.003,
+    "expected_max": 5.0,
+    "engines": {
+      "vllm_omni": {
+        "priced_positions": 6925133,
+        "expected": 6.680783633546572,
+        "observed": 9,
+        "p_value": 0.23023359840412638
+      }
+    }
+  },
+  "created_at": "2026-09-23T09:30:12.085476+00:00"
+}

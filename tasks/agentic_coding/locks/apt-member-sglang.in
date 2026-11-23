@@ -1,0 +1,12 @@
+# Ubuntu packages the SGLang member adds to the cuda base: what Apptainer's .deb depends on
+# beside the base's own packages. The member starts each trajectory's sandbox with Apptainer
+# inside its own container. Pinned into apt-member-sglang.txt by
+#   hls images lock-apt ubuntu apt-member-sglang --task agentic_coding
+fakeroot
+libfakeroot
+libfuse3-3
+liblzo2-2
+libprotobuf-c1
+libsubid4
+libtalloc2
+uidmap

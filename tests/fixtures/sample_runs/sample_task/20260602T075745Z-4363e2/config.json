@@ -1,0 +1,29 @@
+{
+  "task_id": "sample_task",
+  "split": "dev",
+  "image_digests": {},
+  "model_fingerprint": "Qwen/Qwen2.5-0.5B-Instruct@TX",
+  "wire_protocol": "OpenAIChatProtocol",
+  "hls_commit": "66e27d9",
+  "harbor_commit": "4893bcd",
+  "rollout_overrides": {
+    "source.builder.model_name": "claude-sonnet-4-5"
+  },
+  "accelerator": "H200",
+  "agent_implementer_model": "claude-sonnet-4-5",
+  "max_turns": 40,
+  "artifact_mode": "git-repo",
+  "backend": "modal",
+  "request_timeout_sec": 600.0,
+  "startup_timeout_sec": 900.0,
+  "modal_region": "us-east",
+  "seed": 42,
+  "accelerator_count": 1,
+  "output_cap_max_tokens": 4,
+  "dataset_dev_size": 5,
+  "dataset_test_size": 10,
+  "transport": "http",
+  "oracle_fingerprint": "c0d071b6_greedy",
+  "oracle_decode": "Greedy()",
+  "oracle_max_new_tokens": 4
+}

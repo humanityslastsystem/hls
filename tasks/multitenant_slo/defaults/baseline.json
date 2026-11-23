@@ -1,0 +1,135 @@
+{
+  "campaign": {
+    "task": "tasks.multitenant_slo.task",
+    "workload_fingerprint": "8f94167ab6541b2e5e6cd00b5b718cb765d8ab3a3980cf3487cc547b70774f54",
+    "load": {
+      "split": "test",
+      "tenants": [
+        {
+          "id": "chat",
+          "arrival": {
+            "shape": 1.0,
+            "scale": 11.968968968968968,
+            "kind": "Gamma"
+          },
+          "inter_turn_delay": {
+            "shape": 0.4057,
+            "scale": 735.8009,
+            "max_gap": 1800.0,
+            "kind": "GammaInterTurn"
+          },
+          "slo": {
+            "ttft_ms": 500.0,
+            "tpot_ms": 50.0,
+            "kind": "StreamingLatencySLO"
+          }
+        },
+        {
+          "id": "api_short",
+          "arrival": {
+            "shape": 0.4444444444444444,
+            "scale": 3.3783783783783785,
+            "kind": "Gamma"
+          },
+          "inter_turn_delay": {
+            "kind": "NoDelay"
+          },
+          "slo": {
+            "ttft_ms": 300.0,
+            "tpot_ms": 50.0,
+            "kind": "StreamingLatencySLO"
+          }
+        },
+        {
+          "id": "reasoning",
+          "arrival": {
+            "shape": 1.0,
+            "scale": 7.507507507507507,
+            "kind": "Gamma"
+          },
+          "inter_turn_delay": {
+            "kind": "NoDelay"
+          },
+          "slo": {
+            "ttft_ms": 300.0,
+            "tpot_ms": 50.0,
+            "kind": "StreamingLatencySLO"
+          }
+        },
+        {
+          "id": "long_session",
+          "arrival": {
+            "shape": 1.0,
+            "scale": 68.70810810810809,
+            "kind": "Gamma"
+          },
+          "inter_turn_delay": {
+            "shape": 0.2891,
+            "scale": 1684.0497,
+            "max_gap": 300.0,
+            "kind": "GammaInterTurn"
+          },
+          "slo": {
+            "ttft_ms": 1000.0,
+            "tpot_ms": 50.0,
+            "kind": "StreamingLatencySLO"
+          }
+        }
+      ]
+    },
+    "gpu_kind": "H200",
+    "baseline": {
+      "image": "hls-baseline-multitenant-slo",
+      "serve_command": [
+        "--served-model-name",
+        "served-model",
+        "--gpu-memory-utilization",
+        "0.92",
+        "--max-num-seqs",
+        "512",
+        "--dtype",
+        "bfloat16",
+        "--enable-prefix-caching",
+        "--enable-chunked-prefill",
+        "--override-generation-config",
+        "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+      ]
+    }
+  },
+  "drives": [
+    {
+      "started_at": "2026-09-05T17:33:09.034139+00:00",
+      "duration_sec": 3357.176176474197,
+      "n_requests": 1317,
+      "n_units": null,
+      "mean_log_credit": 0.5904062441397466
+    },
+    {
+      "started_at": "2026-09-05T17:33:12.958521+00:00",
+      "duration_sec": 3147.565722202882,
+      "n_requests": 1319,
+      "n_units": null,
+      "mean_log_credit": 0.5604503054446777
+    },
+    {
+      "started_at": "2026-09-05T17:33:12.973275+00:00",
+      "duration_sec": 3082.4831615372095,
+      "n_requests": 1317,
+      "n_units": null,
+      "mean_log_credit": 0.567781560698718
+    },
+    {
+      "started_at": "2026-09-05T17:33:12.973383+00:00",
+      "duration_sec": 3451.4282844110858,
+      "n_requests": 1319,
+      "n_units": null,
+      "mean_log_credit": 0.566085964922184
+    }
+  ],
+  "created_at": "2026-09-06T12:25:10.448912+00:00",
+  "hardware": [
+    {
+      "gpu_model": "NVIDIA H200"
+    }
+  ]
+}

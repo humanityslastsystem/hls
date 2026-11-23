@@ -1,0 +1,66 @@
+{
+  "campaign": {
+    "task": "tasks.multimodal_tts.task",
+    "workload_fingerprint": "c521957c6543c87e6e5813c5131eca5c54e39c1899d23934528da99d3bd8d98e",
+    "load": {
+      "split": "test",
+      "tenants": [
+        {
+          "id": "t0",
+          "arrival": {
+            "rate_per_sec": 2.0,
+            "kind": "Poisson"
+          },
+          "inter_turn_delay": {
+            "kind": "NoDelay"
+          },
+          "slo": {
+            "target_ms": 10000.0,
+            "kind": "RequestLatencySLO"
+          }
+        }
+      ]
+    },
+    "gpu_kind": "H200",
+    "baseline": {
+      "image": "hls-baseline-multimodal-tts",
+      "serve_command": []
+    }
+  },
+  "drives": [
+    {
+      "started_at": "2026-09-22T01:35:58.942762+00:00",
+      "duration_sec": 3366.362397979945,
+      "n_requests": 2400,
+      "n_units": 2400,
+      "mean_log_credit": 2.791658928213716
+    },
+    {
+      "started_at": "2026-09-22T02:32:07.609632+00:00",
+      "duration_sec": 2393.245067798067,
+      "n_requests": 2400,
+      "n_units": 2400,
+      "mean_log_credit": 2.8110268472005036
+    },
+    {
+      "started_at": "2026-09-22T03:12:03.098857+00:00",
+      "duration_sec": 1557.2520300371107,
+      "n_requests": 2400,
+      "n_units": 2400,
+      "mean_log_credit": 2.7118456308850583
+    },
+    {
+      "started_at": "2026-09-22T03:38:02.633340+00:00",
+      "duration_sec": 2001.2376802139916,
+      "n_requests": 2400,
+      "n_units": 2400,
+      "mean_log_credit": 2.712086217807558
+    }
+  ],
+  "created_at": "2026-09-22T04:19:17.937894+00:00",
+  "hardware": [
+    {
+      "gpu_model": "NVIDIA H200"
+    }
+  ]
+}

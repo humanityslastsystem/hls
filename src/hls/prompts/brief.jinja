@@ -1,0 +1,181 @@
+# Task Description
+
+## Goal
+{% block goal %}Serve `{{ model.base_checkpoint }}` under the workload below. Your score is goodput:
+the rate of requests served correctly and within their latency SLO. Meeting every SLO is required
+for a nonzero score; above that floor, higher goodput scores higher.{% endblock %}
+
+## Model
+{% block model %}- Checkpoint: `{{ model.base_checkpoint }}`
+- Chat format: `{{ model.chat_format }}`{% if model.chat_template_kwargs %}{{ "\n" }}- Chat template arguments: {% for k, v in model.chat_template_kwargs | dictsort %}`{{ k }}={{ v | tojson }}`{{ ", " if not loop.last }}{% endfor %} -- pass these to `apply_chat_template` on every request. The reference renders every prompt with them, so a prompt rendered without them is graded against a different distribution and fails correctness.{% endif %}{% endblock %}
+
+## Hardware Envelope
+{% block hardware %}{{ hardware.accelerator_count }}x{{ hardware.accelerator_kind }}{% if hardware.memory_gb_per_device %}, {{ hardware.memory_gb_per_device }} GB/device{% endif %}{% if hardware.interconnect %}, {{ hardware.interconnect }}{% endif %}{% if hardware.memory_gb %}{{ "\n" }}{{ hardware.memory_gb }} GB host RAM{% endif %}{% endblock %}
+
+## Workload
+{% block workload %}{% if offered_load %}Arrivals are sessions; each turn of a session is one request. Offered load over all
+tenants: {{ offered_load }} requests/s, an upper bound, since a session can end before its
+last turn.
+{% endif %}{% if tenants_data %}{% for tid, wf, ds in tenants_data %}
+### Tenant {{ tid }}
+- Dataset: {{ (ds.dataset.path or ds.dataset.repo if ds else None) or "(none)" }}
+- Sessions: {{ wf.sessions }}{% if wf.requests %}{{ "\n" }}- Requests: {{ wf.requests }}{% endif %}{% if wf.think_time %}{{ "\n" }}- Between turns: {{ wf.think_time }}{% endif %}{{ "\n" }}- Per-request output cap: {{ wf.output_cap }}
+- SLO: {{ wf.slo }}{{ "\n\n" if not loop.last else "" }}{% endfor %}{% else %}- Sessions: {{ workload.sessions }}{% if workload.requests %}{{ "\n" }}- Requests: {{ workload.requests }}{% endif %}{% if workload.think_time %}{{ "\n" }}- Between turns: {{ workload.think_time }}{% endif %}{{ "\n" }}- Per-request output cap: {{ workload.output_cap }}
+- SLO: {{ workload.slo }}{% endif %}{% endblock %}
+
+## Network Contract
+{# health ends in `+%}` because trim_blocks would otherwise eat the first of the two
+   newlines before the protocol section. #}
+{% block contract %}{% block health %}### GET /health
+Return 200 **only** when the model is fully loaded and the inference endpoint can
+serve a request immediately. Return non-200 (e.g. 503) at any point before that.
+**If you load the model in a background thread, your /health must block on load
+completion before returning 200.** Returning 200 early (before the model is ready)
+violates the substrate's readiness contract: the harness stops polling /health
+the moment it sees 200 and immediately sends inference traffic.{% endblock +%}
+
+{{ protocol_section }}{% endblock %}
+
+
+## Decoding
+{% block decoding %}{% if decode.kind == "sample" %}
+**Decoding.** Sample at temperature {{ "%g" % decode.temperature }}. At each position, apply
+the softmax to the model's logits over the full vocabulary{% if decode.temperature != 1.0 %}
+divided by {{ "%g" % decode.temperature }}{% endif %} and draw the next token from that
+distribution. No top-p, top-k or min-p truncation; no repetition, frequency or presence
+penalty; no logit bias. The chat-templated prompt already carries the model's special tokens,
+so do not add another BOS. A reply ends when the model emits one of its end-of-turn tokens
+(`finish_reason` `stop`, with that token as the last token id served) or when `max_tokens`
+tokens have been served or the context window is full (`finish_reason` `length`).
+
+For every generated token, report its log-probability and the most probable alternatives at
+that position with their log-probabilities and token ids, as the Network Contract above
+specifies. The reported values must be the distribution you sampled from.
+
+**Verification.** For every served token, the reference model is run on the same prefix and
+the KL divergence from your reported distribution to the reference's is averaged over all
+graded tokens. The run fails if this mean exceeds {% if verification and verification.kind == "report" %}{{ verification.kl_ceiling_str }} nats per token{% else %}a ceiling calibrated on trusted serving stacks{% endif %}.
+Your served tokens must be faithful draws from the distribution you report; this is tested
+statistically, and a server that reports one distribution and samples from another fails.
+The reported alternatives must be the most probable tokens: the run fails if more than
+{% if verification and verification.kind == "report" %}{{ verification.outside_limit_pct_str }} percent{% else %}a fraction calibrated on trusted serving stacks{% endif %} of your served tokens are not among the alternatives you reported at
+their position.
+{%- elif decode.frequency_penalty %}
+**Decoding.** Decode greedily after a frequency penalty of {{ "%g" % decode.frequency_penalty }}:
+at each position, subtract {{ "%g" % decode.frequency_penalty }} times the number of times a token id
+already appears in the reply you are generating from that token's logit, then take the
+argmax. Count only this request's output tokens, never the prompt; apply it in fp32
+before the softmax. This is the OpenAI `frequency_penalty`, and vLLM and SGLang
+implement it this way when given `frequency_penalty={{ "%g" % decode.frequency_penalty }}`
+with `temperature=0`. The correctness gate teacher-forces your tokens through a
+reference decoded the same way, so any other decode fails it by construction. The
+chat-templated prompt already carries the model's special tokens, so do not add
+another BOS; strip special tokens from the output, stopping at the end-of-turn token
+and never emitting the raw end token (e.g. `<|im_end|>`) in the response text.
+{%- else %}
+**Decoding.** Decode greedily (argmax, no sampling). The chat-templated prompt already
+carries the model's special tokens, so do not add another BOS; strip special tokens from the output,
+stopping at the end-of-turn token and never emitting the raw end token (e.g. `<|im_end|>`) in the
+response text.
+{%- endif %}{% endblock %}
+
+
+## Build Instructions
+{% block build_instructions %}Write your server as `{{ server_path }}`, run as
+`python {{ server_path }} --host <H> --port <P>`. It is built and evaluated OFFLINE.
+Implement it in any of the following languages and toolchains: `{{ server_path }}` need only be the entrypoint, and
+may exec or bind whatever you build.
+
+- Weights: a local checkpoint (config + safetensors + tokenizer) mounted read-only at
+{# `+%}` on the endblock for the reason documented below: trim_blocks would eat the newline
+   and run the next bullet onto this one. #}
+  `$HLS_WEIGHTS_DIR`. {% block accelerators %}{% if hardware.accelerator_count > 1 %}The accelerators are `cuda:0` through `cuda:{{ hardware.accelerator_count - 1 }}`; all {{ hardware.accelerator_count }} are yours.{% else %}The accelerator is `cuda:0`.{% endif %}{% endblock +%}
+{# dev_reference_note ends in `+%}` because trim_blocks would otherwise eat the newline
+   and run the next bullet onto this one. Pinned by the boundary assertions in
+   tests/unit/test_brief_nested_blocks.py. #}
+- Data: a development split is on disk at `{{ dev_rows_path }}`{% if tenants_data %}, one per tenant (ids as listed under ## Workload){% endif %}; the scored test split is withheld. {% block dev_reference_note %}Where a tenant's served prompt wraps its row in
+  text the row does not contain, that text sits beside the rows (`reasoning` carries a
+  few-shot prefix in `prompt_prefix.txt`, prepended before `Question: <row>\nAnswer:`).{% endblock +%}
+{# The blocked list is the producer's own deny list, so the brief names exactly what the
+   index proxy refuses; a task with no deny list states that nothing is blocked. A task
+   that replaces build_instructions renders these lines with self.package_policy(). #}
+{% block package_policy %}{% if blocked_packages %}- `pip install`: any package except the blocked ones is installable.
+- Blocked (`pip install` refuses these): {% for p in blocked_packages %}`{{ p }}`{{ ", " if not loop.last }}{% endfor %}.{% else %}- `pip install`: any package is installable; nothing is blocked.{% endif %}{% endblock +%}
+
+{% block toolchain %}Everything below is already installed. You are OFFLINE, so the documentation paths given
+are the whole of what is readable -- there is no other reference available to you. Paths
+are relative to your working directory.
+
+### Python
+`torch`, `transformers`, `accelerate`, `datasets`, `fastapi`, `uvicorn`, `pydantic`.
+
+- torch, including `torch.compile`/Inductor and `torch.utils.cpp_extension` -- `references/torch/`
+
+### C / C++
+`gcc`/`g++` 13.3, `clang`, `make`, `cmake`, `ninja`, `pkg-config`, `python3-dev`.
+
+PyTorch C++/CUDA extensions build here: torch ships its own `torch/include` headers and a
+vendored pybind11, `TORCH_CUDA_ARCH_LIST` is already set for this GPU, and both
+`torch.utils.cpp_extension.load()` (JIT) and setuptools `BuildExtension` work offline.
+
+- `cpp_extension` usage -- `references/torch/`
+
+### Rust
+`rustc`, `cargo`.
+
+- The Rust Reference -- `references/rust/reference/`
+- The Rust Book -- `references/rust/book/`
+
+### CUDA toolchain
+Compilers and binary tools: `nvcc`, `ptxas`, `nvdisasm`, `cuobjdump`.
+
+- PTX ISA -- `references/ptx/` (start at `references/ptx/ptx-isa.md`)
+- CUDA Runtime API -- `references/cuda-runtime/`
+- CUDA Driver API -- `references/cuda-driver/`
+- CUDA Python (`cuda.bindings`, `cuda.core`) -- `references/cuda-python/`
+- NVRTC, runtime kernel compilation -- `references/nvrtc/`
+
+Kernel-authoring DSLs (`triton`, `cuda-tile`, `nvidia-cutlass-dsl` are installed):
+
+- Triton, with 27 runnable annotated tutorials -- `references/triton/`
+  (`references/triton/tutorials/06-fused-attention.py` is FlashAttention,
+  `03-matrix-multiplication.py` a tiled GEMM)
+- CUTLASS C++ and the CuTe Python DSL -- `references/cutlass/`
+- cuTile -- `references/cutile/`
+
+Math and primitive libraries:
+
+- cuBLAS / cuBLASLt -- `references/cublas/`
+- CUB, Thrust, libcu++ (CCCL) -- `references/cccl/`
+- cuDNN -- `references/cudnn/`
+- cuSPARSE / cuSOLVER / cuFFT -- `references/cusparse/`, `references/cusolver/`, `references/cufft/`
+- NCCL is installed
+
+Profiling and debugging: `nsys`, `ncu`, `compute-sanitizer`, `cuda-gdb`.
+
+- Nsight Systems / Nsight Compute / NVTX guides, debugging tools, performance traps --
+  `references/profiling/`
+{% endblock %}{% endblock %}
+{% block uploads %}{% if uploads_section %}
+
+{{ uploads_section }}
+{% endif %}{% endblock %}
+{% block submission %}{% if submission_section %}
+
+## Submission
+{{ submission_section }}
+{% endif %}{% endblock %}
+{% block packaging %}
+
+## Packaging limits
+{{ packaging_section }}
+{% endblock %}
+{% block budget %}{% if budget_section %}
+
+## Your budget
+{{ budget_section }}
+{% endif %}{% endblock %}
+{% block directives %}{% if directives_section %}
+
+{{ directives_section }}
+{% endif %}{% endblock %}

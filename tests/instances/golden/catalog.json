@@ -1,0 +1,74 @@
+{
+  "cuda": {
+    "def_sha256": "7dfaa27fe8fbce38426a7dd71b07f3b405ca92da0cb2f90c5dc736b400cd2e45",
+    "kind": "base",
+    "parent": null,
+    "recipe_key": "cuda-2cb9226732dbd588"
+  },
+  "cuda-setuptools": {
+    "def_sha256": "ce5b1644d618d74938c1b22b95580c57bf6c7a2e5754321b7a4d87c95b79ab5f",
+    "kind": "layer",
+    "parent": "cuda",
+    "recipe_key": "cuda-setuptools-586c99dd0159de1a"
+  },
+  "s-a": {
+    "def_sha256": "03dbfaa1a2602a78c2b1c1ff74160391e852ee8a357b048cc29727403dad2110",
+    "kind": "base",
+    "parent": null,
+    "recipe_key": "s-a-33d76d95efa7a688"
+  },
+  "s-a-tf-4-57-3-qwen-tts": {
+    "def_sha256": "41dca1b83a04f0c52edcb8fc4dd26cffccdbfa84a4f86154067d1b04816d292b",
+    "kind": "layer",
+    "parent": "s-a",
+    "recipe_key": "s-a-tf-4-57-3-qwen-tts-f43031a04e857c83"
+  },
+  "s-a-tf-4-57-3-qwen-tts-agent": {
+    "def_sha256": "af1f6ce357ee34cfb69853e521e94a0f4277865cc7d173fd90ea3881b47ee9b6",
+    "kind": "cap",
+    "parent": "s-a-tf-4-57-3-qwen-tts",
+    "recipe_key": "s-a-tf-4-57-3-qwen-tts-agent-6d10fc437dc0a3ac"
+  },
+  "s-a-tf-5-13-1": {
+    "def_sha256": "351ba907cd0c7b25d258f9ceacb0b0d11f23b5d2384175ecc85a35d6f50ae657",
+    "kind": "layer",
+    "parent": "s-a",
+    "recipe_key": "s-a-tf-5-13-1-05e4c31117ebfa14"
+  },
+  "s-a-tf-5-13-1-agent": {
+    "def_sha256": "af1f6ce357ee34cfb69853e521e94a0f4277865cc7d173fd90ea3881b47ee9b6",
+    "kind": "cap",
+    "parent": "s-a-tf-5-13-1",
+    "recipe_key": "s-a-tf-5-13-1-agent-d0ac25bae75953c1"
+  },
+  "s-a-tf-5-9-0": {
+    "def_sha256": "e67da23b42d76536328a7dd8f558fe13df00464308c1f5fcc4ec4dd1d33ee500",
+    "kind": "layer",
+    "parent": "s-a",
+    "recipe_key": "s-a-tf-5-9-0-35ac7e3266fa08a7"
+  },
+  "s-a-tf-5-9-0-agent": {
+    "def_sha256": "af1f6ce357ee34cfb69853e521e94a0f4277865cc7d173fd90ea3881b47ee9b6",
+    "kind": "cap",
+    "parent": "s-a-tf-5-9-0",
+    "recipe_key": "s-a-tf-5-9-0-agent-d49bb783a4488ce5"
+  },
+  "s0": {
+    "def_sha256": "db226d5469b1413b638d8cf89ef5ce6f4fb477c0e3c2372fc713b45145c81c6e",
+    "kind": "base",
+    "parent": null,
+    "recipe_key": "s0-c633872695321115"
+  },
+  "s0-tf-5-17-0": {
+    "def_sha256": "d899dd4c9956154f0e937e2e8ca6fbfcd334f706134dc9050a8dfa105ab717a0",
+    "kind": "layer",
+    "parent": "s0",
+    "recipe_key": "s0-tf-5-17-0-6fad25e3b347adf4"
+  },
+  "s0-tf-5-17-0-agent": {
+    "def_sha256": "af1f6ce357ee34cfb69853e521e94a0f4277865cc7d173fd90ea3881b47ee9b6",
+    "kind": "cap",
+    "parent": "s0-tf-5-17-0",
+    "recipe_key": "s0-tf-5-17-0-agent-9a5c69cc0688f2eb"
+  }
+}

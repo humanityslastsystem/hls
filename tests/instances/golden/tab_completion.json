@@ -1,0 +1,2132 @@
+{
+  "answer_keys": {},
+  "baseline_start": {
+    "entrypoint": [
+      "sh",
+      "-c",
+      "exec vllm serve \"$HLS_WEIGHTS_DIR\" \"$@\"",
+      "vllm-baseline"
+    ],
+    "image": "tab-completion-baseline",
+    "runtime_env": {
+      "PYTHONPATH": "/opt/hls-src/src:/opt/hls-src",
+      "PYTHONUNBUFFERED": "1"
+    },
+    "serve_command": [
+      "--served-model-name",
+      "served-model",
+      "--gpu-memory-utilization",
+      "0.92",
+      "--max-model-len",
+      "32768",
+      "--dtype",
+      "bfloat16",
+      "--enable-prefix-caching",
+      "--enable-chunked-prefill",
+      "--override-generation-config",
+      "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+    ]
+  },
+  "brief": {
+    "file": "tab_completion.brief.md",
+    "sha256": "4e73957aa817e6229c6c439e716314a718068869d1e677fe858f94ff0f35194f"
+  },
+  "calibration": {
+    "blob": "b8205dd4aa95dc16a58bee7bcbde2bc584aa6670",
+    "injected": {
+      "capped_text": {
+        "events": 53271,
+        "tokens": 13637376
+      },
+      "created_at": "2026-09-07T11:59:06.021941+00:00",
+      "curve_side": {
+        "engines": {
+          "sglang": {
+            "exposure": 13657265,
+            "levels": [
+              {
+                "events": 6298,
+                "lambda_hat": 0.0004611465033445569,
+                "lambda_up": 0.0004726788230922724,
+                "level_nats": 0.5
+              },
+              {
+                "events": 1218,
+                "lambda_hat": 8.918330280623536e-05,
+                "lambda_up": 9.433607013744349e-05,
+                "level_nats": 1.0
+              },
+              {
+                "events": 356,
+                "lambda_hat": 2.606671247866978e-05,
+                "lambda_up": 2.892016043749911e-05,
+                "level_nats": 1.5
+              },
+              {
+                "events": 146,
+                "lambda_hat": 1.0690280960353335e-05,
+                "lambda_up": 1.2571757608153967e-05,
+                "level_nats": 2.0
+              },
+              {
+                "events": 111,
+                "lambda_hat": 8.127542373967262e-06,
+                "lambda_up": 9.787657513454988e-06,
+                "level_nats": 2.5
+              },
+              {
+                "events": 62,
+                "lambda_hat": 4.539708353026759e-06,
+                "lambda_up": 5.819701226837611e-06,
+                "level_nats": 3.0
+              },
+              {
+                "events": 42,
+                "lambda_hat": 3.075286303663288e-06,
+                "lambda_up": 4.156893695662392e-06,
+                "level_nats": 3.5
+              },
+              {
+                "events": 41,
+                "lambda_hat": 3.0020652011951148e-06,
+                "lambda_up": 4.072640427328232e-06,
+                "level_nats": 4.0
+              },
+              {
+                "events": 20,
+                "lambda_hat": 1.4644220493634707e-06,
+                "lambda_up": 2.261681083487404e-06,
+                "level_nats": 4.5
+              },
+              {
+                "events": 4,
+                "lambda_hat": 2.9288440987269415e-07,
+                "lambda_up": 7.499004138386195e-07,
+                "level_nats": 5.0
+              },
+              {
+                "events": 4,
+                "lambda_hat": 2.9288440987269415e-07,
+                "lambda_up": 7.499004138386195e-07,
+                "level_nats": 5.5
+              },
+              {
+                "events": 4,
+                "lambda_hat": 2.9288440987269415e-07,
+                "lambda_up": 7.499004138386195e-07,
+                "level_nats": 7.0
+              },
+              {
+                "events": 0,
+                "lambda_hat": 0.0,
+                "lambda_up": 2.701038205024163e-07,
+                "level_nats": 13.5
+              }
+            ]
+          },
+          "vllm": {
+            "exposure": 13779384,
+            "levels": [
+              {
+                "events": 6198,
+                "lambda_hat": 0.0004498024004556372,
+                "lambda_up": 0.0004611425467289133,
+                "level_nats": 0.5
+              },
+              {
+                "events": 1227,
+                "lambda_hat": 8.904607056454774e-05,
+                "lambda_up": 9.41714722246532e-05,
+                "level_nats": 1.0
+              },
+              {
+                "events": 375,
+                "lambda_hat": 2.7214569243443683e-05,
+                "lambda_up": 3.0113335969292705e-05,
+                "level_nats": 1.5
+              },
+              {
+                "events": 164,
+                "lambda_hat": 1.1901838282466037e-05,
+                "lambda_up": 1.386923839459482e-05,
+                "level_nats": 2.0
+              },
+              {
+                "events": 117,
+                "lambda_hat": 8.490945603954429e-06,
+                "lambda_up": 1.0176175451867548e-05,
+                "level_nats": 2.5
+              },
+              {
+                "events": 78,
+                "lambda_hat": 5.6606304026362865e-06,
+                "lambda_up": 7.064722925993619e-06,
+                "level_nats": 3.0
+              },
+              {
+                "events": 57,
+                "lambda_hat": 4.13661452500344e-06,
+                "lambda_up": 5.359463921098558e-06,
+                "level_nats": 3.5
+              },
+              {
+                "events": 32,
+                "lambda_hat": 2.322309908773861e-06,
+                "lambda_up": 3.27840867773338e-06,
+                "level_nats": 4.0
+              },
+              {
+                "events": 14,
+                "lambda_hat": 1.0160105850885641e-06,
+                "lambda_up": 1.7046931213932038e-06,
+                "level_nats": 4.5
+              },
+              {
+                "events": 8,
+                "lambda_hat": 5.805774771934652e-07,
+                "lambda_up": 1.1439690787478825e-06,
+                "level_nats": 5.0
+              },
+              {
+                "events": 7,
+                "lambda_hat": 5.080052925442821e-07,
+                "lambda_up": 1.0466850594846892e-06,
+                "level_nats": 5.5
+              },
+              {
+                "events": 3,
+                "lambda_hat": 2.1771655394754946e-07,
+                "lambda_up": 6.362601600871507e-07,
+                "level_nats": 7.0
+              },
+              {
+                "events": 0,
+                "lambda_hat": 0.0,
+                "lambda_up": 2.6771004089253433e-07,
+                "level_nats": 13.5
+              }
+            ]
+          }
+        },
+        "levels_nats": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          7.0,
+          13.5
+        ]
+      },
+      "draw": {
+        "max_sessions": null,
+        "serving_seeds": {
+          "sglang": [
+            1522204387,
+            214526239,
+            1040876867,
+            69043122,
+            68053456,
+            1300208166,
+            358060160,
+            1631724863
+          ],
+          "vllm": [
+            1522204387,
+            214526239,
+            1040876867,
+            69043122,
+            68053456,
+            1300208166,
+            358060160,
+            1631724863
+          ]
+        }
+      },
+      "engines": {
+        "sglang": {
+          "config": "SGLangEngine(), clocked serving",
+          "version": "0.5.16"
+        },
+        "vllm": {
+          "config": "VLLMEngine(dtype='auto'), clocked serving",
+          "version": "0.22.1"
+        }
+      },
+      "gpu_kind": "H200",
+      "kind": "flips",
+      "preflight": {
+        "flip_rate_vs_fp32": 0.001953125,
+        "max_gap_vs_fp32": 0.125,
+        "n_tokens": 512,
+        "passed": true
+      },
+      "q_max": 0.004758511668949415,
+      "rate_side": {
+        "sglang": {
+          "draws": 8,
+          "max_gap": 13.0,
+          "mean": 0.004758511668949415,
+          "rates": [
+            0.004763847437478526,
+            0.004760413699255802,
+            0.004700805685206946,
+            0.004753732132599616,
+            0.004801014359764353,
+            0.004740011451671553,
+            0.004786416934438244,
+            0.004761851651180278
+          ],
+          "sd": 3.005592112244553e-05,
+          "tokens": [
+            1708493,
+            1699012,
+            1708856,
+            1711287,
+            1709847,
+            1713287,
+            1702944,
+            1703539
+          ]
+        },
+        "vllm": {
+          "draws": 8,
+          "max_gap": 13.0,
+          "mean": 0.004649639665080276,
+          "rates": [
+            0.004660059462520892,
+            0.004690076555952805,
+            0.0045855438707552735,
+            0.0046602004649787905,
+            0.00476601887724107,
+            0.004649708791470101,
+            0.004532811972675115,
+            0.004652697325048165
+          ],
+          "sd": 6.883282072799776e-05,
+          "tokens": [
+            1726802,
+            1720441,
+            1718662,
+            1728681,
+            1723451,
+            1724194,
+            1718580,
+            1718573
+          ]
+        }
+      },
+      "sizing": {
+        "c_m": 1.7971507316515405,
+        "stopped": "exposure target reached"
+      },
+      "stack": {
+        "device_name": "NVIDIA H200",
+        "runtime": {
+          "cuda": "13.0",
+          "cudnn": "91900"
+        },
+        "torch": "2.11.0+cu130"
+      },
+      "task": "tasks.tab_completion.task",
+      "tolerances": {
+        "delta": 0.001,
+        "eps": 0.05,
+        "mu_per_mtok": 0.3
+      },
+      "workload": {
+        "agent": null,
+        "contract": {
+          "input_modalities": [
+            "text"
+          ],
+          "kind": "RequestResponseContract",
+          "output_modalities": [
+            "text"
+          ],
+          "path": "/v1/completions",
+          "port": 8000,
+          "protocol": {
+            "kind": "OpenAICompletionProtocol",
+            "model": "served-model",
+            "stop_token_ids": [
+              0
+            ]
+          },
+          "transport": "http-sse"
+        },
+        "max_context_len": null,
+        "model": {
+          "arch": "MoE",
+          "base_checkpoint": "JetBrains/Mellum2-12B-A2.5B-Base",
+          "chat_format": "none",
+          "chat_template_kwargs": {},
+          "fingerprint": "JetBrains/Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee#MoE?",
+          "revision": "271755e48ab6b2ed0ef224eaaabe2d25275fb8ee"
+        },
+        "seed": 42,
+        "tenants": [
+          {
+            "data_source": {
+              "dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": null,
+                "kind": "FimSessionDataset",
+                "max_steps": 8,
+                "max_turns": 5,
+                "middle_col": "canonical_solution",
+                "path": "gonglinyuan/real_fim_eval",
+                "prefix_col": "prompt",
+                "prompt": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>"
+                },
+                "questions_col": null,
+                "revision": "a36062544c7ed6c4e5ffb8dad8536fc7777e1f36",
+                "source_split": "test",
+                "subset": "add",
+                "suffix_col": "suffix",
+                "target": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "{{ middle }}"
+                }
+              },
+              "dev_dataset": null,
+              "removed_rows": [],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 1280
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 1241
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "commit_add",
+            "output_length_cap": {
+              "cap_tokens": 256,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": true
+          },
+          {
+            "data_source": {
+              "dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": null,
+                "kind": "FimSessionDataset",
+                "max_steps": 8,
+                "max_turns": 5,
+                "middle_col": "canonical_solution",
+                "path": "gonglinyuan/real_fim_eval",
+                "prefix_col": "prompt",
+                "prompt": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>"
+                },
+                "questions_col": null,
+                "revision": "a36062544c7ed6c4e5ffb8dad8536fc7777e1f36",
+                "source_split": "test",
+                "subset": "edit",
+                "suffix_col": "suffix",
+                "target": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "{{ middle }}"
+                }
+              },
+              "dev_dataset": null,
+              "removed_rows": [],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 1280
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 1264
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "commit_edit",
+            "output_length_cap": {
+              "cap_tokens": 256,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": true
+          },
+          {
+            "data_source": {
+              "dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "eval_prompt_col": "eval_prompt",
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": "task_id",
+                "kind": "SafimDataset",
+                "max_turns": 5,
+                "path": "gonglinyuan/safim",
+                "placeholder": "{{completion}}",
+                "prompt": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>"
+                },
+                "questions_col": null,
+                "revision": "be132cc15372e90b6f03a608e77f2d940e384edb",
+                "source_split": "test",
+                "subset": "block",
+                "target": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "{{ ground_truth }}"
+                }
+              },
+              "dev_dataset": null,
+              "removed_rows": [],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 1280
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 6700
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "algo_block",
+            "output_length_cap": {
+              "cap_tokens": 256,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": false
+          },
+          {
+            "data_source": {
+              "dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "eval_prompt_col": "eval_prompt",
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": "task_id",
+                "kind": "SafimDataset",
+                "max_turns": 5,
+                "path": "gonglinyuan/safim",
+                "placeholder": "{{completion}}",
+                "prompt": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "<fim_prefix>{{ prefix }}<fim_suffix>{{ suffix }}<fim_middle>"
+                },
+                "questions_col": null,
+                "revision": "be132cc15372e90b6f03a608e77f2d940e384edb",
+                "source_split": "test",
+                "subset": "control",
+                "target": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "{{ ground_truth }}"
+                }
+              },
+              "dev_dataset": null,
+              "removed_rows": [],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 1280
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 6700
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "algo_control",
+            "output_length_cap": {
+              "cap_tokens": 256,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": false
+          }
+        ]
+      },
+      "workload_fingerprint": "06cd15566f867d621a14d704f10092431659e08189dadf1be75d0aaa17d1a68b"
+    },
+    "kind": "Calibration"
+  },
+  "corpora": {
+    "algo_block": {
+      "corpus_id": "gonglinyuan/safim:block@be132cc15372e90b6f03a608e77f2d940e384edb|src=test|id=task_id|fim-split=eval_prompt@{{completion}}",
+      "dev_corpus_id": null,
+      "dev_reference_digest": "a7ebc4ca94c99702"
+    },
+    "algo_control": {
+      "corpus_id": "gonglinyuan/safim:control@be132cc15372e90b6f03a608e77f2d940e384edb|src=test|id=task_id|fim-split=eval_prompt@{{completion}}",
+      "dev_corpus_id": null,
+      "dev_reference_digest": "a7ebc4ca94c99702"
+    },
+    "commit_add": {
+      "corpus_id": "gonglinyuan/real_fim_eval:add@a36062544c7ed6c4e5ffb8dad8536fc7777e1f36|src=test|id=source_index|fim-cols=prompt,suffix,canonical_solution",
+      "dev_corpus_id": null,
+      "dev_reference_digest": "a7ebc4ca94c99702"
+    },
+    "commit_edit": {
+      "corpus_id": "gonglinyuan/real_fim_eval:edit@a36062544c7ed6c4e5ffb8dad8536fc7777e1f36|src=test|id=source_index|fim-cols=prompt,suffix,canonical_solution",
+      "dev_corpus_id": null,
+      "dev_reference_digest": "a7ebc4ca94c99702"
+    }
+  },
+  "credit": {
+    "B": 0.18382205212269642,
+    "blob": "e90882ddeb31e182ff0f89abfd650f394d31ce9f",
+    "drives": 6
+  },
+  "dev_reference_sha256": null,
+  "images": {
+    "harness": "s-a-tf-5-13-1",
+    "identities": {
+      "cuda": "cuda-2cb9226732dbd588",
+      "s-a": "s-a-33d76d95efa7a688",
+      "s-a-tf-5-13-1": "s-a-tf-5-13-1-05e4c31117ebfa14",
+      "s-a-tf-5-13-1-agent": "s-a-tf-5-13-1-agent-d0ac25bae75953c1",
+      "tab-completion-baseline": "tab-completion-baseline-52e9dc53a9000c97",
+      "tab-completion-member-sglang": "tab-completion-member-sglang-8c57154aec5d04d5",
+      "tab-completion-reference": "tab-completion-reference-42a56b31ff7897dc"
+    },
+    "measured": {
+      "baseline": {
+        "image": "tab-completion-baseline"
+      },
+      "member-sglang": {
+        "image": "tab-completion-member-sglang"
+      },
+      "member-vllm": {
+        "image": "tab-completion-baseline"
+      },
+      "reference": {
+        "image": "tab-completion-reference"
+      }
+    },
+    "sandbox": "s-a-tf-5-13-1-agent",
+    "submission_base": "s-a-tf-5-13-1",
+    "submission_constraints": "/opt/hls/constraints.txt"
+  },
+  "load_record": {
+    "split": "test",
+    "tenants": [
+      {
+        "arrival": {
+          "kind": "Poisson",
+          "rate_per_sec": 1.1394675925925926
+        },
+        "id": "commit_add",
+        "inter_turn_delay": {
+          "kind": "GammaInterTurn",
+          "max_gap": 60.0,
+          "scale": 14.427,
+          "shape": 1.0
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 10.0,
+          "ttft_ms": 600.0
+        }
+      },
+      {
+        "arrival": {
+          "kind": "Poisson",
+          "rate_per_sec": 1.1609669811320755
+        },
+        "id": "commit_edit",
+        "inter_turn_delay": {
+          "kind": "GammaInterTurn",
+          "max_gap": 60.0,
+          "scale": 14.427,
+          "shape": 1.0
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 10.0,
+          "ttft_ms": 600.0
+        }
+      },
+      {
+        "arrival": {
+          "kind": "Poisson",
+          "rate_per_sec": 6.153125
+        },
+        "id": "algo_block",
+        "inter_turn_delay": {
+          "kind": "NoDelay"
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 10.0,
+          "ttft_ms": 250.0
+        }
+      },
+      {
+        "arrival": {
+          "kind": "Poisson",
+          "rate_per_sec": 6.153125
+        },
+        "id": "algo_control",
+        "inter_turn_delay": {
+          "kind": "NoDelay"
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 10.0,
+          "ttft_ms": 200.0
+        }
+      }
+    ]
+  },
+  "module": "tasks.tab_completion.task",
+  "plans": {
+    "grading": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 8,
+            "disk_gib": 274,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 77204
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "warm_baseline",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "grading",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "tab_completion",
+            "found": [
+              "tab-completion-baseline-52e9dc53a9000c97",
+              "tab-completion-reference-42a56b31ff7897dc"
+            ],
+            "images": [
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [
+                  "torch==2.11.0+cu130",
+                  "torchaudio==2.11.0+cu130",
+                  "torchvision==0.26.0+cu130"
+                ],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "s-a",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": "base-s-a.txt",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": null,
+                "files": {},
+                "kind": "layer",
+                "name": "s-a-tf-5-13-1",
+                "owner": null,
+                "parent": "s-a",
+                "pip_lock": "layer-tf-5-13-1.txt",
+                "server": false,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "cuda",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": null,
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "tab-completion-reference",
+                "owner": "tab_completion",
+                "parent": "cuda",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "tab-completion-baseline",
+                "owner": "tab_completion",
+                "parent": "cuda",
+                "pip_lock": "baseline.txt",
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 6300
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {},
+          "kind": "baseline_warm",
+          "name": "warm_baseline",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "sh",
+                "-c",
+                "exec vllm serve \"$HLS_WEIGHTS_DIR\" \"$@\"",
+                "vllm-baseline"
+              ],
+              "image": "tab-completion-baseline",
+              "kind": "image",
+              "runtime_env": {
+                "PYTHONPATH": "/opt/hls-src/src:/opt/hls-src",
+                "PYTHONUNBUFFERED": "1"
+              }
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "rows/rows-9faedf1e6b4053e8": 147456,
+              "weights/JetBrains+Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee": 28672
+            },
+            "images_stage": "images",
+            "margin_sec": 1200,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "runtime_start_sec": 300,
+            "serve_command": [
+              "--served-model-name",
+              "served-model",
+              "--gpu-memory-utilization",
+              "0.92",
+              "--max-model-len",
+              "32768",
+              "--dtype",
+              "bfloat16",
+              "--enable-prefix-caching",
+              "--enable-chunked-prefill",
+              "--override-generation-config",
+              "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+            ],
+            "staging_sec": 3600,
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 221,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 11319
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "warm_baseline"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "sh",
+                "-c",
+                "exec vllm serve \"$HLS_WEIGHTS_DIR\" \"$@\"",
+                "vllm-baseline"
+              ],
+              "image": "tab-completion-baseline",
+              "kind": "image",
+              "runtime_env": {
+                "PYTHONPATH": "/opt/hls-src/src:/opt/hls-src",
+                "PYTHONUNBUFFERED": "1"
+              }
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "rows/rows-9faedf1e6b4053e8": 147456,
+              "weights/JetBrains+Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee": 28672
+            },
+            "drive_timeout_sec": 10800.0,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 8,
+              "disk_gib": 13,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 16,
+              "time_sec": 17700
+            },
+            "engine_cache_owner": "warm_baseline",
+            "harness_image": "s-a-tf-5-13-1",
+            "images_stage": "images",
+            "measured_baseline": true,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "serve_command": [
+              "--served-model-name",
+              "served-model",
+              "--gpu-memory-utilization",
+              "0.92",
+              "--max-model-len",
+              "32768",
+              "--dtype",
+              "bfloat16",
+              "--enable-prefix-caching",
+              "--enable-chunked-prefill",
+              "--override-generation-config",
+              "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+            ],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 6442450944,
+            "trace_request_bytes": 402653184,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 274,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 24935
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/JetBrains+Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "<grading>",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "tab-completion-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 10800
+            },
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 14400
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 25,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": null,
+            "built_arm": null,
+            "eval_id": "<grading>",
+            "kind": "grading",
+            "package_stage": null,
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "tab_completion"
+    },
+    "run": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 8,
+            "disk_gib": 330,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 159989
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "agent_build",
+            "source_scan",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "rollout",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "tab_completion",
+            "found": [
+              "tab-completion-reference-42a56b31ff7897dc"
+            ],
+            "images": [
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [
+                  "torch==2.11.0+cu130",
+                  "torchaudio==2.11.0+cu130",
+                  "torchvision==0.26.0+cu130"
+                ],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "s-a",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": "base-s-a.txt",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": null,
+                "files": {},
+                "kind": "layer",
+                "name": "s-a-tf-5-13-1",
+                "owner": null,
+                "parent": "s-a",
+                "pip_lock": "layer-tf-5-13-1.txt",
+                "server": false,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": "apt-agent.txt",
+                "cap": "agent",
+                "kind": "cap",
+                "name": "s-a-tf-5-13-1-agent",
+                "node": {
+                  "sha256": "1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af",
+                  "version": "22.23.3"
+                },
+                "npm": {
+                  "@anthropic-ai/claude-code": "2.1.251",
+                  "@openai/codex": "0.146.0"
+                },
+                "npm_lock": "npm-agent.json",
+                "parent": "s-a-tf-5-13-1"
+              },
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "cuda",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": null,
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "tab-completion-reference",
+                "owner": "tab_completion",
+                "parent": "cuda",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 8100
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {
+            "ANTHROPIC_API_KEY": "anthropic_key"
+          },
+          "kind": "agent_build",
+          "name": "agent_build",
+          "params": {
+            "arm": {
+              "context_window": 1000000,
+              "effort": "max",
+              "harness": "claude-code",
+              "model": "claude-opus-5",
+              "name": "example",
+              "output_limit": 64000,
+              "route": "anthropic",
+              "route_table": {
+                "auth": "api_key",
+                "base_url": null,
+                "credential": "anthropic_key"
+              }
+            },
+            "arm_change": null,
+            "collect_allowance_sec": 3600,
+            "commit_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 11,
+              "time_sec": 55800
+            },
+            "data_copies": {
+              "rows/rows-9faedf1e6b4053e8": 147456,
+              "weights/JetBrains+Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee": 28672
+            },
+            "extract_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 4,
+              "time_sec": 55800
+            },
+            "hard_sec": 45000,
+            "harness_reserve_gib": 4.0,
+            "images_stage": "images",
+            "max_turns": null,
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "package_pip": {
+              "disk_gib": 32,
+              "memory_gib": 32
+            },
+            "probe_oom": false,
+            "provision_stage": "provision",
+            "sandbox_held": {
+              "torch": "2.11.0+cu130",
+              "torchaudio": "2.11.0+cu130",
+              "torchvision": "0.26.0+cu130"
+            },
+            "sandbox_image": "s-a-tf-5-13-1-agent",
+            "sandbox_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 169,
+              "time_sec": 55800
+            },
+            "served_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "setup_allowance_sec": 3600,
+            "snapshot_interval_sec": 1800,
+            "snapshot_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 7,
+              "time_sec": 55800
+            },
+            "soft_sec": 43200,
+            "staging_sec": 3600,
+            "stop_after": null,
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 221,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 55800
+          }
+        },
+        {
+          "after": [
+            "agent_build"
+          ],
+          "grants": {},
+          "kind": "source_scan",
+          "name": "source_scan",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "disk_cap_gib": 180
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 188,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 15,
+            "time_sec": 4104
+          }
+        },
+        {
+          "after": [
+            "images",
+            "agent_build",
+            "source_scan"
+          ],
+          "grants": {},
+          "kind": "package",
+          "name": "package",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "constraints": "/opt/hls/constraints.txt",
+            "disk_cap_gib": 180,
+            "gpu_kind": "H200",
+            "images_stage": "images",
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "pip": {
+              "disk_gib": 32,
+              "memory_gib": 32
+            },
+            "server_filename": "server.py",
+            "submission_base": "s-a-tf-5-13-1",
+            "task": "tab_completion"
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 228,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 36,
+            "time_sec": 25200
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "package"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "kind": "package",
+              "manifest": null,
+              "stage": "package"
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "rows/rows-9faedf1e6b4053e8": 147456,
+              "weights/JetBrains+Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee": 28672
+            },
+            "drive_timeout_sec": 10800.0,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 8,
+              "disk_gib": 13,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 16,
+              "time_sec": 17700
+            },
+            "engine_cache_owner": null,
+            "harness_image": "s-a-tf-5-13-1",
+            "images_stage": "images",
+            "measured_baseline": false,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "serve_command": [],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 6442450944,
+            "trace_request_bytes": 402653184,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 330,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 24935
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/JetBrains+Mellum2-12B-A2.5B-Base@271755e48ab6b2ed0ef224eaaabe2d25275fb8ee": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "terminal",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "tab-completion-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 10800
+            },
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 14400
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 25,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "agent_build",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": "agent_build",
+            "built_arm": null,
+            "eval_id": "terminal",
+            "kind": "rollout",
+            "package_stage": "package",
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.tab_completion.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "tab_completion"
+    }
+  },
+  "reference": {
+    "gpu_kind": "H200",
+    "image_sha256": "6105d6cc76af400325e94d588ce511be5bfdbb73b437dc51eca43917d7a43e3d"
+  },
+  "rows_key": "rows-9faedf1e6b4053e8",
+  "scorer": {
+    "baseline_log_credit": 0.18382205212269642,
+    "kind": "SloLatencyScorer"
+  },
+  "submission_serve_command": [],
+  "task": "tab_completion",
+  "task_id": "tab_completion",
+  "upload": {
+    "dest": "/workspace/references",
+    "dir": [
+      "../assets/references"
+    ],
+    "sha256": "2458984914b96a16fbe591a48e412626599ea7a55782ae7b728d740c66636ca5"
+  },
+  "verifiers": {
+    "algo_block": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ],
+    "algo_control": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ],
+    "commit_add": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ],
+    "commit_edit": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ]
+  },
+  "workload_fingerprint": "06cd15566f867d621a14d704f10092431659e08189dadf1be75d0aaa17d1a68b"
+}

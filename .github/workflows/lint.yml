@@ -1,0 +1,73 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+# Cancel an in-flight run when a newer commit lands on the same ref.
+concurrency:
+  group: lint-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ruff:
+    name: ruff check
+    # An explicit image, so moving to a newer one is a change made here.
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      # ruff reads [tool.ruff] from pyproject.toml. Pin the version to match
+      # uv.lock (ruff>=0.6 -> resolved 0.15.14) so CI and local runs agree.
+      - name: ruff check
+        run: uvx ruff@0.15.14 check
+
+  viewer-types:
+    name: viewer tsc
+    runs-on: ubuntu-26.04
+    defaults:
+      run:
+        working-directory: apps/viewer
+    steps:
+      - uses: actions/checkout@v6
+      # The viewer's dependencies are locked by apps/viewer/bun.lock, the file `hls view` installs from.
+      # bun installs them; its scripts' tools (react-router, tsc) run on node, as vite 7 requires 20.19+.
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      # --frozen-lockfile fails when package.json and bun.lock disagree.
+      - run: bun install --frozen-lockfile
+      # `typecheck` runs `react-router typegen`, which writes the route types tsc reads
+      # (.react-router/types, not tracked), and then `tsc --noEmit`.
+      - run: bun run typecheck
+
+  ascii:
+    name: ASCII-only source
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+      - name: Enforce ASCII-only Python source
+        run: python .github/scripts/check_ascii.py
+
+  internal-refs:
+    name: internal references
+    runs-on: ubuntu-26.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version-file: .python-version
+      # Reports the count of every class and fails on a line of any, which it prints. The script's
+      # ALLOW table names the text a pattern matches that is not a reference.
+      - name: Refuse internal references
+        run: python .github/scripts/check_internal_refs.py --strict

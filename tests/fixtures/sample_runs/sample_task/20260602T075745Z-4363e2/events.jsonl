@@ -1,0 +1,12 @@
+{"type":"rollout.started","ts":1780387065.043124,"data":{"rollout_id":"20260602T075745Z-4363e2"}}
+{"type":"config.captured","ts":1780387065.043184,"data":{"task_id":"sample_task","split":"dev"}}
+{"type":"build.started","ts":1780387065.101032,"data":{"task_id":"sample_task"}}
+{"type":"build.source_collected","ts":1780387284.2937322,"data":{"tree_path":"build/source/","bundle_path":"build/source.bundle","commit":"c6e5fe77a9ad5f75f711f38ef597f7f24ef1ba08","git_origin":"harness","main_resolved":true,"files":["pyproject.toml","server.py"],"n_files":2,"total_bytes":3141,"truncated":false}}
+{"type":"build.artifact_committed","ts":1780387284.294129,"data":{"tag":"hls-artifact-c6e5fe77a9ad"}}
+{"type":"build.finished","ts":1780387284.951518,"data":{"cost_usd":0.1658742,"n_input_tokens":75875,"n_output_tokens":1893,"total_steps":8,"has_trajectory":true,"logs":{"agent":"build/agent/"}}}
+{"type":"deploy.image_resolved","ts":1780387332.6693509,"data":{"role":"artifact","backend":"modal","digest":"im-ahCeIBaC26F19jcaRiVPM3"}}
+{"type":"deploy.image_resolved","ts":1780387524.123568,"data":{"role":"driver","backend":"modal","digest":"im-983v9uYbkeeh9URVhPld4L"}}
+{"type":"eval.started","ts":1780387524.1243992,"data":{"eval_id":"terminal","checkpoint":"modal:Image(<function _Image.run_commands.<locals>.build_dockerfile at 0x10c52e340>)","anchor":{"turn_index":8},"trace_path":"evals/terminal/trace.json"}}
+{"type":"deploy.image_resolved","ts":1780387596.8644,"data":{"role":"reference","backend":"modal","digest":"im-983v9uYbkeeh9URVhPld4L"}}
+{"type":"eval.scored","ts":1780387599.999722,"data":{"eval_id":"terminal","gate_passed":true,"aggregate_passed":true,"diagnostics":{"0:AccuracyVsReference+RelativeBar":{"artifact_agg":0.4,"reference_agg":0.4,"tol":0.0}},"score":{"value":0.5333196170637383,"achieved":0.5333196170637383,"sol":1.0,"unit":"request","gate_passed":true,"zero_reason":null,"breakdown":{"slo":{"p99_ms":884.6045739992405,"target_ms":1000000,"n":5},"verdict":{"0:AccuracyVsReference+RelativeBar":{"artifact_agg":0.4,"reference_agg":0.4,"tol":0.0}}}},"log_roles":["artifact","driver"]}}
+{"type":"rollout.finished","ts":1780387600.0034728,"data":{"status":"ok"}}

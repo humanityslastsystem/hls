@@ -1,0 +1,3 @@
+# multimodal_asr and multimodal_omni, on S-A. Compiled into layer-tf-5-9-0.txt by
+#   hls images lock-pip layer layer-tf-5-9-0 --parent base-s-a
+transformers==5.9.0

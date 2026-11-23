@@ -1,0 +1,58 @@
+{
+  "campaign": {
+    "task": "tasks.deepresearch.task",
+    "workload_fingerprint": "fc02ae79c4a640b18a64ae68eeffc820e775b4221c75d449269f5503537fa207",
+    "load": {
+      "split": "test",
+      "tenants": [
+        {
+          "id": "t0",
+          "arrival": {
+            "rate_per_sec": 0.015,
+            "kind": "Poisson"
+          },
+          "inter_turn_delay": {
+            "shape": 2.0,
+            "scale": 1.0,
+            "max_gap": 15.0,
+            "kind": "GammaInterTurn"
+          },
+          "slo": {
+            "target_sec": 1800.0,
+            "kind": "TrajectoryMakespanSLO"
+          }
+        }
+      ]
+    },
+    "gpu_kind": "H200",
+    "baseline": {
+      "image": "hls-baseline-deepresearch",
+      "serve_command": [
+        "--chat-template-kwargs",
+        "{\"enable_thinking\": true}"
+      ]
+    }
+  },
+  "drives": [
+    {
+      "started_at": "2026-09-16T09:35:33.347963+00:00",
+      "duration_sec": 4611.612807227997,
+      "n_requests": 683,
+      "n_units": 50,
+      "mean_log_credit": 1.2735794172664539
+    },
+    {
+      "started_at": "2026-09-16T10:52:55.127187+00:00",
+      "duration_sec": 4248.685125753982,
+      "n_requests": 648,
+      "n_units": 50,
+      "mean_log_credit": 1.2535268529995736
+    }
+  ],
+  "created_at": "2026-09-16T18:41:42.487364+00:00",
+  "hardware": [
+    {
+      "gpu_model": "NVIDIA H200"
+    }
+  ]
+}

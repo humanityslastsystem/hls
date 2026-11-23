@@ -1,0 +1,2412 @@
+{
+  "answer_keys": {},
+  "baseline_start": {
+    "entrypoint": [
+      "sh",
+      "-c",
+      "exec vllm serve \"$HLS_WEIGHTS_DIR\" \"$@\"",
+      "vllm-baseline"
+    ],
+    "image": "multitenant-slo-baseline",
+    "runtime_env": {
+      "PYTHONPATH": "/opt/hls-src/src:/opt/hls-src",
+      "PYTHONUNBUFFERED": "1"
+    },
+    "serve_command": [
+      "--served-model-name",
+      "served-model",
+      "--gpu-memory-utilization",
+      "0.92",
+      "--max-num-seqs",
+      "512",
+      "--dtype",
+      "bfloat16",
+      "--enable-prefix-caching",
+      "--enable-chunked-prefill",
+      "--override-generation-config",
+      "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+    ]
+  },
+  "brief": {
+    "file": "multitenant_slo.brief.md",
+    "sha256": "31ead610092b2da4f6df435abebf1ad5f01079a39340628384ed99f15ad9193f"
+  },
+  "calibration": {
+    "blob": "5b2f9959cecc27954372d237e4e2692c72be896c",
+    "injected": {
+      "capped_text": {
+        "events": 67,
+        "tokens": 1097728
+      },
+      "created_at": "2026-09-05T06:11:52.763286+00:00",
+      "curve_side": {
+        "engines": {
+          "sglang": {
+            "exposure": 12601439,
+            "levels": [
+              {
+                "events": 89,
+                "lambda_hat": 7.062685459970087e-06,
+                "lambda_up": 8.691242198113767e-06,
+                "level_nats": 0.5
+              },
+              {
+                "events": 5,
+                "lambda_hat": 3.9678008202079145e-07,
+                "lambda_up": 9.259523518958959e-07,
+                "level_nats": 1.0
+              },
+              {
+                "events": 2,
+                "lambda_hat": 1.5871203280831656e-07,
+                "lambda_up": 5.733224330748225e-07,
+                "level_nats": 1.5
+              },
+              {
+                "events": 0,
+                "lambda_hat": 0.0,
+                "lambda_up": 2.9273477847362776e-07,
+                "level_nats": 2.0
+              },
+              {
+                "events": 0,
+                "lambda_hat": 0.0,
+                "lambda_up": 2.9273477847362776e-07,
+                "level_nats": 5.5
+              }
+            ]
+          },
+          "vllm": {
+            "exposure": 12373693,
+            "levels": [
+              {
+                "events": 73,
+                "lambda_hat": 5.89961299346929e-06,
+                "lambda_up": 7.417877603960375e-06,
+                "level_nats": 0.5
+              },
+              {
+                "events": 3,
+                "lambda_hat": 2.4244984904668315e-07,
+                "lambda_up": 7.085413441033589e-07,
+                "level_nats": 1.0
+              },
+              {
+                "events": 1,
+                "lambda_hat": 8.081661634889438e-08,
+                "lambda_up": 4.5028136635836165e-07,
+                "level_nats": 1.5
+              },
+              {
+                "events": 1,
+                "lambda_hat": 8.081661634889438e-08,
+                "lambda_up": 4.5028136635836165e-07,
+                "level_nats": 2.0
+              },
+              {
+                "events": 0,
+                "lambda_hat": 0.0,
+                "lambda_up": 2.981227556004447e-07,
+                "level_nats": 5.5
+              }
+            ]
+          }
+        },
+        "levels_nats": [
+          0.5,
+          1.0,
+          1.5,
+          2.0,
+          5.5
+        ]
+      },
+      "draw": {
+        "max_sessions": null,
+        "serving_seeds": {
+          "sglang": [
+            1522204387,
+            214526239,
+            1040876867,
+            69043122,
+            68053456,
+            1300208166,
+            358060160,
+            1631724863
+          ],
+          "vllm": [
+            1522204387,
+            214526239,
+            1040876867,
+            69043122,
+            68053456,
+            1300208166,
+            358060160,
+            1631724863
+          ]
+        }
+      },
+      "engines": {
+        "sglang": {
+          "config": "SGLangEngine(), clocked serving",
+          "version": "0.5.16"
+        },
+        "vllm": {
+          "config": "VLLMEngine(dtype='auto'), clocked serving",
+          "version": "0.22.1"
+        }
+      },
+      "gpu_kind": "H200",
+      "kind": "flips",
+      "preflight": {
+        "flip_rate_vs_fp32": 0.0,
+        "max_gap_vs_fp32": 0.0,
+        "n_tokens": 512,
+        "passed": true
+      },
+      "q_max": 0.0019515060460739662,
+      "rate_side": {
+        "sglang": {
+          "draws": 8,
+          "max_gap": 1.625,
+          "mean": 0.0019373077150117981,
+          "rates": [
+            0.00195331618805229,
+            0.0019434954907819701,
+            0.001926538127353221,
+            0.0019468622607559727,
+            0.0019376316837066596,
+            0.002002401069155322,
+            0.0019226535362648518,
+            0.0018655633640240969
+          ],
+          "sd": 3.7986989696749716e-05,
+          "tokens": [
+            1573222,
+            1620791,
+            1546816,
+            1586142,
+            1647888,
+            1545145,
+            1530697,
+            1550738
+          ]
+        },
+        "vllm": {
+          "draws": 8,
+          "max_gap": 5.125,
+          "mean": 0.0019515060460739662,
+          "rates": [
+            0.001946755253929476,
+            0.0019742340361113987,
+            0.0020053374652244573,
+            0.0019305481974822775,
+            0.0019811035143931176,
+            0.0019160148919119065,
+            0.0018801777430744698,
+            0.0019778772664646263
+          ],
+          "sd": 4.104872521220322e-05,
+          "tokens": [
+            1515342,
+            1516031,
+            1517949,
+            1585560,
+            1585480,
+            1577232,
+            1516346,
+            1559753
+          ]
+        }
+      },
+      "sizing": {
+        "c_m": 1.7971507316515405,
+        "stopped": "exposure target reached"
+      },
+      "stack": {
+        "device_name": "NVIDIA H200",
+        "runtime": {
+          "cuda": "13.0",
+          "cudnn": "91900"
+        },
+        "torch": "2.11.0+cu130"
+      },
+      "task": "tasks.multitenant_slo.task",
+      "tolerances": {
+        "delta": 0.001,
+        "eps": 0.05,
+        "mu_per_mtok": 0.3
+      },
+      "workload": {
+        "agent": null,
+        "contract": {
+          "input_modalities": [
+            "text"
+          ],
+          "kind": "RequestResponseContract",
+          "output_modalities": [
+            "text"
+          ],
+          "path": "/v1/chat/completions",
+          "port": 8000,
+          "protocol": {
+            "kind": "OpenAIChatProtocol",
+            "model": "served-model",
+            "return_logprobs": false,
+            "stop_token_ids": null,
+            "top_logprobs": null
+          },
+          "transport": "http-sse"
+        },
+        "max_context_len": null,
+        "model": {
+          "arch": "TX",
+          "base_checkpoint": "Qwen/Qwen3.6-27B",
+          "chat_format": "chatml",
+          "chat_template_kwargs": {},
+          "fingerprint": "Qwen/Qwen3.6-27B@6a9e13bd6fc8f0983b9b99948120bc37f49c13e9#TX?",
+          "revision": "6a9e13bd6fc8f0983b9b99948120bc37f49c13e9"
+        },
+        "seed": 42,
+        "tenants": [
+          {
+            "data_source": {
+              "dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "drop_toxic": true,
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": "conversation_hash",
+                "kind": "WildChatDataset",
+                "language": "English",
+                "max_input_tokens": 3072,
+                "max_turns": 6,
+                "path": "allenai/WildChat-1M",
+                "prompt": null,
+                "questions_col": null,
+                "revision": "7d6490e462285cf85d91eabea0f9a954fbddcd1f",
+                "source_split": "train",
+                "subsample_size": 1188,
+                "subset": null,
+                "target": null,
+                "tokenizer_id": "Qwen/Qwen2.5-32B",
+                "tokenizer_revision": "1818d35814b8319459f4bd55ed1ac8709630f003"
+              },
+              "dev_dataset": null,
+              "removed_rows": [
+                "00b4c8db4c41f826df5c5d6228ed70e7",
+                "08c2753046d5f1b26acf02427cd3527b",
+                "0dc09c8a8a732aeb8c65d9091db2e6f2",
+                "104facfe4e1cb3bf1268455a1452b151",
+                "24f2447c4204a7dfc930df5648559770",
+                "32d507acbc363f3a1b3dc5273f73da71",
+                "3df638cbe88bbb5072121507e254b592",
+                "50432b76e9376740be2318a417378a5f",
+                "569f33fa57894953b77200b5ee53b48f",
+                "5d0ac4f7fbf1d3d1d5faed99e6ac0699",
+                "62b52b32e79d3b5913e40d09aeb84cf9",
+                "6eb96bd6c1333a8fd98e8929a70b7b6e",
+                "71475e6e6354e5fc54b755f9cff6cda1",
+                "83b851c58a8b24d683b46c6488a6bc23",
+                "87badaf16a116c3b3c14e76dece59b8c",
+                "8cd3a500d1d3a4f873587e60c85e0fd2",
+                "942e48ce7f946f2f17035044628bc799",
+                "9dfd0f35a58d6f62c1e8dfb79b325df3",
+                "a0e6c5146c9377883e53007a2813e4e4",
+                "a2c36d84c8c14b6325249e55a89d524e",
+                "aa7c3f49343e097be66442288abd1dac",
+                "b81af0407cbdef36ee14dc0bb9be70ba",
+                "bbec1c732819e5426c02aaa9a4849b56",
+                "c52991c62098470e1ca12a010fdd2c35",
+                "c669c22796f6c6be3f69868c2ef85b91",
+                "c98b2265db2bd318083b36416cd608eb",
+                "de022dc84cbf85e71ca9bbf2cb5222ea",
+                "e0bf6d3518e52ddee95a93bc086066ce",
+                "e5b340f6dc6e1f2c9e340734bdc601cd",
+                "e6674f43fd42b153490911b14ef33347",
+                "ed82d5953ae33edce8776910b12b35d7",
+                "f3af4414c2421c311503181b6e6f75a6",
+                "f8c5ceffb8c1eaf4ddf6eb74b684ad6b",
+                "fa1d7c86e9294e1240bae405904c8d25",
+                "fbd2fbd5b3ae46eb2d43e1517ea46a59",
+                "fc5f30748b10b89ac2aa01e239c5aba7"
+              ],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 32
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 126
+                }
+              }
+            },
+            "history_char_budget": 52000,
+            "id": "chat",
+            "output_length_cap": {
+              "cap_tokens": 16384,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": true
+          },
+          {
+            "data_source": {
+              "dataset": {
+                "categories": [
+                  "simple",
+                  "multiple",
+                  "parallel",
+                  "parallel_multiple",
+                  "live_simple",
+                  "live_multiple",
+                  "live_parallel",
+                  "live_parallel_multiple"
+                ],
+                "kind": "BFCLDataset",
+                "repo": "gorilla-llm/Berkeley-Function-Calling-Leaderboard",
+                "revision": "61fc0608cfd831fcfbbaa676ebdfef0ed963eeda"
+              },
+              "dev_dataset": null,
+              "removed_rows": [
+                "live_multiple_1003-232-2",
+                "live_multiple_1010-239-0",
+                "live_multiple_1012-241-0",
+                "live_multiple_1024-253-0",
+                "live_multiple_1027-255-1",
+                "live_multiple_1030-258-0",
+                "live_multiple_1033-261-0",
+                "live_multiple_1036-263-1",
+                "live_multiple_1044-271-0",
+                "live_multiple_1045-272-0",
+                "live_multiple_1047-274-0",
+                "live_multiple_1048-275-0",
+                "live_multiple_1049-276-0",
+                "live_multiple_1051-278-0",
+                "live_multiple_121-46-0",
+                "live_multiple_126-48-0",
+                "live_multiple_13-4-5",
+                "live_multiple_130-50-2",
+                "live_multiple_134-51-0",
+                "live_multiple_135-51-1",
+                "live_multiple_140-54-0",
+                "live_multiple_142-55-0",
+                "live_multiple_150-58-4",
+                "live_multiple_152-58-6",
+                "live_multiple_154-58-8",
+                "live_multiple_155-58-9",
+                "live_multiple_170-70-0",
+                "live_multiple_173-71-2",
+                "live_multiple_176-73-0",
+                "live_multiple_180-76-0",
+                "live_multiple_184-79-0",
+                "live_multiple_186-81-0",
+                "live_multiple_189-83-0",
+                "live_multiple_190-84-0",
+                "live_multiple_192-86-0",
+                "live_multiple_21-4-13",
+                "live_multiple_213-91-7",
+                "live_multiple_215-91-9",
+                "live_multiple_218-94-0",
+                "live_multiple_219-94-1",
+                "live_multiple_24-5-1",
+                "live_multiple_242-107-3",
+                "live_multiple_26-6-1",
+                "live_multiple_262-125-1",
+                "live_multiple_269-127-4",
+                "live_multiple_275-127-10",
+                "live_multiple_276-127-11",
+                "live_multiple_277-128-0",
+                "live_multiple_281-128-4",
+                "live_multiple_288-129-3",
+                "live_multiple_292-130-1",
+                "live_multiple_295-130-4",
+                "live_multiple_302-131-1",
+                "live_multiple_305-131-4",
+                "live_multiple_309-131-8",
+                "live_multiple_333-132-23",
+                "live_multiple_339-133-3",
+                "live_multiple_34-11-0",
+                "live_multiple_342-133-6",
+                "live_multiple_343-133-7",
+                "live_multiple_346-133-10",
+                "live_multiple_351-133-15",
+                "live_multiple_358-134-3",
+                "live_multiple_390-137-8",
+                "live_multiple_391-137-9",
+                "live_multiple_392-138-0",
+                "live_multiple_394-138-2",
+                "live_multiple_395-138-3",
+                "live_multiple_411-141-0",
+                "live_multiple_413-141-2",
+                "live_multiple_414-141-3",
+                "live_multiple_415-141-4",
+                "live_multiple_417-141-6",
+                "live_multiple_420-141-9",
+                "live_multiple_422-141-11",
+                "live_multiple_423-141-12",
+                "live_multiple_425-141-14",
+                "live_multiple_430-141-19",
+                "live_multiple_431-141-20",
+                "live_multiple_435-142-1",
+                "live_multiple_438-142-4",
+                "live_multiple_442-144-2",
+                "live_multiple_445-144-5",
+                "live_multiple_446-144-6",
+                "live_multiple_449-145-0",
+                "live_multiple_461-145-12",
+                "live_multiple_462-145-13",
+                "live_multiple_469-145-20",
+                "live_multiple_471-145-22",
+                "live_multiple_473-145-24",
+                "live_multiple_484-146-9",
+                "live_multiple_485-147-0",
+                "live_multiple_486-147-1",
+                "live_multiple_489-147-4",
+                "live_multiple_50-20-0",
+                "live_multiple_502-148-12",
+                "live_multiple_509-149-6",
+                "live_multiple_510-149-7",
+                "live_multiple_511-149-8",
+                "live_multiple_520-150-8",
+                "live_multiple_522-150-10",
+                "live_multiple_531-151-7",
+                "live_multiple_532-151-8",
+                "live_multiple_536-151-12",
+                "live_multiple_547-152-9",
+                "live_multiple_55-22-2",
+                "live_multiple_551-153-0",
+                "live_multiple_554-154-0",
+                "live_multiple_555-154-1",
+                "live_multiple_558-154-4",
+                "live_multiple_564-155-4",
+                "live_multiple_566-155-6",
+                "live_multiple_567-155-7",
+                "live_multiple_57-22-4",
+                "live_multiple_577-156-3",
+                "live_multiple_58-22-5",
+                "live_multiple_584-157-5",
+                "live_multiple_59-22-6",
+                "live_multiple_598-158-4",
+                "live_multiple_600-158-6",
+                "live_multiple_601-158-7",
+                "live_multiple_606-158-12",
+                "live_multiple_610-159-3",
+                "live_multiple_614-159-7",
+                "live_multiple_618-159-11",
+                "live_multiple_619-159-12",
+                "live_multiple_620-160-0",
+                "live_multiple_621-160-1",
+                "live_multiple_626-160-6",
+                "live_multiple_627-160-7",
+                "live_multiple_629-160-9",
+                "live_multiple_63-25-0",
+                "live_multiple_630-160-10",
+                "live_multiple_637-161-5",
+                "live_multiple_639-161-7",
+                "live_multiple_643-161-11",
+                "live_multiple_644-161-12",
+                "live_multiple_651-161-19",
+                "live_multiple_652-161-20",
+                "live_multiple_659-162-1",
+                "live_multiple_66-27-0",
+                "live_multiple_661-162-3",
+                "live_multiple_662-162-4",
+                "live_multiple_666-162-8",
+                "live_multiple_670-162-12",
+                "live_multiple_672-162-14",
+                "live_multiple_673-162-15",
+                "live_multiple_678-163-3",
+                "live_multiple_727-166-2",
+                "live_multiple_730-167-1",
+                "live_multiple_733-167-4",
+                "live_multiple_748-169-3",
+                "live_multiple_75-34-1",
+                "live_multiple_750-169-5",
+                "live_multiple_753-169-8",
+                "live_multiple_755-169-10",
+                "live_multiple_765-170-3",
+                "live_multiple_776-172-1",
+                "live_multiple_778-173-0",
+                "live_multiple_782-173-4",
+                "live_multiple_783-173-5",
+                "live_multiple_784-173-6",
+                "live_multiple_785-173-7",
+                "live_multiple_787-174-1",
+                "live_multiple_791-174-5",
+                "live_multiple_793-174-7",
+                "live_multiple_808-175-14",
+                "live_multiple_81-36-2",
+                "live_multiple_821-177-4",
+                "live_multiple_823-177-6",
+                "live_multiple_824-177-7",
+                "live_multiple_833-178-8",
+                "live_multiple_834-178-9",
+                "live_multiple_835-178-10",
+                "live_multiple_837-178-12",
+                "live_multiple_838-178-13",
+                "live_multiple_840-178-15",
+                "live_multiple_842-178-17",
+                "live_multiple_843-178-18",
+                "live_multiple_844-178-19",
+                "live_multiple_845-178-20",
+                "live_multiple_847-179-1",
+                "live_multiple_853-180-1",
+                "live_multiple_855-180-3",
+                "live_multiple_858-180-6",
+                "live_multiple_859-181-0",
+                "live_multiple_861-181-2",
+                "live_multiple_865-182-2",
+                "live_multiple_866-182-3",
+                "live_multiple_87-38-4",
+                "live_multiple_871-182-8",
+                "live_multiple_879-183-4",
+                "live_multiple_88-38-5",
+                "live_multiple_885-184-2",
+                "live_multiple_886-184-3",
+                "live_multiple_887-184-4",
+                "live_multiple_888-184-5",
+                "live_multiple_903-186-0",
+                "live_multiple_904-186-1",
+                "live_multiple_905-186-2",
+                "live_multiple_913-191-1",
+                "live_multiple_916-191-4",
+                "live_multiple_918-191-6",
+                "live_multiple_921-191-9",
+                "live_multiple_926-191-14",
+                "live_multiple_927-191-15",
+                "live_multiple_931-191-19",
+                "live_multiple_933-191-21",
+                "live_multiple_934-191-22",
+                "live_multiple_947-197-0",
+                "live_multiple_948-198-0",
+                "live_multiple_955-202-1",
+                "live_multiple_959-204-1",
+                "live_multiple_964-207-0",
+                "live_multiple_966-208-0",
+                "live_multiple_967-209-0",
+                "live_multiple_974-214-0",
+                "live_multiple_975-214-1",
+                "live_multiple_976-215-0",
+                "live_multiple_977-215-1",
+                "live_multiple_980-215-4",
+                "live_multiple_981-215-5",
+                "live_multiple_988-219-0",
+                "live_parallel_11-7-0",
+                "live_parallel_12-8-0",
+                "live_parallel_13-9-0",
+                "live_parallel_15-11-0",
+                "live_parallel_multiple_10-9-0",
+                "live_parallel_multiple_13-11-0",
+                "live_parallel_multiple_14-12-0",
+                "live_parallel_multiple_18-16-0",
+                "live_parallel_multiple_19-16-1",
+                "live_parallel_multiple_2-2-0",
+                "live_parallel_multiple_20-17-0",
+                "live_parallel_multiple_8-7-0",
+                "live_simple_106-63-0",
+                "live_simple_108-65-0",
+                "live_simple_125-81-0",
+                "live_simple_129-83-1",
+                "live_simple_133-86-0",
+                "live_simple_137-90-0",
+                "live_simple_138-91-0",
+                "live_simple_145-95-2",
+                "live_simple_148-95-5",
+                "live_simple_152-95-9",
+                "live_simple_153-95-10",
+                "live_simple_165-98-0",
+                "live_simple_168-99-2",
+                "live_simple_174-100-0",
+                "live_simple_177-103-0",
+                "live_simple_189-114-0",
+                "live_simple_214-117-6",
+                "live_simple_221-117-13",
+                "live_simple_231-122-0",
+                "live_simple_240-125-3",
+                "live_simple_25-5-3",
+                "live_simple_29-7-2",
+                "live_simple_35-12-0",
+                "live_simple_39-16-0",
+                "live_simple_41-17-1",
+                "live_simple_46-19-0",
+                "live_simple_51-23-0",
+                "live_simple_52-23-1",
+                "live_simple_80-41-0",
+                "multiple_161",
+                "multiple_53",
+                "multiple_58",
+                "multiple_61",
+                "multiple_8",
+                "multiple_91",
+                "multiple_92",
+                "multiple_95",
+                "parallel_102",
+                "parallel_105",
+                "parallel_117",
+                "parallel_133",
+                "parallel_134",
+                "parallel_136",
+                "parallel_147",
+                "parallel_170",
+                "parallel_187",
+                "parallel_19",
+                "parallel_22",
+                "parallel_26",
+                "parallel_44",
+                "parallel_45",
+                "parallel_51",
+                "parallel_59",
+                "parallel_71",
+                "parallel_77",
+                "parallel_84",
+                "parallel_93",
+                "parallel_98",
+                "parallel_multiple_106",
+                "parallel_multiple_129",
+                "parallel_multiple_136",
+                "parallel_multiple_141",
+                "parallel_multiple_159",
+                "parallel_multiple_168",
+                "parallel_multiple_177",
+                "parallel_multiple_191",
+                "parallel_multiple_195",
+                "parallel_multiple_20",
+                "parallel_multiple_21",
+                "parallel_multiple_26",
+                "parallel_multiple_27",
+                "parallel_multiple_29",
+                "parallel_multiple_33",
+                "parallel_multiple_36",
+                "parallel_multiple_53",
+                "parallel_multiple_55",
+                "parallel_multiple_6",
+                "parallel_multiple_72",
+                "parallel_multiple_75",
+                "parallel_multiple_84",
+                "parallel_multiple_86",
+                "parallel_multiple_91",
+                "parallel_multiple_94",
+                "simple_134",
+                "simple_150",
+                "simple_158",
+                "simple_166",
+                "simple_202",
+                "simple_238",
+                "simple_267",
+                "simple_30",
+                "simple_304",
+                "simple_326",
+                "simple_337",
+                "simple_369",
+                "simple_385",
+                "simple_390",
+                "simple_89"
+              ],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 250
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 999
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "api_short",
+            "output_length_cap": {
+              "cap_tokens": 16384,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": false
+          },
+          {
+            "data_source": {
+              "dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": null,
+                "kind": "HFDataset",
+                "max_turns": 5,
+                "path": "madrylab/gsm8k-platinum",
+                "prompt": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "Question: There are 15 trees in the grove. Grove workers will plant trees in the grove today. After they are done, there will be 21 trees. How many trees did the grove workers plant today?\nAnswer: There are 15 trees originally. Then there were 21 trees after some more were planted. So there must have been 21 - 15 = 6. The answer is 6.\n\nQuestion: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot?\nAnswer: There are originally 3 cars. 2 more cars arrive. 3 + 2 = 5. The answer is 5.\n\nQuestion: Leah had 32 chocolates and her sister had 42. If they ate 35, how many pieces do they have left in total?\nAnswer: Originally, Leah had 32 chocolates. Her sister had 42. So in total they had 32 + 42 = 74. After eating 35, they had 74 - 35 = 39. The answer is 39.\n\nQuestion: Jason had 20 lollipops. He gave Denny some lollipops. Now Jason has 12 lollipops. How many lollipops did Jason give to Denny?\nAnswer: Jason started with 20 lollipops. Then he had 12 after giving some to Denny. So he gave Denny 20 - 12 = 8. The answer is 8.\n\nQuestion: Shawn has five toys. For Christmas, he got two toys each from his mom and dad. How many toys does he have now?\nAnswer: Shawn started with 5 toys. If he got 2 toys each from his mom and dad, then that is 4 more toys. 5 + 4 = 9. The answer is 9.\n\nQuestion: There were nine computers in the server room. Five more computers were installed each day, from monday to thursday. How many computers are now in the server room?\nAnswer: There were originally 9 computers. For each of 4 days, 5 more computers were added. So 5 * 4 = 20 computers were added. 9 + 20 is 29. The answer is 29.\n\nQuestion: Michael had 58 golf balls. On tuesday, he lost 23 golf balls. On wednesday, he lost 2 more. How many golf balls did he have at the end of wednesday?\nAnswer: Michael started with 58 golf balls. After losing 23 on tuesday, he had 58 - 23 = 35. After losing 2 more, he had 35 - 2 = 33 golf balls. The answer is 33.\n\nQuestion: Olivia has $23. She bought five bagels for $3 each. How much money does she have left?\nAnswer: Olivia had 23 dollars. 5 bagels for 3 dollars each will be 5 x 3 = 15 dollars. So she has 23 - 15 dollars left. 23 - 15 is 8. The answer is 8.\n\nQuestion: {{ question }}\nAnswer:"
+                },
+                "questions_col": null,
+                "revision": "e762492455a1cf7967de89f05b6bef72fc713b66",
+                "source_split": "test",
+                "subset": "main",
+                "target": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "{{ answer }}"
+                }
+              },
+              "dev_dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": null,
+                "kind": "HFDataset",
+                "max_turns": 5,
+                "path": "openai/gsm8k",
+                "prompt": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "Question: There are 15 trees in the grove. Grove workers will plant trees in the grove today. After they are done, there will be 21 trees. How many trees did the grove workers plant today?\nAnswer: There are 15 trees originally. Then there were 21 trees after some more were planted. So there must have been 21 - 15 = 6. The answer is 6.\n\nQuestion: If there are 3 cars in the parking lot and 2 more cars arrive, how many cars are in the parking lot?\nAnswer: There are originally 3 cars. 2 more cars arrive. 3 + 2 = 5. The answer is 5.\n\nQuestion: Leah had 32 chocolates and her sister had 42. If they ate 35, how many pieces do they have left in total?\nAnswer: Originally, Leah had 32 chocolates. Her sister had 42. So in total they had 32 + 42 = 74. After eating 35, they had 74 - 35 = 39. The answer is 39.\n\nQuestion: Jason had 20 lollipops. He gave Denny some lollipops. Now Jason has 12 lollipops. How many lollipops did Jason give to Denny?\nAnswer: Jason started with 20 lollipops. Then he had 12 after giving some to Denny. So he gave Denny 20 - 12 = 8. The answer is 8.\n\nQuestion: Shawn has five toys. For Christmas, he got two toys each from his mom and dad. How many toys does he have now?\nAnswer: Shawn started with 5 toys. If he got 2 toys each from his mom and dad, then that is 4 more toys. 5 + 4 = 9. The answer is 9.\n\nQuestion: There were nine computers in the server room. Five more computers were installed each day, from monday to thursday. How many computers are now in the server room?\nAnswer: There were originally 9 computers. For each of 4 days, 5 more computers were added. So 5 * 4 = 20 computers were added. 9 + 20 is 29. The answer is 29.\n\nQuestion: Michael had 58 golf balls. On tuesday, he lost 23 golf balls. On wednesday, he lost 2 more. How many golf balls did he have at the end of wednesday?\nAnswer: Michael started with 58 golf balls. After losing 23 on tuesday, he had 58 - 23 = 35. After losing 2 more, he had 35 - 2 = 33 golf balls. The answer is 33.\n\nQuestion: Olivia has $23. She bought five bagels for $3 each. How much money does she have left?\nAnswer: Olivia had 23 dollars. 5 bagels for 3 dollars each will be 5 x 3 = 15 dollars. So she has 23 - 15 dollars left. 23 - 15 is 8. The answer is 8.\n\nQuestion: {{ question }}\nAnswer:"
+                },
+                "questions_col": null,
+                "revision": "740312add88f781978c0658806c59bc2815b9866",
+                "source_split": "train",
+                "subset": "main",
+                "target": {
+                  "kind": "JinjaPromptTemplate",
+                  "template": "{{ answer }}"
+                }
+              },
+              "removed_rows": [
+                "505"
+              ],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 50
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 200
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "reasoning",
+            "output_length_cap": {
+              "cap_tokens": 16384,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": false
+          },
+          {
+            "data_source": {
+              "dataset": {
+                "answers_col": null,
+                "answers_text_key": "input_text",
+                "context_col": null,
+                "first_turn_template": "Answer each question with a short answer based on the passage.\n\nPassage:\n{context}\n\nQuestion: {question}",
+                "id_column": null,
+                "kind": "MRCRDataset",
+                "max_input_tokens": 8176,
+                "max_turns": 8,
+                "path": "openai/mrcr",
+                "prompt": null,
+                "questions_col": null,
+                "replay": true,
+                "revision": "f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d",
+                "source_split": "train",
+                "subset": null,
+                "target": null,
+                "tokenizer_id": "Qwen/Qwen2.5-32B",
+                "tokenizer_revision": "1818d35814b8319459f4bd55ed1ac8709630f003"
+              },
+              "dev_dataset": null,
+              "removed_rows": [
+                "1220",
+                "1223",
+                "1266",
+                "2074",
+                "2339",
+                "412"
+              ],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 6
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 22
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "long_session",
+            "output_length_cap": {
+              "cap_tokens": 16384,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "decode": {
+                  "frequency_penalty": 0.0,
+                  "kind": "Greedy"
+                },
+                "kind": "HFReference",
+                "query_chunk": 4096
+              }
+            ],
+            "trim_rampdown": true
+          }
+        ]
+      },
+      "workload_fingerprint": "8f94167ab6541b2e5e6cd00b5b718cb765d8ab3a3980cf3487cc547b70774f54"
+    },
+    "kind": "Calibration"
+  },
+  "corpora": {
+    "api_short": {
+      "corpus_id": "gorilla-llm/Berkeley-Function-Calling-Leaderboard@61fc0608cfd831fcfbbaa676ebdfef0ed963eeda|cats=simple,multiple,parallel,parallel_multiple,live_simple,live_multiple,live_parallel,live_parallel_multiple",
+      "dev_corpus_id": null,
+      "dev_reference_digest": null
+    },
+    "chat": {
+      "corpus_id": "allenai/WildChat-1M:None@7d6490e462285cf85d91eabea0f9a954fbddcd1f|src=train|id=conversation_hash|lang=English|turns=6|n=1188|cap=3072|tok=Qwen/Qwen2.5-32B@1818d35814b8319459f4bd55ed1ac8709630f003|toxic=drop",
+      "dev_corpus_id": null,
+      "dev_reference_digest": null
+    },
+    "long_session": {
+      "corpus_id": "openai/mrcr:None@f4c69fae7cf81f7ca26b9fee34b392a50f6b8a1d|src=train|id=source_index|cap=8176|tok=Qwen/Qwen2.5-32B@1818d35814b8319459f4bd55ed1ac8709630f003",
+      "dev_corpus_id": null,
+      "dev_reference_digest": null
+    },
+    "reasoning": {
+      "corpus_id": "madrylab/gsm8k-platinum:main@e762492455a1cf7967de89f05b6bef72fc713b66|src=test|id=source_index",
+      "dev_corpus_id": "openai/gsm8k:main@740312add88f781978c0658806c59bc2815b9866|src=train|id=source_index",
+      "dev_reference_digest": "779cc74ca0653272"
+    }
+  },
+  "credit": {
+    "B": 0.5711810188013315,
+    "blob": "374b3e8fde9d0dfc75f9af39c7d37ce241fbc09f",
+    "drives": 4
+  },
+  "dev_reference_sha256": null,
+  "images": {
+    "harness": "s-a-tf-5-13-1",
+    "identities": {
+      "cuda": "cuda-2cb9226732dbd588",
+      "multitenant-slo-baseline": "multitenant-slo-baseline-2a8ec43d858b5682",
+      "multitenant-slo-member-sglang": "multitenant-slo-member-sglang-068cc488bafc6169",
+      "multitenant-slo-reference": "multitenant-slo-reference-a6c1840ae3b9b7e1",
+      "s-a": "s-a-33d76d95efa7a688",
+      "s-a-tf-5-13-1": "s-a-tf-5-13-1-05e4c31117ebfa14",
+      "s-a-tf-5-13-1-agent": "s-a-tf-5-13-1-agent-d0ac25bae75953c1"
+    },
+    "measured": {
+      "baseline": {
+        "image": "multitenant-slo-baseline"
+      },
+      "member-sglang": {
+        "image": "multitenant-slo-member-sglang"
+      },
+      "member-vllm": {
+        "image": "multitenant-slo-baseline"
+      },
+      "reference": {
+        "image": "multitenant-slo-reference"
+      }
+    },
+    "sandbox": "s-a-tf-5-13-1-agent",
+    "submission_base": "s-a-tf-5-13-1",
+    "submission_constraints": "/opt/hls/constraints.txt"
+  },
+  "load_record": {
+    "split": "test",
+    "tenants": [
+      {
+        "arrival": {
+          "kind": "Gamma",
+          "scale": 11.968968968968968,
+          "shape": 1.0
+        },
+        "id": "chat",
+        "inter_turn_delay": {
+          "kind": "GammaInterTurn",
+          "max_gap": 1800.0,
+          "scale": 735.8009,
+          "shape": 0.4057
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 50.0,
+          "ttft_ms": 500.0
+        }
+      },
+      {
+        "arrival": {
+          "kind": "Gamma",
+          "scale": 3.3783783783783785,
+          "shape": 0.4444444444444444
+        },
+        "id": "api_short",
+        "inter_turn_delay": {
+          "kind": "NoDelay"
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 50.0,
+          "ttft_ms": 300.0
+        }
+      },
+      {
+        "arrival": {
+          "kind": "Gamma",
+          "scale": 7.507507507507507,
+          "shape": 1.0
+        },
+        "id": "reasoning",
+        "inter_turn_delay": {
+          "kind": "NoDelay"
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 50.0,
+          "ttft_ms": 300.0
+        }
+      },
+      {
+        "arrival": {
+          "kind": "Gamma",
+          "scale": 68.70810810810809,
+          "shape": 1.0
+        },
+        "id": "long_session",
+        "inter_turn_delay": {
+          "kind": "GammaInterTurn",
+          "max_gap": 300.0,
+          "scale": 1684.0497,
+          "shape": 0.2891
+        },
+        "slo": {
+          "kind": "StreamingLatencySLO",
+          "tpot_ms": 50.0,
+          "ttft_ms": 1000.0
+        }
+      }
+    ]
+  },
+  "module": "tasks.multitenant_slo.task",
+  "plans": {
+    "grading": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 8,
+            "disk_gib": 274,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 73604
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "warm_baseline",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "grading",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "multitenant_slo",
+            "found": [
+              "multitenant-slo-baseline-2a8ec43d858b5682",
+              "multitenant-slo-reference-a6c1840ae3b9b7e1"
+            ],
+            "images": [
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [
+                  "torch==2.11.0+cu130",
+                  "torchaudio==2.11.0+cu130",
+                  "torchvision==0.26.0+cu130"
+                ],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "s-a",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": "base-s-a.txt",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": null,
+                "files": {},
+                "kind": "layer",
+                "name": "s-a-tf-5-13-1",
+                "owner": null,
+                "parent": "s-a",
+                "pip_lock": "layer-tf-5-13-1.txt",
+                "server": false,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "cuda",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": null,
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "multitenant-slo-reference",
+                "owner": "multitenant_slo",
+                "parent": "cuda",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "multitenant-slo-baseline",
+                "owner": "multitenant_slo",
+                "parent": "cuda",
+                "pip_lock": "baseline.txt",
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 6300
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {},
+          "kind": "baseline_warm",
+          "name": "warm_baseline",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "sh",
+                "-c",
+                "exec vllm serve \"$HLS_WEIGHTS_DIR\" \"$@\"",
+                "vllm-baseline"
+              ],
+              "image": "multitenant-slo-baseline",
+              "kind": "image",
+              "runtime_env": {
+                "PYTHONPATH": "/opt/hls-src/src:/opt/hls-src",
+                "PYTHONUNBUFFERED": "1"
+              }
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "rows/rows-2b1514e783d55a40": 147456,
+              "weights/Qwen+Qwen3.6-27B@6a9e13bd6fc8f0983b9b99948120bc37f49c13e9": 28672
+            },
+            "images_stage": "images",
+            "margin_sec": 1200,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "runtime_start_sec": 300,
+            "serve_command": [
+              "--served-model-name",
+              "served-model",
+              "--gpu-memory-utilization",
+              "0.92",
+              "--max-num-seqs",
+              "512",
+              "--dtype",
+              "bfloat16",
+              "--enable-prefix-caching",
+              "--enable-chunked-prefill",
+              "--override-generation-config",
+              "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+            ],
+            "staging_sec": 3600,
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 221,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 11319
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "warm_baseline"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "sh",
+                "-c",
+                "exec vllm serve \"$HLS_WEIGHTS_DIR\" \"$@\"",
+                "vllm-baseline"
+              ],
+              "image": "multitenant-slo-baseline",
+              "kind": "image",
+              "runtime_env": {
+                "PYTHONPATH": "/opt/hls-src/src:/opt/hls-src",
+                "PYTHONUNBUFFERED": "1"
+              }
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "rows/rows-2b1514e783d55a40": 147456,
+              "weights/Qwen+Qwen3.6-27B@6a9e13bd6fc8f0983b9b99948120bc37f49c13e9": 28672
+            },
+            "drive_timeout_sec": 10800.0,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 8,
+              "disk_gib": 13,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 16,
+              "time_sec": 17700
+            },
+            "engine_cache_owner": "warm_baseline",
+            "harness_image": "s-a-tf-5-13-1",
+            "images_stage": "images",
+            "measured_baseline": true,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "serve_command": [
+              "--served-model-name",
+              "served-model",
+              "--gpu-memory-utilization",
+              "0.92",
+              "--max-num-seqs",
+              "512",
+              "--dtype",
+              "bfloat16",
+              "--enable-prefix-caching",
+              "--enable-chunked-prefill",
+              "--override-generation-config",
+              "{\"temperature\":0.0,\"top_p\":1.0,\"top_k\":-1,\"repetition_penalty\":1.0,\"presence_penalty\":0.0,\"frequency_penalty\":0.0}"
+            ],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 6442450944,
+            "trace_request_bytes": 167772160,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 274,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 24935
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/Qwen+Qwen3.6-27B@6a9e13bd6fc8f0983b9b99948120bc37f49c13e9": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "<grading>",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "multitenant-slo-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 7200
+            },
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 10800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 25,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": null,
+            "built_arm": null,
+            "eval_id": "<grading>",
+            "kind": "grading",
+            "package_stage": null,
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "multitenant_slo"
+    },
+    "run": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 8,
+            "disk_gib": 330,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 156389
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "agent_build",
+            "source_scan",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "rollout",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "multitenant_slo",
+            "found": [
+              "multitenant-slo-reference-a6c1840ae3b9b7e1"
+            ],
+            "images": [
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [
+                  "torch==2.11.0+cu130",
+                  "torchaudio==2.11.0+cu130",
+                  "torchvision==0.26.0+cu130"
+                ],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "s-a",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": "base-s-a.txt",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": null,
+                "files": {},
+                "kind": "layer",
+                "name": "s-a-tf-5-13-1",
+                "owner": null,
+                "parent": "s-a",
+                "pip_lock": "layer-tf-5-13-1.txt",
+                "server": false,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": "apt-agent.txt",
+                "cap": "agent",
+                "kind": "cap",
+                "name": "s-a-tf-5-13-1-agent",
+                "node": {
+                  "sha256": "1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af",
+                  "version": "22.23.3"
+                },
+                "npm": {
+                  "@anthropic-ai/claude-code": "2.1.251",
+                  "@openai/codex": "0.146.0"
+                },
+                "npm_lock": "npm-agent.json",
+                "parent": "s-a-tf-5-13-1"
+              },
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "cuda",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": null,
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "multitenant-slo-reference",
+                "owner": "multitenant_slo",
+                "parent": "cuda",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 8100
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {
+            "ANTHROPIC_API_KEY": "anthropic_key"
+          },
+          "kind": "agent_build",
+          "name": "agent_build",
+          "params": {
+            "arm": {
+              "context_window": 1000000,
+              "effort": "max",
+              "harness": "claude-code",
+              "model": "claude-opus-5",
+              "name": "example",
+              "output_limit": 64000,
+              "route": "anthropic",
+              "route_table": {
+                "auth": "api_key",
+                "base_url": null,
+                "credential": "anthropic_key"
+              }
+            },
+            "arm_change": null,
+            "collect_allowance_sec": 3600,
+            "commit_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 11,
+              "time_sec": 55800
+            },
+            "data_copies": {
+              "rows/rows-2b1514e783d55a40": 147456,
+              "weights/Qwen+Qwen3.6-27B@6a9e13bd6fc8f0983b9b99948120bc37f49c13e9": 28672
+            },
+            "extract_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 4,
+              "time_sec": 55800
+            },
+            "hard_sec": 45000,
+            "harness_reserve_gib": 4.0,
+            "images_stage": "images",
+            "max_turns": null,
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "package_pip": {
+              "disk_gib": 32,
+              "memory_gib": 32
+            },
+            "probe_oom": false,
+            "provision_stage": "provision",
+            "sandbox_held": {
+              "torch": "2.11.0+cu130",
+              "torchaudio": "2.11.0+cu130",
+              "torchvision": "0.26.0+cu130"
+            },
+            "sandbox_image": "s-a-tf-5-13-1-agent",
+            "sandbox_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 169,
+              "time_sec": 55800
+            },
+            "served_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "setup_allowance_sec": 3600,
+            "snapshot_interval_sec": 1800,
+            "snapshot_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 7,
+              "time_sec": 55800
+            },
+            "soft_sec": 43200,
+            "staging_sec": 3600,
+            "stop_after": null,
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 221,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 55800
+          }
+        },
+        {
+          "after": [
+            "agent_build"
+          ],
+          "grants": {},
+          "kind": "source_scan",
+          "name": "source_scan",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "disk_cap_gib": 180
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 188,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 15,
+            "time_sec": 4104
+          }
+        },
+        {
+          "after": [
+            "images",
+            "agent_build",
+            "source_scan"
+          ],
+          "grants": {},
+          "kind": "package",
+          "name": "package",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "constraints": "/opt/hls/constraints.txt",
+            "disk_cap_gib": 180,
+            "gpu_kind": "H200",
+            "images_stage": "images",
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "pip": {
+              "disk_gib": 32,
+              "memory_gib": 32
+            },
+            "server_filename": "server.py",
+            "submission_base": "s-a-tf-5-13-1",
+            "task": "multitenant_slo"
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 228,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 36,
+            "time_sec": 25200
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "package"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "kind": "package",
+              "manifest": null,
+              "stage": "package"
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "rows/rows-2b1514e783d55a40": 147456,
+              "weights/Qwen+Qwen3.6-27B@6a9e13bd6fc8f0983b9b99948120bc37f49c13e9": 28672
+            },
+            "drive_timeout_sec": 10800.0,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 8,
+              "disk_gib": 13,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 16,
+              "time_sec": 17700
+            },
+            "engine_cache_owner": null,
+            "harness_image": "s-a-tf-5-13-1",
+            "images_stage": "images",
+            "measured_baseline": false,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "serve_command": [],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 6442450944,
+            "trace_request_bytes": 167772160,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 330,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 24935
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/Qwen+Qwen3.6-27B@6a9e13bd6fc8f0983b9b99948120bc37f49c13e9": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "terminal",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "multitenant-slo-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 7200
+            },
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 10800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 25,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "agent_build",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": "agent_build",
+            "built_arm": null,
+            "eval_id": "terminal",
+            "kind": "rollout",
+            "package_stage": "package",
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.multitenant_slo.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "multitenant_slo"
+    }
+  },
+  "reference": {
+    "gpu_kind": "H200",
+    "image_sha256": "6105d6cc76af400325e94d588ce511be5bfdbb73b437dc51eca43917d7a43e3d"
+  },
+  "rows_key": "rows-2b1514e783d55a40",
+  "scorer": {
+    "baseline_log_credit": 0.5711810188013315,
+    "kind": "SloLatencyScorer"
+  },
+  "submission_serve_command": [],
+  "task": "multitenant_slo",
+  "task_id": "multitenant_slo",
+  "upload": {
+    "dest": "/workspace/references",
+    "dir": [
+      "../assets/references"
+    ],
+    "sha256": "2458984914b96a16fbe591a48e412626599ea7a55782ae7b728d740c66636ca5"
+  },
+  "verifiers": {
+    "api_short": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ],
+    "chat": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ],
+    "long_session": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ],
+    "reasoning": [
+      {
+        "allow_underpowered_trace": false,
+        "calibration": "<the task's calibration>",
+        "check_emit_consistency": false,
+        "curve_multiplier": 2.0,
+        "kind": "TokenFaithfulnessVerifier",
+        "rate_multiplier": 2.0,
+        "reference": {
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "HFReference",
+          "query_chunk": 4096
+        }
+      }
+    ]
+  },
+  "workload_fingerprint": "8f94167ab6541b2e5e6cd00b5b718cb765d8ab3a3980cf3487cc547b70774f54"
+}

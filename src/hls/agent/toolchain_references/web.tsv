@@ -1,0 +1,177 @@
+_static/Logo_and_CUDA.png	https://docs.nvidia.com/cuda/_static/Logo_and_CUDA.png
+_static/NVIDIA-LogoBlack.svg	https://docs.nvidia.com/cuda/_static/NVIDIA-LogoBlack.svg
+_static/NVIDIA-LogoWhite.svg	https://docs.nvidia.com/cuda/_static/NVIDIA-LogoWhite.svg
+cublas/_images/cublasLt_scaling_factors_layout_global.png	https://docs.nvidia.com/cuda/archive/13.3.1/cublas/_images/cublasLt_scaling_factors_layout_global.png
+cublas/_images/cublasLt_scaling_factors_layout_tile.png	https://docs.nvidia.com/cuda/archive/13.3.1/cublas/_images/cublasLt_scaling_factors_layout_tile.png
+cublas/_images/cublasmg_gemm.jpg	https://docs.nvidia.com/cuda/archive/13.3.1/cublas/_images/cublasmg_gemm.jpg
+cublas/cublas.html	https://docs.nvidia.com/cuda/archive/13.3.1/cublas/index.html
+cudnn/_images/1x1-00000000.png	https://www.nvidia.com/content/dam/1x1-00000000.png
+cudnn/_images/ConvBNfprop.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/ConvBNfprop.png
+cudnn/_images/ConvBNwgrad.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/ConvBNwgrad.png
+cudnn/_images/ConvBiasAct.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/ConvBiasAct.png
+cudnn/_images/ConvScaleBiasAct.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/ConvScaleBiasAct.png
+cudnn/_images/DgradDreluBnBwdWeight.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/DgradDreluBnBwdWeight.png
+cudnn/_images/DgradStandaloneSingleBNApplyMatcher.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/DgradStandaloneSingleBNApplyMatcher.png
+cudnn/_images/License-Apache_2.0-blue.svg	https://img.shields.io/badge/License-Apache_2.0-blue.svg
+cudnn/_images/NC32HW32.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/NC32HW32.png
+cudnn/_images/alibi-mask.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/alibi-mask.png
+cudnn/_images/bnaddrelu.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/bnaddrelu.png
+cudnn/_images/bprop-datatypes.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/bprop-datatypes.png
+cudnn/_images/bprop-op-graph.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/bprop-op-graph.png
+cudnn/_images/conv_DAG.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/conv_DAG.png
+cudnn/_images/convolutionBwData.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/convolutionBwData.png
+cudnn/_images/convolutionBwFilter.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/convolutionBwFilter.png
+cudnn/_images/convolutionFwd.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/convolutionFwd.png
+cudnn/_images/diagrams.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/diagrams.png
+cudnn/_images/docs-nvidia.github.io-blue.svg	https://img.shields.io/badge/docs-nvidia.github.io-blue.svg
+cudnn/_images/dreluforkdnorm.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/dreluforkdnorm.png
+cudnn/_images/dsv3_top_left.png	https://raw.githubusercontent.com/NVIDIA/cudnn-frontend/91159779637b672a3f768738f5b30eee33f2180d/benchmark/attention_training/results/dsv3/gb300/dsv3_top_left.png
+cudnn/_images/ex-tensor.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/ex-tensor.png
+cudnn/_images/example_conv.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/example_conv.png
+cudnn/_images/example_conv_pw.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/example_conv_pw.png
+cudnn/_images/fprop-causal-mask.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/fprop-causal-mask.png
+cudnn/_images/fprop-dropout.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/fprop-dropout.png
+cudnn/_images/fprop-ops.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/fprop-ops.png
+cudnn/_images/fprop-padding-mask.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/fprop-padding-mask.png
+cudnn/_images/fprop-paged-kv.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/fprop-paged-kv.png
+cudnn/_images/fprop-softmax.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/fprop-softmax.png
+cudnn/_images/fprop-tensor-datatypes.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/fprop-tensor-datatypes.png
+cudnn/_images/gdn2_fixed_batch_flops.png	https://raw.githubusercontent.com/NVIDIA/cudnn-frontend/91159779637b672a3f768738f5b30eee33f2180d/benchmark/linear_attention/results/gdn2/gb300/gdn2_fixed_batch_flops.png
+cudnn/_images/gdn_fixed_batch_flops.png	https://raw.githubusercontent.com/NVIDIA/cudnn-frontend/91159779637b672a3f768738f5b30eee33f2180d/benchmark/linear_attention/results/gdn/gb300/gdn_fixed_batch_flops.png
+cudnn/_images/kda_fixed_batch_flops.png	https://raw.githubusercontent.com/NVIDIA/cudnn-frontend/91159779637b672a3f768738f5b30eee33f2180d/benchmark/linear_attention/results/kda/gb300/kda_fixed_batch_flops.png
+cudnn/_images/llama3.1_no_mask.png	https://raw.githubusercontent.com/NVIDIA/cudnn-frontend/91159779637b672a3f768738f5b30eee33f2180d/benchmark/attention_training/results/llama3.1/gb300/llama3.1_no_mask.png
+cudnn/_images/llama3.1_top_left.png	https://raw.githubusercontent.com/NVIDIA/cudnn-frontend/91159779637b672a3f768738f5b30eee33f2180d/benchmark/attention_training/results/llama3.1/gb300/llama3.1_top_left.png
+cudnn/_images/matmul-pointwise.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/matmul-pointwise.png
+cudnn/_images/matmul.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/matmul.png
+cudnn/_images/multi-gpu-batch-norm.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/multi-gpu-batch-norm.png
+cudnn/_images/mxnet.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/mxnet.png
+cudnn/_images/nchw.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/nchw.png
+cudnn/_images/new-pattern.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/new-pattern.png
+cudnn/_images/nhwc.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/nhwc.png
+cudnn/_images/normalizationBackward.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/normalizationBackward.png
+cudnn/_images/normalizationForward.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/normalizationForward.png
+cudnn/_images/nvidia-cudnn-frontend.svg	https://img.shields.io/badge/pypi-v1.28.0-blue.svg
+cudnn/_images/sliding-window-mask.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/sliding-window-mask.png
+cudnn/_images/value-input-tensor.png	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_images/value-input-tensor.png
+cudnn/_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_static/nvidia-logo-horiz-rgb-1c-blk-for-screen.svg
+cudnn/_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_static/nvidia-logo-horiz-rgb-1c-wht-for-screen.svg
+cudnn/_static/nvidia-logo-horiz-rgb-blk-for-screen.svg	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_static/nvidia-logo-horiz-rgb-blk-for-screen.svg
+cudnn/_static/nvidia-logo-horiz-rgb-wht-for-screen.svg	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/_static/nvidia-logo-horiz-rgb-wht-for-screen.svg
+cudnn/developer/core-concepts.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/developer/core-concepts.html	cudnn/_images
+cudnn/developer/debugging.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/developer/debugging.html	cudnn/_images
+cudnn/developer/forward-compatibility.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/developer/forward-compatibility.html	cudnn/_images
+cudnn/developer/graph-api.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/developer/graph-api.html	cudnn/_images
+cudnn/developer/misc.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/developer/misc.html	cudnn/_images
+cudnn/developer/overview.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/developer/overview.html	cudnn/_images
+cudnn/fe-oss-apis/attention/attention.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/attention/attention.html	cudnn/_images
+cudnn/fe-oss-apis/attention/sdpa_bwd_d256.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/attention/sdpa_bwd_d256.html	cudnn/_images
+cudnn/fe-oss-apis/attention/sdpa_bwd_sm120.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/attention/sdpa_bwd_sm120.html	cudnn/_images
+cudnn/fe-oss-apis/attention/sdpa_fwd_d256.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/attention/sdpa_fwd_d256.html	cudnn/_images
+cudnn/fe-oss-apis/bsa.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/bsa.html	cudnn/_images
+cudnn/fe-oss-apis/csa.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/csa.html	cudnn/_images
+cudnn/fe-oss-apis/dsa.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/dsa.html	cudnn/_images
+cudnn/fe-oss-apis/fe-oss-apis.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/fe-oss-apis.html	cudnn/_images
+cudnn/fe-oss-apis/fla.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/fla.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/discrete_grouped_gemm_dswiglu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/discrete_grouped_gemm_dswiglu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/discrete_grouped_gemm_swiglu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/discrete_grouped_gemm_swiglu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/gemm_amax.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/gemm_amax.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/gemm_dsrelu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/gemm_dsrelu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/gemm_fusions.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/gemm_fusions.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/gemm_proj_rope_mxfp8.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/gemm_proj_rope_mxfp8.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/gemm_srelu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/gemm_srelu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/gemm_swiglu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/gemm_swiglu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_dglu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_dglu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_dsrelu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_dsrelu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_dswiglu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_dswiglu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_glu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_glu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_glu_hadamard.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_glu_hadamard.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_glu_hadamard_quant.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_glu_hadamard_quant.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_quant.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_quant.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_quant_unified.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_quant_unified.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_srelu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_srelu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_swiglu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_swiglu.html	cudnn/_images
+cudnn/fe-oss-apis/gemm_fusions/grouped_gemm_wgrad.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/gemm_fusions/grouped_gemm_wgrad.html	cudnn/_images
+cudnn/fe-oss-apis/nsa.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/nsa.html	cudnn/_images
+cudnn/fe-oss-apis/overview.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/overview.html	cudnn/_images
+cudnn/fe-oss-apis/rmsnorm_rht_amax.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/rmsnorm_rht_amax.html	cudnn/_images
+cudnn/fe-oss-apis/rmsnorm_silu.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/fe-oss-apis/rmsnorm_silu.html	cudnn/_images
+cudnn/genindex.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/genindex.html	cudnn/_images
+cudnn/index.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/index.html	cudnn/_images
+cudnn/operations/Attention.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Attention.html	cudnn/_images
+cudnn/operations/BlockScaling.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/BlockScaling.html	cudnn/_images
+cudnn/operations/CausalConv1d.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/CausalConv1d.html	cudnn/_images
+cudnn/operations/Concatenate.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Concatenate.html	cudnn/_images
+cudnn/operations/Convolutions.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Convolutions.html	cudnn/_images
+cudnn/operations/FFTCausalConv1d.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/FFTCausalConv1d.html	cudnn/_images
+cudnn/operations/Matmul.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Matmul.html	cudnn/_images
+cudnn/operations/MoeGroupedMatmul.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/MoeGroupedMatmul.html	cudnn/_images
+cudnn/operations/Normalizations.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Normalizations.html	cudnn/_images
+cudnn/operations/Pointwise.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Pointwise.html	cudnn/_images
+cudnn/operations/Resampling.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Resampling.html	cudnn/_images
+cudnn/operations/Reshape.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Reshape.html	cudnn/_images
+cudnn/operations/RoPE.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/RoPE.html	cudnn/_images
+cudnn/operations/Slice.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Slice.html	cudnn/_images
+cudnn/operations/Transpose.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/Transpose.html	cudnn/_images
+cudnn/operations/operations.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/operations/operations.html	cudnn/_images
+cudnn/quickstart.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/quickstart.html	cudnn/_images
+cudnn/reference/acknowledgements.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/reference/acknowledgements.html	cudnn/_images
+cudnn/reference/eula.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/reference/eula.html	cudnn/_images
+cudnn/reference/faq.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/reference/faq.html	cudnn/_images
+cudnn/reference/notices.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/reference/notices.html	cudnn/_images
+cudnn/reference/support-matrix.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/reference/support-matrix.html	cudnn/_images
+cudnn/reference/support.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/reference/support.html	cudnn/_images
+cudnn/samples.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/samples.html	cudnn/_images
+cudnn/search.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/search.html	cudnn/_images
+cudnn/utilities/CompileTimeConstants.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/CompileTimeConstants.html	cudnn/_images
+cudnn/utilities/adding_torch_custom_ops.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/adding_torch_custom_ops.html	cudnn/_images
+cudnn/utilities/cuda-graphs.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/cuda-graphs.html	cudnn/_images
+cudnn/utilities/custom-execution-plan.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/custom-execution-plan.html	cudnn/_images
+cudnn/utilities/deviceless-ahead-of-time-compilation.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/deviceless-ahead-of-time-compilation.html	cudnn/_images
+cudnn/utilities/dynamic-kernel-cache.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/dynamic-kernel-cache.html	cudnn/_images
+cudnn/utilities/framework_integration_performance.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/framework_integration_performance.html	cudnn/_images
+cudnn/utilities/handle_first_class_design.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/handle_first_class_design.html	cudnn/_images
+cudnn/utilities/python_graph_and_execution_backends.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/python_graph_and_execution_backends.html	cudnn/_images
+cudnn/utilities/utilities.html	https://archive.docs.nvidia.com/deeplearning/cudnn/v1.28.0/utilities/utilities.html	cudnn/_images
+cufft/cufft.html	https://docs.nvidia.com/cuda/archive/13.3.1/cufft/index.html
+cusolver/_images/c-side.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/_images/c-side.png
+cusolver/_images/eig-a-b-itype.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/_images/eig-a-b-itype.png
+cusolver/_images/figure_1.jpg	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/_images/figure_1.jpg
+cusolver/_images/figure_2.jpg	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/_images/figure_2.jpg
+cusolver/_images/normalized-eigenvectors.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/_images/normalized-eigenvectors.png
+cusolver/_images/op-q-transa.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/_images/op-q-transa.png
+cusolver/_images/op-trans.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/_images/op-trans.png
+cusolver/cusolver.html	https://docs.nvidia.com/cuda/archive/13.3.1/cusolver/index.html
+cusparse/_images/blockedell.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/blockedell.png
+cusparse/_images/blockedell_one_base.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/blockedell_one_base.png
+cusparse/_images/bsr.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/bsr.png
+cusparse/_images/bsr_one_base.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/bsr_one_base.png
+cusparse/_images/coo.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/coo.png
+cusparse/_images/coo_one_base.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/coo_one_base.png
+cusparse/_images/csc.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/csc.png
+cusparse/_images/csc_one_base.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/csc_one_base.png
+cusparse/_images/csr.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/csr.png
+cusparse/_images/csr_one_base.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/csr_one_base.png
+cusparse/_images/dense_matrix.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/dense_matrix.png
+cusparse/_images/dense_vector.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/dense_vector.png
+cusparse/_images/op-a-non-xpose-1.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-a-non-xpose-1.png
+cusparse/_images/op-a-non-xpose-2.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-a-non-xpose-2.png
+cusparse/_images/op-a-notsupported.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-a-notsupported.png
+cusparse/_images/op-a-opa-non-transpose.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-a-opa-non-transpose.png
+cusparse/_images/op-b-2-of-3.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-b-2-of-3.png
+cusparse/_images/op-b-non-xpose-2.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-b-non-xpose-2.png
+cusparse/_images/op-b-notsupported.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-b-notsupported.png
+cusparse/_images/op-b-opb-non-transpose.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-b-opb-non-transpose.png
+cusparse/_images/op-non-xpose.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-non-xpose.png
+cusparse/_images/op-transpose-2.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-transpose-2.png
+cusparse/_images/op-x-non-transpose-2.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-x-non-transpose-2.png
+cusparse/_images/op-x-notsupported-3.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-x-notsupported-3.png
+cusparse/_images/op-x-notsupported.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/op-x-notsupported.png
+cusparse/_images/sell.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/sell.png
+cusparse/_images/sell_one_base.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/sell_one_base.png
+cusparse/_images/sparse_vector.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/sparse_vector.png
+cusparse/_images/spy-c.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/spy-c.png
+cusparse/_images/sub_matrix.png	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/_images/sub_matrix.png
+cusparse/cusparse.html	https://docs.nvidia.com/cuda/archive/13.3.1/cusparse/index.html
+nvrtc/_images/pch_heap.png	https://docs.nvidia.com/cuda/archive/13.3.1/nvrtc/_images/pch_heap.png
+nvrtc/nvrtc.html	https://docs.nvidia.com/cuda/archive/13.3.1/nvrtc/index.html

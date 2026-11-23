@@ -1,0 +1,75 @@
+{
+  "name": "hls-agent-cli",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "hls-agent-cli",
+      "dependencies": {
+        "@anthropic-ai/claude-code": "2.1.251",
+        "@openai/codex": "0.146.0"
+      }
+    },
+    "node_modules/@anthropic-ai/claude-code": {
+      "version": "2.1.251",
+      "resolved": "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-2.1.251.tgz",
+      "integrity": "sha512-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+      "hasInstallScript": true,
+      "bin": {
+        "claude": "bin/claude.exe"
+      },
+      "optionalDependencies": {
+        "@anthropic-ai/claude-code-darwin-arm64": "2.1.251",
+        "@anthropic-ai/claude-code-linux-x64": "2.1.251"
+      }
+    },
+    "node_modules/@anthropic-ai/claude-code-darwin-arm64": {
+      "version": "2.1.251",
+      "resolved": "https://registry.npmjs.org/@anthropic-ai/claude-code-darwin-arm64/-/claude-code-darwin-arm64-2.1.251.tgz",
+      "integrity": "sha512-EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE==",
+      "cpu": [
+        "arm64"
+      ],
+      "optional": true,
+      "os": [
+        "darwin"
+      ]
+    },
+    "node_modules/@anthropic-ai/claude-code-linux-x64": {
+      "version": "2.1.251",
+      "resolved": "https://registry.npmjs.org/@anthropic-ai/claude-code-linux-x64/-/claude-code-linux-x64-2.1.251.tgz",
+      "integrity": "sha512-BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB==",
+      "cpu": [
+        "x64"
+      ],
+      "optional": true,
+      "os": [
+        "linux"
+      ]
+    },
+    "node_modules/@openai/codex": {
+      "version": "0.146.0",
+      "resolved": "https://registry.npmjs.org/@openai/codex/-/codex-0.146.0.tgz",
+      "integrity": "sha512-CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC==",
+      "bin": {
+        "codex": "bin/codex.js"
+      },
+      "optionalDependencies": {
+        "@openai/codex-linux-x64": "npm:@openai/codex@0.146.0-linux-x64"
+      }
+    },
+    "node_modules/@openai/codex-linux-x64": {
+      "name": "@openai/codex",
+      "version": "0.146.0-linux-x64",
+      "resolved": "https://registry.npmjs.org/@openai/codex/-/codex-0.146.0-linux-x64.tgz",
+      "integrity": "sha512-DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD==",
+      "cpu": [
+        "x64"
+      ],
+      "optional": true,
+      "os": [
+        "linux"
+      ]
+    }
+  }
+}

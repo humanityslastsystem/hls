@@ -1,0 +1,3 @@
+# setuptools alone: the build backend of the source builds of server layers on the cuda base,
+# at the version the vLLM 0.28.0 stacks resolve.
+setuptools==80.10.2

@@ -1,0 +1,37 @@
+# What the reference image adds to the vendor vLLM image: harbor, whose distribution must be
+# installed for the driver to import the checkout's harbor, every package harbor needs that the
+# vendor image lacks, datasets for the harness's roles, and the three packages those hold at
+# another version than the vendor image does (fsspec, openai, websockets). The vendor image's
+# own packages are in no lock, so every package is named at one version and nothing else is
+# resolved. Compiled into reference.txt by
+#   hls images lock-pip layer reference --task agentic_coding --server --no-deps
+claude-agent-sdk==0.2.159
+datasets==5.0.1
+deprecation==2.1.0
+dirhash==0.5.0
+fastuuid==0.14.0
+fsspec==2026.6.0
+h2==4.4.1
+harbor==0.8.0
+hpack==4.2.0
+hyperframe==6.1.0
+litellm==1.102.1
+multiprocess==0.70.19
+openai==2.54.0
+pandas==3.0.6
+pathspec==1.1.1
+postgrest==2.31.0
+pyarrow==25.0.1
+realtime==2.31.0
+ruff==0.16.8
+scantree==0.0.4
+shortuuid==1.0.13
+storage3==2.31.0
+strenum==0.4.15
+supabase==2.31.0
+supabase-auth==2.31.0
+supabase-functions==2.31.0
+tenacity==9.1.4
+toml==0.10.2
+websockets==15.0.1
+xxhash==4.0.1

@@ -1,0 +1,4 @@
+[submodule "harbor"]
+	path = harbor
+	url = https://github.com/humanityslastsystem/harbor.git
+	branch = main

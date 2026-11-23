@@ -1,0 +1,3 @@
+# multitenant_slo, tab_completion and sample_task, on S-A. Compiled into layer-tf-5-13-1.txt by
+#   hls images lock-pip layer layer-tf-5-13-1 --parent base-s-a
+transformers==5.13.1

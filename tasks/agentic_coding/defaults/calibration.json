@@ -1,0 +1,191 @@
+{
+  "kind": "report",
+  "task": "tasks.agentic_coding.task",
+  "workload_fingerprint": "28d71b8571014c05505e2b31beb43fb3d7ea6ec7b24b8e74d90dcf9f0bc17522",
+  "workload": {
+    "model": {
+      "base_checkpoint": "zai-org/GLM-5.3-Flash",
+      "arch": "MoE",
+      "chat_format": "glm",
+      "revision": "eb9eb208eb0d988989d07a6a12d0fdeb5f52574a",
+      "chat_template_kwargs": {},
+      "fingerprint": "zai-org/GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a#MoE?"
+    },
+    "contract": {
+      "path": "/v1/chat/completions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "text"
+      ],
+      "port": 8000,
+      "transport": "http-sse",
+      "protocol": {
+        "stop_token_ids": null,
+        "model": "served-model",
+        "return_logprobs": true,
+        "top_logprobs": 21,
+        "kind": "OpenAIChatProtocol"
+      },
+      "kind": "RequestResponseContract"
+    },
+    "seed": 42,
+    "tenants": [
+      {
+        "id": "t0",
+        "data_source": {
+          "dataset": {
+            "release": "v4.0.0",
+            "commit": "452bf305c6daa62fc59061d22133a7cbc7c1572e",
+            "no_image": [
+              "bun-sourcemap-leak",
+              "coq-block-bound",
+              "data-anonymization",
+              "lake-temp-glm",
+              "mp-checkpoint-consolidation",
+              "retro-console-soc",
+              "risk-scorer-replay",
+              "wdm-design"
+            ],
+            "deep_rows": [
+              "ontology-kg-querying",
+              "rs-archive-clone",
+              "takens-embedding-lean"
+            ],
+            "prefixes": {
+              "ontology-kg-querying": "23aee821ca1c6ab4f86482c936035eee38381b03ceae1b2178078a23210ecebb",
+              "rs-archive-clone": "350e2eb31507440fafac7ae534d52c8dfd6b0024c135783f917c3071da71ca98",
+              "takens-embedding-lean": "35dc148e56f7fce8e405c773d48b10df8e439eb7e201890ec5f5704da5e77832"
+            },
+            "max_sandbox_cpus": 16,
+            "max_sandbox_memory_mb": 32768,
+            "max_sandbox_storage_mb": 30720,
+            "corpus_digest": "109a48afbe4adb9177633a82675ca68fe9d157760fc5b49882658efa8b25e040",
+            "needs_accelerator": [
+              "fp8-rmsnorm-gemm",
+              "jax-speedrun-gpu",
+              "math-eval-grader"
+            ],
+            "turn_budgets": {},
+            "kind": "TerminalBenchDataset"
+          },
+          "split": {
+            "dev": {
+              "value": 28,
+              "kind": "Count"
+            },
+            "test": {
+              "value": 24,
+              "kind": "Count"
+            }
+          },
+          "dev_dataset": null,
+          "removed_rows": []
+        },
+        "output_length_cap": {
+          "cap_tokens": 32768,
+          "kind": "ShortOutputCap"
+        },
+        "history_char_budget": null,
+        "trim_rampdown": false,
+        "references": [
+          {
+            "decode": {
+              "temperature": 1.0,
+              "kind": "Sample"
+            },
+            "gpu_memory_utilization": 0.9,
+            "max_model_len": 1048576,
+            "dtype": "auto",
+            "enforce_eager": false,
+            "batch_invariant": false,
+            "tensor_parallel_size": 8,
+            "kind": "VLLMReference"
+          }
+        ]
+      }
+    ],
+    "agent": {
+      "framework": "tasks.agentic_coding.framework.MiniSweFramework",
+      "framework_config": {
+        "checkpoint": "zai-org/GLM-5.3-Flash",
+        "command_timeout_sec": 300,
+        "max_consecutive_format_errors": 3,
+        "max_context_len": 1048576,
+        "output_limit_chars": 32000,
+        "reply_budget": 16384
+      },
+      "tools": [
+        {
+          "name": "bash",
+          "description": "Run one bash command in the repository checkout and return its combined output and exit code. Each call runs in a fresh subshell, so directory and environment changes do not persist between calls.",
+          "json_schema": {
+            "type": "object",
+            "properties": {
+              "command": {
+                "type": "string",
+                "description": "The command to run."
+              },
+              "timeout_sec": {
+                "type": "integer",
+                "description": "Seconds before the command is killed."
+              }
+            },
+            "required": [
+              "command"
+            ]
+          }
+        }
+      ],
+      "max_turns": 250,
+      "wall_clock_sec": 2700,
+      "cut_grace_sec": 600
+    },
+    "max_context_len": null
+  },
+  "gpu_kind": "H200",
+  "stack": {
+    "torch": "2.13.0+cu130",
+    "runtime": {
+      "cuda": "13.0",
+      "cudnn": "92000"
+    },
+    "device_name": "NVIDIA H200"
+  },
+  "engines": {
+    "sglang": {
+      "n_servings": 1,
+      "n_replies": 1441,
+      "n_tokens": 2527027,
+      "mean_kl": 0.06141240721645767,
+      "se_kl": 0.0012649242914680083,
+      "upper": 0.06349320767592255,
+      "precision_passed": true,
+      "outside_rate": 0.002184385050100375,
+      "se_outside": 0.00010672244003026246,
+      "outside_upper": 0.0023599434639501567
+    }
+  },
+  "kappa": 0.06349320767592255,
+  "outside_ceiling": 0.0023599434639501567,
+  "eps": 0.05,
+  "end_of_turn": {
+    "ids": [
+      154820,
+      154827,
+      154829
+    ],
+    "eps": 0.1,
+    "expected_max": 5.0,
+    "engines": {
+      "sglang": {
+        "priced_positions": 2525539,
+        "expected": 2.1143698904289034,
+        "observed": 3,
+        "p_value": 0.35501157779790793
+      }
+    }
+  },
+  "created_at": "2026-09-23T05:04:43.424003+00:00"
+}

@@ -1,0 +1,142 @@
+{
+  "aggregate_passed": false,
+  "failure_mode": "failed_requests",
+  "per_event": {
+    "a:r0": false,
+    "b:r0": false,
+    "a:r1": false,
+    "b:r1": false
+  },
+  "diagnostics": {
+    "reason": "verification skipped: 1 of 4 requests failed",
+    "failed_requests": {
+      "count": 1,
+      "total": 4,
+      "errors": {
+        "transport": 1
+      }
+    }
+  },
+  "per_verifier_results": [
+    [
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      }
+    ],
+    [
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      }
+    ],
+    [
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      }
+    ],
+    [
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      }
+    ]
+  ]
+}

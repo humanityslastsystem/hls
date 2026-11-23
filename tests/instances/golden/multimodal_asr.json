@@ -1,0 +1,1384 @@
+{
+  "answer_keys": {
+    "WhisperASREngine_2a53fdcb_greedy_5a42c70f": {
+      "answer_key": "2dd025d41684ddba1584bc80de06293999ec9d1c33ef4a2dceb088edfbe10de3",
+      "question_shape": "f99b98eb07689194233520dede41987001bc8b78d1c8fdf9a650b08837161fe1",
+      "tenants": [
+        "t0"
+      ]
+    }
+  },
+  "baseline_start": {
+    "entrypoint": [
+      "python",
+      "/app/server_vllm.py"
+    ],
+    "image": "multimodal-asr-baseline",
+    "runtime_env": {},
+    "serve_command": []
+  },
+  "brief": {
+    "file": "multimodal_asr.brief.md",
+    "sha256": "971ba9d05fbaf0806a460f1acd81cc257d62cd14439922458433ac9574fab93b"
+  },
+  "calibration": null,
+  "corpora": {
+    "t0": {
+      "corpus_id": "hf-audio/open-asr-leaderboard:librispeech@b6bdcd0beb34f8975dc659796176d88f43aff502|src=test.clean|audio:2|sr=16000|cap=None|n=None|cols=audio,text",
+      "dev_corpus_id": null,
+      "dev_reference_digest": null
+    }
+  },
+  "credit": {
+    "B": 1.3169151560981036,
+    "blob": "554eb2e12e670c3d6b9f255bedc6a648a0bbc033",
+    "drives": 4
+  },
+  "dev_reference_sha256": "22384edbeacbb470a5a974161ee68e5cde2d324095bc6928a2d7cf132cb726bb",
+  "images": {
+    "harness": "s-a-tf-5-9-0",
+    "identities": {
+      "cuda": "cuda-2cb9226732dbd588",
+      "multimodal-asr-baseline": "multimodal-asr-baseline-ac4e80cc6f7cbca1",
+      "multimodal-asr-reference": "multimodal-asr-reference-676490f7c7559b3e",
+      "s-a": "s-a-33d76d95efa7a688",
+      "s-a-tf-5-9-0": "s-a-tf-5-9-0-35ac7e3266fa08a7",
+      "s-a-tf-5-9-0-agent": "s-a-tf-5-9-0-agent-d49bb783a4488ce5"
+    },
+    "measured": {
+      "baseline": {
+        "image": "multimodal-asr-baseline"
+      },
+      "reference": {
+        "image": "multimodal-asr-reference"
+      }
+    },
+    "sandbox": "s-a-tf-5-9-0-agent",
+    "submission_base": "s-a-tf-5-9-0",
+    "submission_constraints": "/opt/hls/constraints.txt"
+  },
+  "load_record": {
+    "split": "test",
+    "tenants": [
+      {
+        "arrival": {
+          "kind": "Poisson",
+          "rate_per_sec": 52.0
+        },
+        "id": "t0",
+        "inter_turn_delay": {
+          "kind": "NoDelay"
+        },
+        "slo": {
+          "kind": "RequestLatencySLO",
+          "target_ms": 6000.0
+        }
+      }
+    ]
+  },
+  "module": "tasks.multimodal_asr.task",
+  "plans": {
+    "grading": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 8,
+            "disk_gib": 270,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 73604
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "warm_baseline",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "grading",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "multimodal_asr",
+            "found": [
+              "multimodal-asr-baseline-ac4e80cc6f7cbca1",
+              "multimodal-asr-reference-676490f7c7559b3e"
+            ],
+            "images": [
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [
+                  "torch==2.11.0+cu130",
+                  "torchaudio==2.11.0+cu130",
+                  "torchvision==0.26.0+cu130"
+                ],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "s-a",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": "base-s-a.txt",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": null,
+                "files": {},
+                "kind": "layer",
+                "name": "s-a-tf-5-9-0",
+                "owner": null,
+                "parent": "s-a",
+                "pip_lock": "layer-tf-5-9-0.txt",
+                "server": false,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "cuda",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": null,
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "multimodal-asr-reference",
+                "owner": "multimodal_asr",
+                "parent": "cuda",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {
+                  "/app/server_vllm.py": "server_vllm.py"
+                },
+                "kind": "layer",
+                "name": "multimodal-asr-baseline",
+                "owner": "multimodal_asr",
+                "parent": "cuda",
+                "pip_lock": "baseline.txt",
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 6300
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {},
+          "kind": "baseline_warm",
+          "name": "warm_baseline",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "python",
+                "/app/server_vllm.py"
+              ],
+              "image": "multimodal-asr-baseline",
+              "kind": "image",
+              "runtime_env": {}
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "rows/rows-6f81e7d523199c48": 61440,
+              "weights/openai+whisper-large-v3@06f233fe06e710322aca913c1bc4249a0d71fce1": 28672
+            },
+            "images_stage": "images",
+            "margin_sec": 1200,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "runtime_start_sec": 300,
+            "serve_command": [],
+            "staging_sec": 3600,
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 221,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 11319
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "warm_baseline"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "python",
+                "/app/server_vllm.py"
+              ],
+              "image": "multimodal-asr-baseline",
+              "kind": "image",
+              "runtime_env": {}
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "dev-view/artifact/t0": 32768,
+              "dev-view/driver/t0": 32768,
+              "rows/rows-6f81e7d523199c48": 61440,
+              "weights/openai+whisper-large-v3@06f233fe06e710322aca913c1bc4249a0d71fce1": 28672
+            },
+            "drive_timeout_sec": 10800.0,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 8,
+              "disk_gib": 9,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 16,
+              "time_sec": 17700
+            },
+            "engine_cache_owner": "warm_baseline",
+            "harness_image": "s-a-tf-5-9-0",
+            "images_stage": "images",
+            "measured_baseline": true,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "serve_command": [],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 3221225472,
+            "trace_request_bytes": 1073741824,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 270,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 24935
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/openai+whisper-large-v3@06f233fe06e710322aca913c1bc4249a0d71fce1": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "<grading>",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "multimodal-asr-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 7200
+            },
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 10800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": null,
+            "built_arm": null,
+            "eval_id": "<grading>",
+            "kind": "grading",
+            "package_stage": null,
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "multimodal-asr"
+    },
+    "run": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 8,
+            "disk_gib": 326,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 156389
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "agent_build",
+            "source_scan",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "rollout",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "multimodal_asr",
+            "found": [
+              "multimodal-asr-reference-676490f7c7559b3e"
+            ],
+            "images": [
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [
+                  "torch==2.11.0+cu130",
+                  "torchaudio==2.11.0+cu130",
+                  "torchvision==0.26.0+cu130"
+                ],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "s-a",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": "base-s-a.txt",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": null,
+                "files": {},
+                "kind": "layer",
+                "name": "s-a-tf-5-9-0",
+                "owner": null,
+                "parent": "s-a",
+                "pip_lock": "layer-tf-5-9-0.txt",
+                "server": false,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": "apt-agent.txt",
+                "cap": "agent",
+                "kind": "cap",
+                "name": "s-a-tf-5-9-0-agent",
+                "node": {
+                  "sha256": "1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af",
+                  "version": "22.23.3"
+                },
+                "npm": {
+                  "@anthropic-ai/claude-code": "2.1.251",
+                  "@openai/codex": "0.146.0"
+                },
+                "npm_lock": "npm-agent.json",
+                "parent": "s-a-tf-5-9-0"
+              },
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "cuda",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": null,
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ],
+                  [
+                    "TORCH_CUDA_ARCH_LIST",
+                    "9.0"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "multimodal-asr-reference",
+                "owner": "multimodal_asr",
+                "parent": "cuda",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 8100
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {
+            "ANTHROPIC_API_KEY": "anthropic_key"
+          },
+          "kind": "agent_build",
+          "name": "agent_build",
+          "params": {
+            "arm": {
+              "context_window": 1000000,
+              "effort": "max",
+              "harness": "claude-code",
+              "model": "claude-opus-5",
+              "name": "example",
+              "output_limit": 64000,
+              "route": "anthropic",
+              "route_table": {
+                "auth": "api_key",
+                "base_url": null,
+                "credential": "anthropic_key"
+              }
+            },
+            "arm_change": null,
+            "collect_allowance_sec": 3600,
+            "commit_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 11,
+              "time_sec": 55800
+            },
+            "data_copies": {
+              "dev-view/agent/t0": 32768,
+              "rows/rows-6f81e7d523199c48": 61440,
+              "weights/openai+whisper-large-v3@06f233fe06e710322aca913c1bc4249a0d71fce1": 28672
+            },
+            "extract_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 4,
+              "time_sec": 55800
+            },
+            "hard_sec": 45000,
+            "harness_reserve_gib": 4.0,
+            "images_stage": "images",
+            "max_turns": null,
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "package_pip": {
+              "disk_gib": 32,
+              "memory_gib": 32
+            },
+            "probe_oom": false,
+            "provision_stage": "provision",
+            "sandbox_held": {
+              "torch": "2.11.0+cu130",
+              "torchaudio": "2.11.0+cu130",
+              "torchvision": "0.26.0+cu130"
+            },
+            "sandbox_image": "s-a-tf-5-9-0-agent",
+            "sandbox_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 169,
+              "time_sec": 55800
+            },
+            "served_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "setup_allowance_sec": 3600,
+            "snapshot_interval_sec": 1800,
+            "snapshot_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 7,
+              "time_sec": 55800
+            },
+            "soft_sec": 43200,
+            "staging_sec": 3600,
+            "stop_after": null,
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 221,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 55800
+          }
+        },
+        {
+          "after": [
+            "agent_build"
+          ],
+          "grants": {},
+          "kind": "source_scan",
+          "name": "source_scan",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "disk_cap_gib": 180
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 188,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 15,
+            "time_sec": 4104
+          }
+        },
+        {
+          "after": [
+            "images",
+            "agent_build",
+            "source_scan"
+          ],
+          "grants": {},
+          "kind": "package",
+          "name": "package",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "constraints": "/opt/hls/constraints.txt",
+            "disk_cap_gib": 180,
+            "gpu_kind": "H200",
+            "images_stage": "images",
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "pip": {
+              "disk_gib": 32,
+              "memory_gib": 32
+            },
+            "server_filename": "server.py",
+            "submission_base": "s-a-tf-5-9-0",
+            "task": "multimodal-asr"
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 228,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 36,
+            "time_sec": 25200
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "package"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "kind": "package",
+              "manifest": null,
+              "stage": "package"
+            },
+            "artifact_shape": {
+              "cpus": 8,
+              "disk_gib": 180,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 17700
+            },
+            "data_copies": {
+              "dev-view/artifact/t0": 32768,
+              "dev-view/driver/t0": 32768,
+              "rows/rows-6f81e7d523199c48": 61440,
+              "weights/openai+whisper-large-v3@06f233fe06e710322aca913c1bc4249a0d71fce1": 28672
+            },
+            "drive_timeout_sec": 10800.0,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 8,
+              "disk_gib": 9,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 16,
+              "time_sec": 17700
+            },
+            "engine_cache_owner": null,
+            "harness_image": "s-a-tf-5-9-0",
+            "images_stage": "images",
+            "measured_baseline": false,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "serve_command": [],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 3221225472,
+            "trace_request_bytes": 1073741824,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 326,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 196,
+            "time_sec": 24935
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/openai+whisper-large-v3@06f233fe06e710322aca913c1bc4249a0d71fce1": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "terminal",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "multimodal-asr-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 1,
+              "memory_gib": 176,
+              "time_sec": 7200
+            },
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 1,
+            "memory_gib": 180,
+            "time_sec": 10800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "agent_build",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": "agent_build",
+            "built_arm": null,
+            "eval_id": "terminal",
+            "kind": "rollout",
+            "package_stage": "package",
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.multimodal_asr.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "multimodal-asr"
+    }
+  },
+  "reference": {
+    "gpu_kind": "H200",
+    "image_sha256": "6105d6cc76af400325e94d588ce511be5bfdbb73b437dc51eca43917d7a43e3d"
+  },
+  "rows_key": "rows-6f81e7d523199c48",
+  "scorer": {
+    "baseline_log_credit": 1.3169151560981036,
+    "kind": "SloLatencyScorer"
+  },
+  "submission_serve_command": [],
+  "task": "multimodal_asr",
+  "task_id": "multimodal-asr",
+  "upload": null,
+  "verifiers": {
+    "t0": [
+      {
+        "kind": "ReferenceRelativeVerifier",
+        "metric": {
+          "kind": "WERMetric",
+          "pass_threshold": 0.5
+        },
+        "min_ratio": 0.98,
+        "reference": {
+          "asr_task": "transcribe",
+          "decode": {
+            "frequency_penalty": 0.0,
+            "kind": "Greedy"
+          },
+          "kind": "WhisperReference",
+          "language": "en",
+          "max_new_tokens": 440
+        },
+        "tol": 0.0
+      }
+    ]
+  },
+  "workload_fingerprint": "b8d4f8d47b4857527ad42d880366a6a03d1ef8496b18d1e4711fd778591e1a5a"
+}

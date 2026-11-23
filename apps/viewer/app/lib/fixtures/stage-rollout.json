@@ -1,0 +1,412 @@
+{
+  "rollout_id": "20261002T000000Z-abcdef",
+  "task_id": "fin",
+  "created_at": 1000.0,
+  "finished_at": 1791256208.8828268,
+  "status": "ok",
+  "config": {
+    "task_id": "fin",
+    "split": "test",
+    "spec": {
+      "id": "fin-goodput",
+      "model": {
+        "base_checkpoint": "m",
+        "arch": "TX",
+        "chat_format": "chatml",
+        "revision": "main",
+        "chat_template_kwargs": {},
+        "fingerprint": "m@main#TX?"
+      },
+      "hardware": {
+        "accelerator": {
+          "kind": "H200",
+          "count": 1,
+          "memory_gb_per_device": 0
+        },
+        "interconnect": null,
+        "cpu_count": 0,
+        "memory_gb": 0,
+        "storage_gb": 0
+      },
+      "network": null,
+      "contract": {
+        "path": "/v1/chat/completions",
+        "input_modalities": [
+          "text"
+        ],
+        "output_modalities": [
+          "text"
+        ],
+        "port": 8000,
+        "transport": "http-sse",
+        "protocol": {
+          "stop_token_ids": null,
+          "model": "served-model",
+          "return_logprobs": false,
+          "top_logprobs": null,
+          "kind": "OpenAIChatProtocol"
+        },
+        "kind": "RequestResponseContract"
+      },
+      "max_context_len": null,
+      "scorer": {
+        "unit": {
+          "kind": "RequestUnit"
+        },
+        "sol": {
+          "rps": 2.0,
+          "kind": "ConstantSoL"
+        },
+        "kind": "GoodputScorer"
+      },
+      "baseline": null,
+      "metadata": {},
+      "seed": 0,
+      "tenants": [
+        {
+          "id": "chat",
+          "data_source": null,
+          "workload": {
+            "arrival": {
+              "kind": "AllAtOnce"
+            },
+            "inter_turn_delay": {
+              "kind": "NoDelay"
+            },
+            "output_length_cap": {
+              "kind": "Uncapped"
+            },
+            "slo": {
+              "ttft_ms": 500.0,
+              "tpot_ms": 50.0,
+              "kind": "StreamingLatencySLO"
+            },
+            "mean_turns_per_session": 1.0,
+            "history_char_budget": null,
+            "trim_rampdown": false
+          },
+          "verifiers": [
+            {
+              "metric": {
+                "kind": "LetterMatchMetric"
+              },
+              "min_value": 1.0,
+              "kind": "MetricVerifier"
+            }
+          ]
+        },
+        {
+          "id": "agent",
+          "data_source": null,
+          "workload": {
+            "arrival": {
+              "kind": "AllAtOnce"
+            },
+            "inter_turn_delay": {
+              "kind": "NoDelay"
+            },
+            "output_length_cap": {
+              "kind": "Uncapped"
+            },
+            "slo": {
+              "target_sec": 30.0,
+              "kind": "TrajectoryMakespanSLO"
+            },
+            "mean_turns_per_session": 1.0,
+            "history_char_budget": null,
+            "trim_rampdown": false
+          },
+          "verifiers": [
+            {
+              "metric": {
+                "kind": "LetterMatchMetric"
+              },
+              "min_value": 1.0,
+              "kind": "MetricVerifier"
+            }
+          ]
+        },
+        {
+          "id": "plain",
+          "data_source": null,
+          "workload": {
+            "arrival": {
+              "kind": "AllAtOnce"
+            },
+            "inter_turn_delay": {
+              "kind": "NoDelay"
+            },
+            "output_length_cap": {
+              "kind": "Uncapped"
+            },
+            "slo": {
+              "kind": "NoSLO"
+            },
+            "mean_turns_per_session": 1.0,
+            "history_char_budget": null,
+            "trim_rampdown": false
+          },
+          "verifiers": [
+            {
+              "metric": {
+                "kind": "LetterMatchMetric"
+              },
+              "min_value": 1.0,
+              "kind": "MetricVerifier"
+            }
+          ]
+        }
+      ]
+    },
+    "image_digests": {
+      "sa-base": "1111111111111111111111111111111111111111111111111111111111111111",
+      "submission": "d2733324f5410e9e61103793c26c7cdeb5935712e76dbb2f7eba1bd8e4d98fe2",
+      "artifact": "d2733324f5410e9e61103793c26c7cdeb5935712e76dbb2f7eba1bd8e4d98fe2",
+      "driver": "2222222222222222222222222222222222222222222222222222222222222222",
+      "verify": "3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    "hls_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "harbor_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "rollout_overrides": {},
+    "artifact": {
+      "kind": "package",
+      "stage": "package",
+      "manifest": null
+    },
+    "reasoning_effort": "max"
+  },
+  "build": {
+    "build": {
+      "arm": {
+        "harness": "claude-code",
+        "model": "k3",
+        "route": "kimi",
+        "context_window": 200000,
+        "output_limit": 64000,
+        "effort": "max",
+        "name": "k3",
+        "route_table": {
+          "credential": "relay",
+          "base_url": null,
+          "auth": "bearer"
+        }
+      },
+      "arm_change": null,
+      "sandbox_image": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "upload_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "soft_sec": null,
+      "hard_sec": 1100,
+      "max_turns": null,
+      "started_at": 300.0,
+      "ended_at": 400.0,
+      "agent_sec": 100.0,
+      "ending": "agent_ended",
+      "reentries": 0,
+      "sessions_ended": 1,
+      "extraction": {
+        "usage": {
+          "n_input_tokens": 1000,
+          "n_output_tokens": 50,
+          "n_cache_tokens": null,
+          "cost_usd": 12.5
+        },
+        "trajectory_sha256": null,
+        "unavailable": null,
+        "trajectory_unavailable": null
+      }
+    },
+    "outputs": {
+      "agent_env": "runs/fin/20261002T000000Z-abcdef/stages/agent_build/attempts/1/outputs/agent_env.json",
+      "brief": "runs/fin/20261002T000000Z-abcdef/stages/agent_build/attempts/1/outputs/brief.md",
+      "brief_provenance": "runs/fin/20261002T000000Z-abcdef/stages/agent_build/attempts/1/outputs/brief_provenance.json",
+      "build": "runs/fin/20261002T000000Z-abcdef/stages/agent_build/attempts/1/outputs/build.json",
+      "source_bundle": "runs/fin/20261002T000000Z-abcdef/stages/agent_build/attempts/1/outputs/source.bundle",
+      "transcript": "runs/fin/20261002T000000Z-abcdef/stages/agent_build/attempts/1/outputs/transcript/INDEX.json"
+    },
+    "package": {
+      "status": "built",
+      "image": "runs/fin/20261002T000000Z-abcdef/stages/package/attempts/1/outputs/submission.sif",
+      "sif_sha256": "d2733324f5410e9e61103793c26c7cdeb5935712e76dbb2f7eba1bd8e4d98fe2",
+      "reason": null,
+      "returncode": null,
+      "log_tail": null,
+      "served_ucounts": null,
+      "process_ceiling": null,
+      "task": "fin",
+      "bundle_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "commit": "ffffffffffffffffffffffffffffffffffffffff",
+      "wheels": []
+    },
+    "started_at": 300.0,
+    "ended_at": 400.0,
+    "usage": {
+      "n_input_tokens": 1000,
+      "n_output_tokens": 50,
+      "n_cache_tokens": null,
+      "cost_usd": 12.5
+    },
+    "upload_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "conditions": {
+    "attempts": {
+      "agent_build": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      },
+      "provision": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      },
+      "images": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      },
+      "source_scan": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      },
+      "package": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      },
+      "deploy_drive": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      },
+      "score": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      },
+      "finalize": {
+        "counted": null,
+        "attempts": []
+      },
+      "verify": {
+        "counted": 1,
+        "attempts": [
+          {
+            "attempt": 1,
+            "state": "claimed",
+            "fault_class": null,
+            "reason": null,
+            "retryable": null
+          }
+        ]
+      }
+    },
+    "allocations": [
+      {
+        "index": 0,
+        "retry_of": null,
+        "job_ids": [],
+        "exclude": [],
+        "failure": null,
+        "tool_versions": {},
+        "hardware": {}
+      }
+    ],
+    "hls_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "harbor_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "dirty": false,
+    "hardware": null,
+    "baseline_hardware": null,
+    "hardware_warning": null,
+    "credit": null,
+    "calibration": null,
+    "measured": {
+      "credit": null,
+      "calibration": null,
+      "dev_reference": null
+    },
+    "measured_note": null,
+    "arm": {
+      "record": {
+        "harness": "claude-code",
+        "model": "k3",
+        "route": "kimi",
+        "context_window": 200000,
+        "output_limit": 64000,
+        "effort": "max",
+        "name": "k3",
+        "route_table": {
+          "credential": "relay",
+          "base_url": null,
+          "auth": "bearer"
+        }
+      },
+      "arm_change": null
+    },
+    "budget": {
+      "soft_sec": null,
+      "hard_sec": 1100,
+      "max_turns": null,
+      "overridden": null
+    },
+    "grade_after_sandbox_oom": true,
+    "images": {
+      "sa-base": "1111111111111111111111111111111111111111111111111111111111111111",
+      "submission": "d2733324f5410e9e61103793c26c7cdeb5935712e76dbb2f7eba1bd8e4d98fe2",
+      "artifact": "d2733324f5410e9e61103793c26c7cdeb5935712e76dbb2f7eba1bd8e4d98fe2",
+      "driver": "2222222222222222222222222222222222222222222222222222222222222222",
+      "verify": "3333333333333333333333333333333333333333333333333333333333333333"
+    },
+    "placement": null
+  },
+  "error": null
+}

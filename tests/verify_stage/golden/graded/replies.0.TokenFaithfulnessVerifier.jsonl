@@ -1,0 +1,4 @@
+{"event_key": "a:r0", "n_tokens": 2, "n_flips": 1, "max_gap": 0.7, "severe_gaps": [0.7], "n_nan": 0, "n_inf": 0, "stop_gap": null, "at_cap": true}
+{"event_key": "b:r0", "n_tokens": 2, "n_flips": 1, "max_gap": 0.7, "severe_gaps": [0.7], "n_nan": 0, "n_inf": 0, "stop_gap": null, "at_cap": true}
+{"event_key": "a:r1", "n_tokens": 2, "n_flips": 1, "max_gap": 0.7, "severe_gaps": [0.7], "n_nan": 0, "n_inf": 0, "stop_gap": null, "at_cap": true}
+{"event_key": "b:r1", "n_tokens": 2, "n_flips": 1, "max_gap": 0.7, "severe_gaps": [0.7], "n_nan": 0, "n_inf": 0, "stop_gap": null, "at_cap": true}

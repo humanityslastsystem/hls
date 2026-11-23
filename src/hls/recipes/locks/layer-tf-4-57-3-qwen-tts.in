@@ -1,0 +1,7 @@
+# multimodal_tts, on S-A. qwen-tts 0.1.1 pins transformers 4.57.3. It also pins sox 1.5.0,
+# which exists only as a source distribution: the layer builds
+# it from source (the catalog's source_builds), and wheels alone would resolve sox 1.4.1.
+# Compiled into layer-tf-4-57-3-qwen-tts.txt by
+#   hls images lock-pip layer layer-tf-4-57-3-qwen-tts --parent base-s-a --source-build sox
+transformers==4.57.3
+qwen-tts==0.1.1

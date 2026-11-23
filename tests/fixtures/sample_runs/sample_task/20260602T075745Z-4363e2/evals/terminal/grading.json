@@ -1,0 +1,76 @@
+{
+  "episode": {
+    "eval_id": "terminal",
+    "triggered_by": "harness",
+    "checkpoint": "modal:Image(<function _Image.run_commands.<locals>.build_dockerfile at 0x10c52e340>)",
+    "anchor": {
+      "turn_index": 8
+    },
+    "started_at": 1780387524.1243992,
+    "finished_at": 1780387599.999722,
+    "trace_path": "evals/terminal/trace.json",
+    "verdict_summary": {
+      "gate_passed": true,
+      "aggregate_passed": true,
+      "diagnostics": {
+        "0:AccuracyVsReference+RelativeBar": {
+          "artifact_agg": 0.4,
+          "reference_agg": 0.4,
+          "tol": 0.0
+        }
+      }
+    },
+    "score": {
+      "value": 0.5333196170637383,
+      "achieved": 0.5333196170637383,
+      "sol": 1.0,
+      "unit": "request",
+      "gate_passed": true,
+      "zero_reason": null,
+      "breakdown": {
+        "slo": {
+          "p99_ms": 884.6045739992405,
+          "target_ms": 1000000,
+          "n": 5
+        },
+        "verdict": {
+          "0:AccuracyVsReference+RelativeBar": {
+            "artifact_agg": 0.4,
+            "reference_agg": 0.4,
+            "tol": 0.0
+          }
+        }
+      }
+    },
+    "container_logs": {
+      "artifact": "evals/terminal/artifact.log",
+      "driver": "evals/terminal/driver.log"
+    },
+    "error": null
+  },
+  "provenance": {
+    "task_id": "sample_task",
+    "split": "dev",
+    "spec": {},
+    "image_digests": {
+      "artifact": "im-ahCeIBaC26F19jcaRiVPM3",
+      "driver": "im-983v9uYbkeeh9URVhPld4L",
+      "reference": "im-983v9uYbkeeh9URVhPld4L"
+    },
+    "image_recipes": {},
+    "sandbox_ids": {},
+    "sandbox_exits": {},
+    "hls_commit": "66e27d9",
+    "harbor_commit": "4893bcd",
+    "rollout_overrides": {
+      "source.builder.model_name": "claude-sonnet-4-5"
+    },
+    "substrate": {},
+    "artifact": {},
+    "reasoning_effort": null,
+    "container_env_public": {}
+  },
+  "source_rollout": "20260602T075745Z-4363e2",
+  "mode": "original",
+  "source_tag": null
+}

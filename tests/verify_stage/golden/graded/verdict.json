@@ -1,0 +1,337 @@
+{
+  "aggregate_passed": false,
+  "failure_mode": "correctness",
+  "per_event": {
+    "a:r0": false,
+    "a:r1": false,
+    "b:r0": false,
+    "b:r1": false
+  },
+  "diagnostics": {
+    "0:TokenFaithfulnessVerifier": {
+      "rejections": [
+        "flip_rate",
+        "flip_curve"
+      ],
+      "n_tokens": 8,
+      "n_flips": 4,
+      "flip_rate": 0.5,
+      "max_gap": 0.7,
+      "q_max": 0.004,
+      "rate_multiplier": 2.0,
+      "curve_multiplier": 2.0,
+      "rate_ratio": 62.5,
+      "delta_per_rung": 0.000125,
+      "flip_curve": [
+        {
+          "c": 0.5,
+          "ceiling_per_engine": {
+            "hf_pinned": 2
+          },
+          "engine": "hf_pinned",
+          "e": 6,
+          "lambda_up": 4.353158007506227e-05,
+          "mu": 0.00034825264060049817,
+          "count": 4
+        },
+        {
+          "c": 1.0,
+          "ceiling_per_engine": {
+            "hf_pinned": 2
+          },
+          "engine": "hf_pinned",
+          "e": 2,
+          "lambda_up": 2.4082292225746525e-05,
+          "mu": 0.0001926583378059722,
+          "count": 0
+        },
+        {
+          "c": 1.5,
+          "ceiling_per_engine": {
+            "hf_pinned": 2
+          },
+          "engine": "hf_pinned",
+          "e": 1,
+          "lambda_up": 1.8572144636462984e-05,
+          "mu": 0.00014857715709170387,
+          "count": 0
+        },
+        {
+          "c": 2.0,
+          "ceiling_per_engine": {
+            "hf_pinned": 0
+          },
+          "engine": "hf_pinned",
+          "e": 0,
+          "lambda_up": 1.2296264847046443e-05,
+          "mu": 9.837011877637155e-05,
+          "count": 0
+        },
+        {
+          "c": 2.5,
+          "ceiling_per_engine": {
+            "hf_pinned": 0
+          },
+          "engine": "hf_pinned",
+          "e": 0,
+          "lambda_up": 1.2296264847046443e-05,
+          "mu": 9.837011877637155e-05,
+          "count": 0
+        },
+        {
+          "c": 3.0,
+          "ceiling_per_engine": {
+            "hf_pinned": 0
+          },
+          "engine": "hf_pinned",
+          "e": 0,
+          "lambda_up": 1.2296264847046443e-05,
+          "mu": 9.837011877637155e-05,
+          "count": 0
+        },
+        {
+          "c": 4.0,
+          "ceiling_per_engine": {
+            "hf_pinned": 0
+          },
+          "engine": "hf_pinned",
+          "e": 0,
+          "lambda_up": 1.2296264847046443e-05,
+          "mu": 9.837011877637155e-05,
+          "count": 0
+        }
+      ],
+      "min_tokens": 4375,
+      "allow_underpowered_trace": true,
+      "n_capped_events": 4,
+      "n_capped_tokens": 8,
+      "n_empty_events": 0,
+      "n_nan_gaps": 0,
+      "n_inf_gaps": 0,
+      "n_untokenized_events": 0,
+      "untokenized_events": [],
+      "n_over_cap_events": 0,
+      "over_cap_events": [],
+      "emit_consistency_checked": false
+    },
+    "1:MetricVerifier": {
+      "value": 1.0,
+      "min_value": 1.0
+    },
+    "2:TokenFaithfulnessVerifier": {
+      "pooled_alias_of": 0,
+      "events_file": "replies.0.TokenFaithfulnessVerifier.jsonl.gz"
+    },
+    "3:MetricVerifier": {
+      "value": 0.0,
+      "min_value": 1.0
+    },
+    "failed_gates": [
+      {
+        "verifier": "TokenFaithfulnessVerifier",
+        "tenant": "a",
+        "key": "0:TokenFaithfulnessVerifier",
+        "rejections": [
+          "flip_rate",
+          "flip_curve"
+        ]
+      },
+      {
+        "verifier": "TokenFaithfulnessVerifier",
+        "tenant": "b",
+        "key": "2:TokenFaithfulnessVerifier",
+        "rejections": [
+          "flip_rate",
+          "flip_curve"
+        ]
+      },
+      {
+        "verifier": "MetricVerifier",
+        "tenant": "b",
+        "key": "3:MetricVerifier"
+      }
+    ]
+  },
+  "per_verifier_results": [
+    [
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {
+          "event_key": "a:r0",
+          "n_tokens": 2,
+          "n_flips": 1,
+          "max_gap": 0.7,
+          "severe_gaps": [
+            0.7
+          ],
+          "n_nan": 0,
+          "n_inf": 0,
+          "stop_gap": null,
+          "at_cap": true
+        }
+      },
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {
+          "event_key": "a:r1",
+          "n_tokens": 2,
+          "n_flips": 1,
+          "max_gap": 0.7,
+          "severe_gaps": [
+            0.7
+          ],
+          "n_nan": 0,
+          "n_inf": 0,
+          "stop_gap": null,
+          "at_cap": true
+        }
+      },
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      }
+    ],
+    [
+      {
+        "passed": true,
+        "score": null,
+        "scores": {},
+        "rationale": "predicted='B', expected='B'",
+        "diagnostics": {
+          "predicted": "B",
+          "expected": "B"
+        }
+      },
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": true,
+        "score": null,
+        "scores": {},
+        "rationale": "predicted='C', expected='C'",
+        "diagnostics": {
+          "predicted": "C",
+          "expected": "C"
+        }
+      },
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      }
+    ],
+    [
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {
+          "event_key": "b:r0",
+          "n_tokens": 2,
+          "n_flips": 1,
+          "max_gap": 0.7,
+          "severe_gaps": [
+            0.7
+          ],
+          "n_nan": 0,
+          "n_inf": 0,
+          "stop_gap": null,
+          "at_cap": true
+        }
+      },
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {
+          "event_key": "b:r1",
+          "n_tokens": 2,
+          "n_flips": 1,
+          "max_gap": 0.7,
+          "severe_gaps": [
+            0.7
+          ],
+          "n_nan": 0,
+          "n_inf": 0,
+          "stop_gap": null,
+          "at_cap": true
+        }
+      }
+    ],
+    [
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": "predicted='A', expected='C'",
+        "diagnostics": {
+          "predicted": "A",
+          "expected": "C"
+        }
+      },
+      {
+        "passed": null,
+        "score": null,
+        "scores": {},
+        "rationale": null,
+        "diagnostics": {}
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {},
+        "rationale": "predicted='D', expected='A'",
+        "diagnostics": {
+          "predicted": "D",
+          "expected": "A"
+        }
+      }
+    ]
+  ]
+}

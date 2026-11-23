@@ -1,0 +1,31 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.env
+.secrets.toml*
+
+# macOS
+.DS_Store
+
+
+# viewer build artifacts
+/src/hls/viewer/static/
+/apps/viewer/node_modules/
+/apps/viewer/build/
+/apps/viewer/.react-router/
+
+# Stray screenshots / images at the repo root (debug artifacts; real assets live in docs/ or apps/)
+/*.png
+/*.jpg
+/*.jpeg
+tasks/assets/
+
+# Per-machine config: the [site] table's paths, partition and account differ per site, and
+# every checkout carries its own. Tracking one would push one site's store and scratch paths
+# onto all of them.
+hls.toml
+# The documented example a site copies its own from.
+!docs/examples/hls.toml

@@ -1,0 +1,1628 @@
+{
+  "answer_keys": {},
+  "baseline_start": {
+    "entrypoint": [
+      "python3",
+      "/app/server.py"
+    ],
+    "image": "agentic-coding-baseline",
+    "runtime_env": {
+      "PYTHONPATH": "/app"
+    },
+    "serve_command": []
+  },
+  "brief": {
+    "file": "agentic_coding.brief.md",
+    "sha256": "8cecdf92031e8614f175899d8690fd75caeb001e26616eb44a8445f5452c6744"
+  },
+  "calibration": {
+    "blob": "9b9b9690fb1bfb23cbb4a7a3287a4ee3e6ac88e9",
+    "injected": {
+      "created_at": "2026-09-23T05:04:43.424003+00:00",
+      "end_of_turn": {
+        "engines": {
+          "sglang": {
+            "expected": 2.1143698904289034,
+            "observed": 3,
+            "p_value": 0.35501157779790793,
+            "priced_positions": 2525539
+          }
+        },
+        "eps": 0.1,
+        "expected_max": 5.0,
+        "ids": [
+          154820,
+          154827,
+          154829
+        ]
+      },
+      "engines": {
+        "sglang": {
+          "mean_kl": 0.06141240721645767,
+          "n_replies": 1441,
+          "n_servings": 1,
+          "n_tokens": 2527027,
+          "outside_rate": 0.002184385050100375,
+          "outside_upper": 0.0023599434639501567,
+          "precision_passed": true,
+          "se_kl": 0.0012649242914680083,
+          "se_outside": 0.00010672244003026246,
+          "upper": 0.06349320767592255
+        }
+      },
+      "eps": 0.05,
+      "gpu_kind": "H200",
+      "kappa": 0.06349320767592255,
+      "kind": "report",
+      "outside_ceiling": 0.0023599434639501567,
+      "stack": {
+        "device_name": "NVIDIA H200",
+        "runtime": {
+          "cuda": "13.0",
+          "cudnn": "92000"
+        },
+        "torch": "2.13.0+cu130"
+      },
+      "task": "tasks.agentic_coding.task",
+      "workload": {
+        "agent": {
+          "cut_grace_sec": 600,
+          "framework": "tasks.agentic_coding.framework.MiniSweFramework",
+          "framework_config": {
+            "checkpoint": "zai-org/GLM-5.3-Flash",
+            "command_timeout_sec": 300,
+            "max_consecutive_format_errors": 3,
+            "max_context_len": 1048576,
+            "output_limit_chars": 32000,
+            "reply_budget": 16384
+          },
+          "max_turns": 250,
+          "tools": [
+            {
+              "description": "Run one bash command in the repository checkout and return its combined output and exit code. Each call runs in a fresh subshell, so directory and environment changes do not persist between calls.",
+              "json_schema": {
+                "properties": {
+                  "command": {
+                    "description": "The command to run.",
+                    "type": "string"
+                  },
+                  "timeout_sec": {
+                    "description": "Seconds before the command is killed.",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "command"
+                ],
+                "type": "object"
+              },
+              "name": "bash"
+            }
+          ],
+          "wall_clock_sec": 2700
+        },
+        "contract": {
+          "input_modalities": [
+            "text"
+          ],
+          "kind": "RequestResponseContract",
+          "output_modalities": [
+            "text"
+          ],
+          "path": "/v1/chat/completions",
+          "port": 8000,
+          "protocol": {
+            "kind": "OpenAIChatProtocol",
+            "model": "served-model",
+            "return_logprobs": true,
+            "stop_token_ids": null,
+            "top_logprobs": 21
+          },
+          "transport": "http-sse"
+        },
+        "max_context_len": null,
+        "model": {
+          "arch": "MoE",
+          "base_checkpoint": "zai-org/GLM-5.3-Flash",
+          "chat_format": "glm",
+          "chat_template_kwargs": {},
+          "fingerprint": "zai-org/GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a#MoE?",
+          "revision": "eb9eb208eb0d988989d07a6a12d0fdeb5f52574a"
+        },
+        "seed": 42,
+        "tenants": [
+          {
+            "data_source": {
+              "dataset": {
+                "commit": "452bf305c6daa62fc59061d22133a7cbc7c1572e",
+                "corpus_digest": "109a48afbe4adb9177633a82675ca68fe9d157760fc5b49882658efa8b25e040",
+                "deep_rows": [
+                  "ontology-kg-querying",
+                  "rs-archive-clone",
+                  "takens-embedding-lean"
+                ],
+                "kind": "TerminalBenchDataset",
+                "max_sandbox_cpus": 16,
+                "max_sandbox_memory_mb": 32768,
+                "max_sandbox_storage_mb": 30720,
+                "needs_accelerator": [
+                  "fp8-rmsnorm-gemm",
+                  "jax-speedrun-gpu",
+                  "math-eval-grader"
+                ],
+                "no_image": [
+                  "bun-sourcemap-leak",
+                  "coq-block-bound",
+                  "data-anonymization",
+                  "lake-temp-glm",
+                  "mp-checkpoint-consolidation",
+                  "retro-console-soc",
+                  "risk-scorer-replay",
+                  "wdm-design"
+                ],
+                "prefixes": {
+                  "ontology-kg-querying": "23aee821ca1c6ab4f86482c936035eee38381b03ceae1b2178078a23210ecebb",
+                  "rs-archive-clone": "350e2eb31507440fafac7ae534d52c8dfd6b0024c135783f917c3071da71ca98",
+                  "takens-embedding-lean": "35dc148e56f7fce8e405c773d48b10df8e439eb7e201890ec5f5704da5e77832"
+                },
+                "release": "v4.0.0",
+                "turn_budgets": {}
+              },
+              "dev_dataset": null,
+              "removed_rows": [],
+              "split": {
+                "dev": {
+                  "kind": "Count",
+                  "value": 28
+                },
+                "test": {
+                  "kind": "Count",
+                  "value": 24
+                }
+              }
+            },
+            "history_char_budget": null,
+            "id": "t0",
+            "output_length_cap": {
+              "cap_tokens": 32768,
+              "kind": "ShortOutputCap"
+            },
+            "references": [
+              {
+                "batch_invariant": false,
+                "decode": {
+                  "kind": "Sample",
+                  "temperature": 1.0
+                },
+                "dtype": "auto",
+                "enforce_eager": false,
+                "gpu_memory_utilization": 0.9,
+                "kind": "VLLMReference",
+                "max_model_len": 1048576,
+                "tensor_parallel_size": 8
+              }
+            ],
+            "trim_rampdown": false
+          }
+        ]
+      },
+      "workload_fingerprint": "28d71b8571014c05505e2b31beb43fb3d7ea6ec7b24b8e74d90dcf9f0bc17522"
+    },
+    "kind": "ReportCalibration"
+  },
+  "corpora": {
+    "t0": {
+      "corpus_id": "terminal-bench/terminal-bench@452bf305c6daa62fc59061d22133a7cbc7c1572e|tag=v4.0.0|digest=109a48afbe4adb9177633a82675ca68fe9d157760fc5b49882658efa8b25e040|no_image=bun-sourcemap-leak,coq-block-bound,data-anonymization,lake-temp-glm,mp-checkpoint-consolidation,retro-console-soc,risk-scorer-replay,wdm-design|needs_accelerator=fp8-rmsnorm-gemm,jax-speedrun-gpu,math-eval-grader|caps=16,32768,30720|prefixes=ontology-kg-querying=23aee821ca1c6ab4f86482c936035eee38381b03ceae1b2178078a23210ecebb,rs-archive-clone=350e2eb31507440fafac7ae534d52c8dfd6b0024c135783f917c3071da71ca98,takens-embedding-lean=35dc148e56f7fce8e405c773d48b10df8e439eb7e201890ec5f5704da5e77832|turn_budgets=ontology-kg-querying=10,rs-archive-clone=10,takens-embedding-lean=10|sessions=ontology-kg-querying=2,rs-archive-clone=2,takens-embedding-lean=2",
+      "dev_corpus_id": null,
+      "dev_reference_digest": null
+    }
+  },
+  "credit": {
+    "B": 0.15877600690461072,
+    "blob": "77875a8901224576e7575b6d6e40cb6f51b504c2",
+    "drives": 1
+  },
+  "dev_reference_sha256": null,
+  "images": {
+    "harness": "agentic-coding-reference",
+    "identities": {
+      "agentic-coding-baseline": "agentic-coding-baseline-edcd873c24afa0bd",
+      "agentic-coding-member-sglang": "agentic-coding-member-sglang-2f53e669496c377a",
+      "agentic-coding-reference": "agentic-coding-reference-bce39cd36862d617",
+      "agentic-coding-tf-5-17-0": "agentic-coding-tf-5-17-0-c7749d92f2f112f0",
+      "agentic-coding-tf-5-17-0-agent": "agentic-coding-tf-5-17-0-agent-a6185098b235c633",
+      "agentic-coding-vllm": "agentic-coding-vllm-4593d7a1609ef27a",
+      "cuda": "cuda-2cb9226732dbd588"
+    },
+    "measured": {
+      "baseline": {
+        "image": "agentic-coding-baseline"
+      },
+      "member-sglang": {
+        "image": "agentic-coding-member-sglang"
+      },
+      "reference": {
+        "image": "agentic-coding-reference"
+      }
+    },
+    "sandbox": "agentic-coding-tf-5-17-0-agent",
+    "submission_base": "agentic-coding-tf-5-17-0-agent",
+    "submission_constraints": null
+  },
+  "load_record": {
+    "split": "test",
+    "tenants": [
+      {
+        "arrival": {
+          "kind": "Poisson",
+          "rate_per_sec": 0.050172771579337236
+        },
+        "id": "t0",
+        "inter_turn_delay": {
+          "kind": "NoDelay"
+        },
+        "slo": {
+          "kind": "ContextLinearLatencySLO",
+          "tpot_ms": 20.0,
+          "ttft_ms": 1400.0,
+          "ttft_ms_per_prefill_token": 0.008
+        }
+      }
+    ]
+  },
+  "module": "tasks.agentic_coding.task",
+  "plans": {
+    "grading": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 64,
+            "disk_gib": 3941,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 1911,
+            "time_sec": 61574
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "warm_baseline",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "grading",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "sandbox_stores": [
+              "agentic-coding-images",
+              "agentic-coding-overlays",
+              "agentic-coding-prefixes",
+              "agentic-coding-runtime"
+            ],
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "agentic_coding",
+            "found": [
+              "agentic-coding-baseline-edcd873c24afa0bd",
+              "agentic-coding-reference-bce39cd36862d617"
+            ],
+            "images": [
+              {
+                "kind": "registry",
+                "name": "agentic-coding-vllm",
+                "python": "/usr/bin/python3",
+                "ref": "vllm/vllm-openai@sha256:4cbfd34aac145fd1870381c030131c7f868fcad45448f401ecdb5fd4ed020b42",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": "apt-reference.txt",
+                "debs": {
+                  "https://github.com/apptainer/apptainer/releases/download/v1.5.3/apptainer_1.5.3_amd64.deb": "82b0bdddf459087d202383360b8318d526ad6826c748a2f669913cc6aef9ee40"
+                },
+                "env": [
+                  [
+                    "UV_HTTP_TIMEOUT",
+                    "300"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "agentic-coding-reference",
+                "owner": "agentic_coding",
+                "parent": "agentic-coding-vllm",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "PYTHONPATH",
+                    "/app"
+                  ]
+                ],
+                "files": {
+                  "/app/server.py": "vllm_server.py",
+                  "/app/tasks/agentic_coding/__init__.py": "__init__.py",
+                  "/app/tasks/agentic_coding/serving_config.py": "serving_config.py"
+                },
+                "kind": "layer",
+                "name": "agentic-coding-baseline",
+                "owner": "agentic_coding",
+                "parent": "agentic-coding-vllm",
+                "pip_lock": null,
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 2700
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {},
+          "kind": "baseline_warm",
+          "name": "warm_baseline",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "python3",
+                "/app/server.py"
+              ],
+              "image": "agentic-coding-baseline",
+              "kind": "image",
+              "runtime_env": {
+                "PYTHONPATH": "/app"
+              }
+            },
+            "artifact_shape": {
+              "cpus": 64,
+              "disk_gib": 3814,
+              "gpu_kind": "H200",
+              "gpus": 8,
+              "memory_gib": 1907,
+              "time_sec": 10320
+            },
+            "data_copies": {
+              "rows/rows-193e5b6a36c850aa": 61440,
+              "weights/zai-org+GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a": 28672
+            },
+            "images_stage": "images",
+            "margin_sec": 1200,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "runtime_start_sec": 300,
+            "serve_command": [],
+            "staging_sec": 3600,
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 64,
+            "disk_gib": 3855,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 1911,
+            "time_sec": 11319
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "warm_baseline"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "entrypoint": [
+                "python3",
+                "/app/server.py"
+              ],
+              "image": "agentic-coding-baseline",
+              "kind": "image",
+              "runtime_env": {
+                "PYTHONPATH": "/app"
+              }
+            },
+            "artifact_shape": {
+              "cpus": 64,
+              "disk_gib": 3814,
+              "gpu_kind": "H200",
+              "gpus": 8,
+              "memory_gib": 1907,
+              "time_sec": 10320
+            },
+            "data_copies": {
+              "rows/rows-193e5b6a36c850aa": 61440,
+              "weights/zai-org+GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a": 28672
+            },
+            "drive_timeout_sec": 3420.0,
+            "driver_memory_shared": true,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 64,
+              "disk_gib": 46,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 768,
+              "time_sec": 10320
+            },
+            "engine_cache_owner": "warm_baseline",
+            "harness_image": "agentic-coding-reference",
+            "images_stage": "images",
+            "measured_baseline": true,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "sandbox_paths": [
+              {
+                "path": "/hls/sandboxes/images",
+                "read_only": true,
+                "store": "agentic-coding-images"
+              },
+              {
+                "path": "/hls/sandboxes/overlays",
+                "read_only": false,
+                "store": "agentic-coding-overlays"
+              },
+              {
+                "path": "/hls/sandboxes/prefixes",
+                "read_only": true,
+                "store": "agentic-coding-prefixes"
+              },
+              {
+                "path": "/hls/sandboxes/runtime",
+                "read_only": true,
+                "store": "agentic-coding-runtime"
+              },
+              {
+                "path": "/dev/fuse",
+                "read_only": false,
+                "store": "device"
+              }
+            ],
+            "serve_command": [],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 23622320128,
+            "trace_request_bytes": 671088640,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 64,
+            "disk_gib": 3941,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 1911,
+            "time_sec": 17555
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/zai-org+GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "<grading>",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "agentic-coding-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 8,
+              "memory_gib": 903,
+              "time_sec": 7200
+            },
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 907,
+            "time_sec": 10800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 25,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": null,
+            "built_arm": null,
+            "eval_id": "<grading>",
+            "kind": "grading",
+            "package_stage": null,
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "agentic_coding"
+    },
+    "run": {
+      "allocations": [
+        {
+          "depends_on": null,
+          "request": {
+            "cpus": 64,
+            "disk_gib": 3997,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 1911,
+            "time_sec": 150059
+          },
+          "socket_tasks": null,
+          "stages": [
+            "provision",
+            "images",
+            "agent_build",
+            "source_scan",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score",
+            "finalize"
+          ]
+        }
+      ],
+      "pipeline": "rollout",
+      "stages": [
+        {
+          "after": [],
+          "grants": {},
+          "kind": "provision",
+          "name": "provision",
+          "params": {
+            "sandbox_stores": [
+              "agentic-coding-images",
+              "agentic-coding-overlays",
+              "agentic-coding-prefixes",
+              "agentic-coding-runtime"
+            ],
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            },
+            "weights": true
+          },
+          "shape": {
+            "cpus": 4,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 16,
+            "time_sec": 7200
+          }
+        },
+        {
+          "after": [],
+          "grants": {},
+          "kind": "images",
+          "name": "images",
+          "params": {
+            "catalog_task": "agentic_coding",
+            "found": [
+              "agentic-coding-baseline-edcd873c24afa0bd",
+              "agentic-coding-reference-bce39cd36862d617"
+            ],
+            "images": [
+              {
+                "apt_lock": "apt-base.txt",
+                "constraints": [],
+                "cuda_ref": "nvidia/cuda:13.0.1-devel-ubuntu24.04@sha256:7d2f6a8c2071d911524f95061a0db363e24d27aa51ec831fcccf9e76eb72bc92",
+                "env": {
+                  "HF_HUB_DISABLE_TELEMETRY": "1",
+                  "PYTHONUNBUFFERED": "1",
+                  "UV_NO_CACHE": "1",
+                  "VLLM_DO_NOT_TRACK": "1"
+                },
+                "kind": "base",
+                "name": "cuda",
+                "nvidia_apt": {
+                  "cuda-nsight-systems-13-0=13.0.3-1": "d5105643b0222da97f933f84f9d6b0f6d5d37e315253fa991e12a9f741c595ee",
+                  "nsight-systems-2025.3.2=2025.3.2.474-253236389321v0": "c7cfe27e2250eb91e1a67e7feb5f2c490c7f598e3b3a3d047aff000bc49f9d6b"
+                },
+                "nvidia_repo": "https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/",
+                "pip_lock": null,
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "UV_TORCH_BACKEND",
+                    "cu130"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "agentic-coding-tf-5-17-0",
+                "owner": "agentic_coding",
+                "parent": "cuda",
+                "pip_lock": "sandbox.txt",
+                "server": false,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": "apt-agent.txt",
+                "cap": "agent",
+                "kind": "cap",
+                "name": "agentic-coding-tf-5-17-0-agent",
+                "node": {
+                  "sha256": "1084aa36196bba4c3a5e69a1ee388a6e4ff729dad09445fbcd434b28fe3c24af",
+                  "version": "22.23.3"
+                },
+                "npm": {
+                  "@anthropic-ai/claude-code": "2.1.251",
+                  "@openai/codex": "0.146.0"
+                },
+                "npm_lock": "npm-agent.json",
+                "parent": "agentic-coding-tf-5-17-0"
+              },
+              {
+                "kind": "registry",
+                "name": "agentic-coding-vllm",
+                "python": "/usr/bin/python3",
+                "ref": "vllm/vllm-openai@sha256:4cbfd34aac145fd1870381c030131c7f868fcad45448f401ecdb5fd4ed020b42",
+                "snapshot": "20261001T000000Z"
+              },
+              {
+                "apt_lock": "apt-reference.txt",
+                "debs": {
+                  "https://github.com/apptainer/apptainer/releases/download/v1.5.3/apptainer_1.5.3_amd64.deb": "82b0bdddf459087d202383360b8318d526ad6826c748a2f669913cc6aef9ee40"
+                },
+                "env": [
+                  [
+                    "UV_HTTP_TIMEOUT",
+                    "300"
+                  ]
+                ],
+                "files": {},
+                "kind": "layer",
+                "name": "agentic-coding-reference",
+                "owner": "agentic_coding",
+                "parent": "agentic-coding-vllm",
+                "pip_lock": "reference.txt",
+                "server": true,
+                "source_builds": {}
+              },
+              {
+                "apt_lock": null,
+                "env": [
+                  [
+                    "PYTHONPATH",
+                    "/app"
+                  ]
+                ],
+                "files": {
+                  "/app/server.py": "vllm_server.py",
+                  "/app/tasks/agentic_coding/__init__.py": "__init__.py",
+                  "/app/tasks/agentic_coding/serving_config.py": "serving_config.py"
+                },
+                "kind": "layer",
+                "name": "agentic-coding-baseline",
+                "owner": "agentic_coding",
+                "parent": "agentic-coding-vllm",
+                "pip_lock": null,
+                "server": true,
+                "source_builds": {}
+              }
+            ]
+          },
+          "shape": {
+            "cpus": 16,
+            "disk_gib": 80,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 68,
+            "time_sec": 8100
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images"
+          ],
+          "grants": {
+            "ANTHROPIC_API_KEY": "anthropic_key"
+          },
+          "kind": "agent_build",
+          "name": "agent_build",
+          "params": {
+            "arm": {
+              "context_window": 1000000,
+              "effort": "max",
+              "harness": "claude-code",
+              "model": "claude-opus-5",
+              "name": "example",
+              "output_limit": 64000,
+              "route": "anthropic",
+              "route_table": {
+                "auth": "api_key",
+                "base_url": null,
+                "credential": "anthropic_key"
+              }
+            },
+            "arm_change": null,
+            "collect_allowance_sec": 3600,
+            "commit_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 11,
+              "time_sec": 55800
+            },
+            "data_copies": {
+              "rows/rows-193e5b6a36c850aa": 61440,
+              "weights/zai-org+GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a": 28672
+            },
+            "extract_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 4,
+              "time_sec": 55800
+            },
+            "hard_sec": 45000,
+            "harness_reserve_gib": 4.0,
+            "images_stage": "images",
+            "max_turns": null,
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "package_pip": {
+              "disk_gib": 1763,
+              "memory_gib": 32
+            },
+            "probe_oom": false,
+            "provision_stage": "provision",
+            "reference_service": {
+              "image": "agentic-coding-baseline",
+              "shape": {
+                "cpus": 8,
+                "disk_gib": 8,
+                "gpu_kind": "H200",
+                "gpus": 8,
+                "memory_gib": 1,
+                "time_sec": 55800
+              }
+            },
+            "sandbox_held": null,
+            "sandbox_image": "agentic-coding-tf-5-17-0-agent",
+            "sandbox_shape": {
+              "cpus": 64,
+              "disk_gib": 1911,
+              "gpu_kind": "H200",
+              "gpus": 8,
+              "memory_gib": 1900,
+              "time_sec": 55800
+            },
+            "served_shape": {
+              "cpus": 64,
+              "disk_gib": 3814,
+              "gpu_kind": "H200",
+              "gpus": 8,
+              "memory_gib": 1907,
+              "time_sec": 10320
+            },
+            "setup_allowance_sec": 3600,
+            "snapshot_interval_sec": 1800,
+            "snapshot_shape": {
+              "cpus": 1,
+              "disk_gib": 0,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 7,
+              "time_sec": 55800
+            },
+            "soft_sec": 43200,
+            "staging_sec": 3600,
+            "stop_after": null,
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 64,
+            "disk_gib": 2000,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 1911,
+            "time_sec": 55800
+          }
+        },
+        {
+          "after": [
+            "agent_build"
+          ],
+          "grants": {},
+          "kind": "source_scan",
+          "name": "source_scan",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "disk_cap_gib": 1911
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 1919,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 15,
+            "time_sec": 4104
+          }
+        },
+        {
+          "after": [
+            "images",
+            "agent_build",
+            "source_scan"
+          ],
+          "grants": {},
+          "kind": "package",
+          "name": "package",
+          "params": {
+            "build_manifest": null,
+            "bundle": null,
+            "bundle_sha256": null,
+            "constraints": null,
+            "disk_cap_gib": 1911,
+            "gpu_kind": "H200",
+            "images_stage": "images",
+            "network": {
+              "domains": {
+                "entries": [],
+                "mode": "allow"
+              },
+              "packages": {
+                "entries": [
+                  "vllm",
+                  "vllm-cpu",
+                  "vllm-tpu",
+                  "vllm-rocm",
+                  "nano-vllm",
+                  "sglang",
+                  "sglang-router",
+                  "lmdeploy",
+                  "turbomind",
+                  "tensorrt-llm",
+                  "text-generation-inference",
+                  "optimum-nvidia",
+                  "llama-cpp-python",
+                  "ctransformers",
+                  "exllama",
+                  "exllamav2",
+                  "exllamav3",
+                  "ktransformers",
+                  "kt-kernel",
+                  "lightllm",
+                  "aphrodite-engine",
+                  "mlc-llm",
+                  "mlc-ai",
+                  "mlc-ai-nightly",
+                  "mlc-llm-cu121",
+                  "mlc-llm-cu122",
+                  "mlc-llm-cu124",
+                  "mlc-llm-cu128",
+                  "mlc-llm-nightly-cu121",
+                  "mlc-llm-nightly-cu122",
+                  "mlc-llm-nightly-cu124",
+                  "mlc-llm-nightly-cu128",
+                  "mlc-llm-nightly-cu130",
+                  "mlc-ai-cu121",
+                  "mlc-ai-cu122",
+                  "mlc-ai-nightly-cu121",
+                  "mlc-ai-nightly-cu122",
+                  "mlc-ai-nightly-cu124",
+                  "mlc-ai-nightly-cu128",
+                  "mlc-ai-nightly-cu130",
+                  "deepspeed",
+                  "deepspeed-mii",
+                  "deepspeed-kernels",
+                  "mistral-inference",
+                  "openllm",
+                  "ai-dynamo",
+                  "ai-dynamo-runtime",
+                  "lmcache",
+                  "lightseq",
+                  "fastertransformer",
+                  "ipex-llm",
+                  "petals",
+                  "medusa-llm",
+                  "airllm",
+                  "tokenspeed",
+                  "tokenspeed-kernel",
+                  "tokenspeed-scheduler",
+                  "tokenspeed-triton",
+                  "tokenspeed-deepgemm",
+                  "tokenspeed-flashmla",
+                  "tokenspeed-mla",
+                  "tokenspeed-nightly",
+                  "tokenspeed-proton",
+                  "vllm-omni",
+                  "sglang-omni",
+                  "ctranslate2",
+                  "faster-whisper",
+                  "whisperx",
+                  "whisper-ctranslate2",
+                  "insanely-fast-whisper",
+                  "whisper-s2t",
+                  "wyoming-faster-whisper",
+                  "faster-whisper-server",
+                  "whisper-live",
+                  "whisperlivekit",
+                  "whisper-cpp-python",
+                  "pywhispercpp",
+                  "whispercpp",
+                  "sherpa-onnx",
+                  "funasr",
+                  "tensorrt",
+                  "tensorrt-bindings",
+                  "tensorrt-libs",
+                  "tensorrt-cu11",
+                  "tensorrt-cu11-bindings",
+                  "tensorrt-cu11-libs",
+                  "tensorrt-cu12",
+                  "tensorrt-cu12-bindings",
+                  "tensorrt-cu12-libs",
+                  "tensorrt-cu13",
+                  "tensorrt-cu13-bindings",
+                  "tensorrt-cu13-libs",
+                  "tensorrt-lean",
+                  "tensorrt-lean-bindings",
+                  "tensorrt-lean-libs",
+                  "tensorrt-lean-cu11",
+                  "tensorrt-lean-cu11-bindings",
+                  "tensorrt-lean-cu11-libs",
+                  "tensorrt-lean-cu12",
+                  "tensorrt-lean-cu12-bindings",
+                  "tensorrt-lean-cu12-libs",
+                  "tensorrt-lean-cu13",
+                  "tensorrt-lean-cu13-bindings",
+                  "tensorrt-lean-cu13-libs",
+                  "tensorrt-dispatch",
+                  "tensorrt-dispatch-bindings",
+                  "tensorrt-dispatch-libs",
+                  "tensorrt-dispatch-cu11",
+                  "tensorrt-dispatch-cu11-bindings",
+                  "tensorrt-dispatch-cu11-libs",
+                  "tensorrt-dispatch-cu12",
+                  "tensorrt-dispatch-cu12-bindings",
+                  "tensorrt-dispatch-cu12-libs",
+                  "tensorrt-dispatch-cu13",
+                  "tensorrt-dispatch-cu13-bindings",
+                  "tensorrt-dispatch-cu13-libs",
+                  "tensorrt-rtx",
+                  "tensorrt-rtx-cu12",
+                  "nvidia-tensorrt",
+                  "torch-tensorrt",
+                  "sgl-kernel",
+                  "sglang-kernel",
+                  "vllm-flash-attn",
+                  "flashinfer-cubin",
+                  "flashinfer-jit-cache",
+                  "kernels",
+                  "kernels-community",
+                  "hf-kernels",
+                  "flash-attn",
+                  "flash-attn-3",
+                  "flash-attn3",
+                  "flash-attn-4",
+                  "flash-attn-cute",
+                  "flash-attn-wheels",
+                  "flash-attn-triton",
+                  "flash-attention",
+                  "flashinfer",
+                  "flashinfer-python",
+                  "xformers",
+                  "flash-mla",
+                  "sageattention",
+                  "ring-flash-attn",
+                  "fla-core",
+                  "flash-linear-attention",
+                  "transformer-engine",
+                  "transformer-engine-cu12",
+                  "transformer-engine-cu13",
+                  "transformer-engine-torch",
+                  "transformer-engine-jax",
+                  "deep-gemm",
+                  "auto-gptq",
+                  "autoawq",
+                  "autoawq-kernels",
+                  "gptqmodel",
+                  "marlin",
+                  "marlin-kernels",
+                  "bitblas",
+                  "gemlite",
+                  "flute-kernel",
+                  "humming-kernels",
+                  "fbgemm-gpu",
+                  "fbgemm-gpu-genai",
+                  "fbgemm-gpu-nightly",
+                  "fbgemm-gpu-genai-nightly",
+                  "sonic-moe",
+                  "megablocks",
+                  "grouped-gemm",
+                  "moe-kernels",
+                  "deep-ep",
+                  "triton-kernels",
+                  "liger-kernel",
+                  "quack-kernels",
+                  "unsloth",
+                  "unsloth-zoo",
+                  "causal-conv1d",
+                  "mamba-ssm"
+                ],
+                "mode": "deny"
+              }
+            },
+            "pip": {
+              "disk_gib": 1763,
+              "memory_gib": 32
+            },
+            "server_filename": "server.py",
+            "submission_base": "agentic-coding-tf-5-17-0-agent",
+            "task": "agentic_coding"
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 1959,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 36,
+            "time_sec": 25200
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "package"
+          ],
+          "grants": {},
+          "kind": "deploy_drive",
+          "name": "deploy_drive",
+          "params": {
+            "artifact": {
+              "kind": "package",
+              "manifest": null,
+              "stage": "package"
+            },
+            "artifact_shape": {
+              "cpus": 64,
+              "disk_gib": 3814,
+              "gpu_kind": "H200",
+              "gpus": 8,
+              "memory_gib": 1907,
+              "time_sec": 10320
+            },
+            "data_copies": {
+              "rows/rows-193e5b6a36c850aa": 61440,
+              "weights/zai-org+GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a": 28672
+            },
+            "drive_timeout_sec": 3420.0,
+            "driver_memory_shared": true,
+            "driver_overlaps": true,
+            "driver_shape": {
+              "cpus": 64,
+              "disk_gib": 46,
+              "gpu_kind": null,
+              "gpus": 0,
+              "memory_gib": 768,
+              "time_sec": 10320
+            },
+            "engine_cache_owner": null,
+            "harness_image": "agentic-coding-reference",
+            "images_stage": "images",
+            "measured_baseline": false,
+            "network": null,
+            "port": 8000,
+            "provision_stage": "provision",
+            "readiness_timeout_sec": 2700,
+            "reply_max_bytes": 268435456,
+            "request_timeout_sec": 10800.0,
+            "runtime_start_sec": 300,
+            "sandbox_paths": [
+              {
+                "path": "/hls/sandboxes/images",
+                "read_only": true,
+                "store": "agentic-coding-images"
+              },
+              {
+                "path": "/hls/sandboxes/overlays",
+                "read_only": false,
+                "store": "agentic-coding-overlays"
+              },
+              {
+                "path": "/hls/sandboxes/prefixes",
+                "read_only": true,
+                "store": "agentic-coding-prefixes"
+              },
+              {
+                "path": "/hls/sandboxes/runtime",
+                "read_only": true,
+                "store": "agentic-coding-runtime"
+              },
+              {
+                "path": "/dev/fuse",
+                "read_only": false,
+                "store": "device"
+              }
+            ],
+            "serve_command": [],
+            "split": "test",
+            "staging_sec": 3635,
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            },
+            "trace_cap_bytes": 23622320128,
+            "trace_request_bytes": 671088640,
+            "wall_margin_sec": 4800
+          },
+          "shape": {
+            "cpus": 64,
+            "disk_gib": 3997,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 1911,
+            "time_sec": 17555
+          }
+        },
+        {
+          "after": [
+            "provision",
+            "images",
+            "deploy_drive"
+          ],
+          "grants": {},
+          "kind": "verify",
+          "name": "verify",
+          "params": {
+            "data_copies": {
+              "weights/zai-org+GLM-5.3-Flash@eb9eb208eb0d988989d07a6a12d0fdeb5f52574a": 28672
+            },
+            "drive_stage": "deploy_drive",
+            "eval_id": "terminal",
+            "images_stage": "images",
+            "provision_stage": "provision",
+            "reference_image": "agentic-coding-reference",
+            "reference_shape": {
+              "cpus": 8,
+              "disk_gib": 0,
+              "gpu_kind": "H200",
+              "gpus": 8,
+              "memory_gib": 903,
+              "time_sec": 7200
+            },
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 8,
+            "disk_gib": 41,
+            "gpu_kind": "H200",
+            "gpus": 8,
+            "memory_gib": 907,
+            "time_sec": 10800
+          }
+        },
+        {
+          "after": [
+            "deploy_drive",
+            "verify"
+          ],
+          "grants": {},
+          "kind": "score",
+          "name": "score",
+          "params": {
+            "drive_stage": "deploy_drive",
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            },
+            "verify_stage": "verify"
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 25,
+            "time_sec": 1800
+          }
+        },
+        {
+          "after": [
+            "agent_build",
+            "package",
+            "deploy_drive",
+            "verify",
+            "score"
+          ],
+          "grants": {},
+          "kind": "finalize",
+          "name": "finalize",
+          "params": {
+            "build_stage": "agent_build",
+            "built_arm": null,
+            "eval_id": "terminal",
+            "kind": "rollout",
+            "package_stage": "package",
+            "score_stage": "score",
+            "task": {
+              "module": "tasks.agentic_coding.task",
+              "overrides": {}
+            }
+          },
+          "shape": {
+            "cpus": 2,
+            "disk_gib": 0,
+            "gpu_kind": null,
+            "gpus": 0,
+            "memory_gib": 12,
+            "time_sec": 3600
+          }
+        }
+      ],
+      "task": "agentic_coding"
+    }
+  },
+  "reference": {
+    "gpu_kind": "H200",
+    "image_sha256": "6105d6cc76af400325e94d588ce511be5bfdbb73b437dc51eca43917d7a43e3d"
+  },
+  "rows_key": "rows-193e5b6a36c850aa",
+  "scorer": {
+    "baseline_log_credit": 0.15877600690461072,
+    "kind": "SloLatencyScorer"
+  },
+  "submission_serve_command": [],
+  "task": "agentic_coding",
+  "task_id": "agentic_coding",
+  "upload": {
+    "dest": "/workspace/references",
+    "dir": [
+      "../assets/references",
+      "references"
+    ],
+    "sha256": "fbaa5b5c29508379a8a0e6d333ac80a9f112837004f7ad2a827ae78f75166e27"
+  },
+  "verifiers": {
+    "t0": [
+      {
+        "alpha": 0.01,
+        "calibration": "<the task's calibration>",
+        "implied_end_of_turn": true,
+        "kind": "ReportFaithfulnessVerifier",
+        "reference": {
+          "batch_invariant": false,
+          "decode": {
+            "kind": "Sample",
+            "temperature": 1.0
+          },
+          "dtype": "auto",
+          "enforce_eager": false,
+          "gpu_memory_utilization": 0.9,
+          "kind": "VLLMReference",
+          "max_model_len": 1048576,
+          "tensor_parallel_size": 8
+        },
+        "report_width": 21,
+        "tolerance": 2.0
+      },
+      {
+        "kind": "ReportOnlyMetricVerifier",
+        "label": null,
+        "metric": {
+          "kind": "TrajectoryServingMetrics"
+        }
+      },
+      {
+        "kind": "ReportOnlyTrajectoryShapeVerifier"
+      }
+    ]
+  },
+  "workload_fingerprint": "28d71b8571014c05505e2b31beb43fb3d7ea6ec7b24b8e74d90dcf9f0bc17522"
+}

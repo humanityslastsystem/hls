@@ -1,0 +1,101 @@
+{
+  "aggregate_passed": true,
+  "per_event": {
+    "cais/mmlu-dev-0.0": false,
+    "cais/mmlu-dev-1.0": false,
+    "cais/mmlu-dev-2.0": false,
+    "cais/mmlu-dev-3.0": true,
+    "cais/mmlu-dev-4.0": true
+  },
+  "diagnostics": {
+    "0:AccuracyVsReference+RelativeBar": {
+      "artifact_agg": 0.4,
+      "reference_agg": 0.4,
+      "tol": 0.0
+    }
+  },
+  "per_verifier_results": [
+    [
+      {
+        "passed": false,
+        "score": null,
+        "scores": {
+          "art": 0.0,
+          "ref": 0.0
+        },
+        "rationale": "art='D', ref='D', expected='B'",
+        "diagnostics": {
+          "art_letter": "D",
+          "ref_letter": "D",
+          "expected": "B",
+          "art_text": "D",
+          "ref_text": "D"
+        }
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {
+          "art": 0.0,
+          "ref": 0.0
+        },
+        "rationale": "art='A', ref='A', expected='B'",
+        "diagnostics": {
+          "art_letter": "A",
+          "ref_letter": "A",
+          "expected": "B",
+          "art_text": "A.",
+          "ref_text": "A. True,"
+        }
+      },
+      {
+        "passed": false,
+        "score": null,
+        "scores": {
+          "art": 0.0,
+          "ref": 0.0
+        },
+        "rationale": "art='A', ref='A', expected='C'",
+        "diagnostics": {
+          "art_letter": "A",
+          "ref_letter": "A",
+          "expected": "C",
+          "art_text": "A.",
+          "ref_text": "A."
+        }
+      },
+      {
+        "passed": true,
+        "score": null,
+        "scores": {
+          "art": 1.0,
+          "ref": 1.0
+        },
+        "rationale": "art='A', ref='A', expected='A'",
+        "diagnostics": {
+          "art_letter": "A",
+          "ref_letter": "A",
+          "expected": "A",
+          "art_text": "A.",
+          "ref_text": "A. True,"
+        }
+      },
+      {
+        "passed": true,
+        "score": null,
+        "scores": {
+          "art": 1.0,
+          "ref": 1.0
+        },
+        "rationale": "art='A', ref='A', expected='A'",
+        "diagnostics": {
+          "art_letter": "A",
+          "ref_letter": "A",
+          "expected": "A",
+          "art_text": "A",
+          "ref_text": "A"
+        }
+      }
+    ]
+  ]
+}

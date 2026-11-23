@@ -1,0 +1,274 @@
+{
+  "events": [
+    {
+      "request_id": "cais/mmlu-dev-0.0",
+      "session_id": "cais/mmlu-dev-0",
+      "turn_index": 0,
+      "input": {
+        "request_id": "cais/mmlu-dev-0",
+        "contents": [
+          {
+            "modality": "text",
+            "text": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\n\nAnswer:",
+            "tokens": null,
+            "logprobs": null,
+            "finish_reason": null
+          }
+        ],
+        "metadata": {
+          "tenant_id": "t0",
+          "adapter_id": null,
+          "session_id": "cais/mmlu-dev-0",
+          "turn_index": 0,
+          "max_tokens": 4,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Find all c in Z_3 such that Z_3[x]/(x^2 + c) is a field.\nA. 0\nB. 1\nC. 2\nD. 3\n\nAnswer:"
+            }
+          ]
+        }
+      },
+      "response": {
+        "output": {
+          "request_id": "cais/mmlu-dev-0",
+          "contents": [
+            {
+              "modality": "text",
+              "text": "D",
+              "tokens": null,
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "metadata": {
+            "completion_tokens": 2
+          }
+        },
+        "t_first_packet": null,
+        "packet_timestamps": null
+      },
+      "ground_truth": "B",
+      "t_send": 31997.147107538,
+      "t_recv": 31997.839800328,
+      "error": null,
+      "extras": {}
+    },
+    {
+      "request_id": "cais/mmlu-dev-1.0",
+      "session_id": "cais/mmlu-dev-1",
+      "turn_index": 0,
+      "input": {
+        "request_id": "cais/mmlu-dev-1",
+        "contents": [
+          {
+            "modality": "text",
+            "text": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Statement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nAnswer:",
+            "tokens": null,
+            "logprobs": null,
+            "finish_reason": null
+          }
+        ],
+        "metadata": {
+          "tenant_id": "t0",
+          "adapter_id": null,
+          "session_id": "cais/mmlu-dev-1",
+          "turn_index": 0,
+          "max_tokens": 4,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Statement 1 | If aH is an element of a factor group, then |aH| divides |a|. Statement 2 | If H and K are subgroups of G then HK is a subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nAnswer:"
+            }
+          ]
+        }
+      },
+      "response": {
+        "output": {
+          "request_id": "cais/mmlu-dev-1",
+          "contents": [
+            {
+              "modality": "text",
+              "text": "A.",
+              "tokens": null,
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "metadata": {
+            "completion_tokens": 3
+          }
+        },
+        "t_first_packet": null,
+        "packet_timestamps": null
+      },
+      "ground_truth": "B",
+      "t_send": 31997.839888478,
+      "t_recv": 31998.724493052,
+      "error": null,
+      "extras": {}
+    },
+    {
+      "request_id": "cais/mmlu-dev-2.0",
+      "session_id": "cais/mmlu-dev-2",
+      "turn_index": 0,
+      "input": {
+        "request_id": "cais/mmlu-dev-2",
+        "contents": [
+          {
+            "modality": "text",
+            "text": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Statement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nAnswer:",
+            "tokens": null,
+            "logprobs": null,
+            "finish_reason": null
+          }
+        ],
+        "metadata": {
+          "tenant_id": "t0",
+          "adapter_id": null,
+          "session_id": "cais/mmlu-dev-2",
+          "turn_index": 0,
+          "max_tokens": 4,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Statement 1 | Every element of a group generates a cyclic subgroup of the group. Statement 2 | The symmetric group S_10 has 10 elements.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nAnswer:"
+            }
+          ]
+        }
+      },
+      "response": {
+        "output": {
+          "request_id": "cais/mmlu-dev-2",
+          "contents": [
+            {
+              "modality": "text",
+              "text": "A.",
+              "tokens": null,
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "metadata": {
+            "completion_tokens": 3
+          }
+        },
+        "t_first_packet": null,
+        "packet_timestamps": null
+      },
+      "ground_truth": "C",
+      "t_send": 31998.724561635,
+      "t_recv": 31999.603420686,
+      "error": null,
+      "extras": {}
+    },
+    {
+      "request_id": "cais/mmlu-dev-3.0",
+      "session_id": "cais/mmlu-dev-3",
+      "turn_index": 0,
+      "input": {
+        "request_id": "cais/mmlu-dev-3",
+        "contents": [
+          {
+            "modality": "text",
+            "text": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Statement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nAnswer:",
+            "tokens": null,
+            "logprobs": null,
+            "finish_reason": null
+          }
+        ],
+        "metadata": {
+          "tenant_id": "t0",
+          "adapter_id": null,
+          "session_id": "cais/mmlu-dev-3",
+          "turn_index": 0,
+          "max_tokens": 4,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Statement 1| Every function from a finite set onto itself must be one to one. Statement 2 | Every subgroup of an abelian group is abelian.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\n\nAnswer:"
+            }
+          ]
+        }
+      },
+      "response": {
+        "output": {
+          "request_id": "cais/mmlu-dev-3",
+          "contents": [
+            {
+              "modality": "text",
+              "text": "A.",
+              "tokens": null,
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "metadata": {
+            "completion_tokens": 3
+          }
+        },
+        "t_first_packet": null,
+        "packet_timestamps": null
+      },
+      "ground_truth": "A",
+      "t_send": 31999.603482535,
+      "t_recv": 32000.256361698,
+      "error": null,
+      "extras": {}
+    },
+    {
+      "request_id": "cais/mmlu-dev-4.0",
+      "session_id": "cais/mmlu-dev-4",
+      "turn_index": 0,
+      "input": {
+        "request_id": "cais/mmlu-dev-4",
+        "contents": [
+          {
+            "modality": "text",
+            "text": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Find the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\n\nAnswer:",
+            "tokens": null,
+            "logprobs": null,
+            "finish_reason": null
+          }
+        ],
+        "metadata": {
+          "tenant_id": "t0",
+          "adapter_id": null,
+          "session_id": "cais/mmlu-dev-4",
+          "turn_index": 0,
+          "max_tokens": 4,
+          "messages": [
+            {
+              "role": "user",
+              "content": "Answer with a single letter (A, B, C, or D).\n\nQuestion: Find the characteristic of the ring 2Z.\nA. 0\nB. 3\nC. 12\nD. 30\n\nAnswer:"
+            }
+          ]
+        }
+      },
+      "response": {
+        "output": {
+          "request_id": "cais/mmlu-dev-4",
+          "contents": [
+            {
+              "modality": "text",
+              "text": "A",
+              "tokens": null,
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "metadata": {
+            "completion_tokens": 2
+          }
+        },
+        "t_first_packet": null,
+        "packet_timestamps": null
+      },
+      "ground_truth": "A",
+      "t_send": 32000.256421223,
+      "t_recv": 32000.897203983,
+      "error": null,
+      "extras": {}
+    }
+  ]
+}

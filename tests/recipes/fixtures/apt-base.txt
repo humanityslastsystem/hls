@@ -1,0 +1,3 @@
+# fixture apt lock
+curl=8.5.0-2ubuntu10.6
+python3=3.12.3-0ubuntu2

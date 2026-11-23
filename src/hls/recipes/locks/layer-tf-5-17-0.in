@@ -1,0 +1,5 @@
+# The transformers line of agentic_coding's sandbox, on S0, the forward line: no task
+# builds on it (agentic_coding rerolls on its published images). Compiled into
+# layer-tf-5-17-0.txt by
+#   hls images lock-pip layer layer-tf-5-17-0 --parent base-s0
+transformers==5.17.0

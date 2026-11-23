@@ -1,0 +1,16 @@
+# Ubuntu packages the reference image adds to the vendor vLLM image. python-is-python3 gives
+# the image `python`, the name harness roles start under; ca-certificates is the snapshot's.
+# The rest is what Apptainer's .deb depends on and the vendor image lacks: the driver starts
+# each trajectory's sandbox with Apptainer inside its own container. Pinned into
+# apt-reference.txt by
+#   hls images lock-apt ubuntu apt-reference --task agentic_coding
+python-is-python3
+ca-certificates
+fakeroot
+libfakeroot
+libfuse3-3
+liblzo2-2
+libprotobuf-c1
+libsubid4
+libtalloc2
+uidmap

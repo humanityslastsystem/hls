@@ -1,0 +1,22 @@
+{
+  "value": 0.5333196170637383,
+  "achieved": 0.5333196170637383,
+  "sol": 1.0,
+  "unit": "request",
+  "gate_passed": true,
+  "zero_reason": null,
+  "breakdown": {
+    "slo": {
+      "p99_ms": 884.6045739992405,
+      "target_ms": 1000000,
+      "n": 5
+    },
+    "verdict": {
+      "0:AccuracyVsReference+RelativeBar": {
+        "artifact_agg": 0.4,
+        "reference_agg": 0.4,
+        "tol": 0.0
+      }
+    }
+  }
+}

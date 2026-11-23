@@ -1,0 +1,109 @@
+[project]
+name = "hls"
+version = "0.0.1"
+description = "Humanity's Last System — inference benchmark harness"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "HLS authors" }]
+requires-python = ">=3.12"
+
+dependencies = [
+    "pydantic>=2.7",
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+    "httpx>=0.27",
+    # h11: server-side HTTP/1.1 framing for the egress pull-through index (hls/egress/
+    # proxy.py). Ships as httpx's own HTTP/1.1 backend, so it is already present, but
+    # proxy.py imports it directly -- declare it directly too.
+    "h11>=0.14",
+    "jinja2>=3.1",
+    "typer>=0.23",
+    "datasets>=2.20",
+    # Torch-free audio (de)serialization on the host: provisioning decodes dataset
+    # clips (FLAC/WAV/MP3) to PCM16 WAV with soundfile + soxr so audio survives the
+    # JSON rows.json materialization without torch/torchcodec on the orchestrator.
+    "soundfile>=0.12",
+    "soxr>=0.5",
+    # transformers supplies the AutoTokenizer that HOST-SIDE provisioning uses to
+    # build corpora (hls/spec/datasets.py: per-turn token caps, chat-template
+    # rendering). That path runs in the orchestrator process on every run whose
+    # dataset declares a token cap, so it is a core dep, not part of the optional
+    # `local-reference` extra.
+    # Tokenization needs no torch: transformers pulls tokenizers/huggingface-hub,
+    # not a deep-learning stack.
+    "transformers>=4.45",
+    # langdetect backs the IFEval `language:response_language` checker (Multi-IF is
+    # multilingual). Pure-Python; the metric seeds DetectorFactory for determinism.
+    # Runs in the runner/verify process, so it is a core dep (not optional).
+    "langdetect>=1.0.9",
+    # The egress prescan of a submission's pyproject.toml (hls.egress.prescan) parses its
+    # requirement specifiers (PEP 508) with it, and the package inventory
+    # (hls.recipes.inventory) its versions.
+    "packaging>=24",
+    "harbor",
+]
+
+[project.optional-dependencies]
+# Torch for loading a reference engine on this machine's own engine host
+# (hls.verify.inprocess), outside the reference images that carry their own. Install
+# for your specific box; never part of the default resolve.
+local-reference = [
+    "torch>=2.7",
+    "accelerate>=0.34",
+]
+
+[project.scripts]
+hls = "hls.cli:app"
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hls"]
+artifacts = ["src/hls/prompts/*.jinja"]
+
+[tool.uv.workspace]
+members = ["harbor", "harbor/packages/*"]
+
+[tool.uv.sources]
+harbor = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.6",
+    # Real ZMQ sockets for the SGLang engine's unload test (tests/unit/test_sglang_reference.py),
+    # which checks that its sockets close with linger 0; the floor is SGLang's own.
+    "pyzmq>=25.1.2",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests", "tasks/*/tests"]
+pythonpath = ["src", "."]
+markers = [
+    "gpu: integration tests that require CUDA GPUs + model weights",
+    "integration: live integration tests (requires external services; opt-in via HLS_RUN_SLOW=1)",
+]
+
+[tool.ruff]
+line-length = 110
+# harbor is a vendored git submodule with its own lint setup; don't lint it here.
+# tasks/assets is vendored UPSTREAM documentation (the toolchain references, Triton and cuTile
+# docs among them, copied as-authored; git ignores it). Their example/doctest snippets
+# are not our code and are not meant to pass our lint; linting them only produces noise we
+# would have to "fix" by editing third-party sources we intend to re-pin verbatim.
+# tasks/agentic_coding/references is a task's own uploaded material, its code as the builds
+# were handed it, which the upload's tree digest pins.
+extend-exclude = ["harbor", "tasks/assets", "tasks/agentic_coding/references"]
+
+[tool.ruff.lint]
+# Defaults (E4/E7/E9, F) plus ASCII hygiene: PLC2401 forbids non-ASCII
+# identifiers (PEP 8) and RUF001-003 flag ambiguous unicode in
+# strings/docstrings/comments. The hard, repo-wide ASCII-only gate lives in
+# CI (.github/scripts/check_ascii.py); these rules are defense-in-depth so ruff alone
+# catches the most common reintroductions.
+extend-select = ["PLC2401", "RUF001", "RUF002", "RUF003"]

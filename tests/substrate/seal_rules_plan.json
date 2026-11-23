@@ -1,0 +1,56 @@
+{
+ "build seal": [
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-o", "lo", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-d", "127.0.0.0/8", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-p", "tcp", "-j", "REDIRECT", "--to-ports", "{tport}"],
+  ["iptables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "ACCEPT"],
+  ["iptables", "-A", "OUTPUT", "-o", "lo", "-j", "ACCEPT"],
+  ["<resolv.conf nameservers>"],
+  ["iptables", "-A", "OUTPUT", "-p", "udp", "-j", "DROP"],
+  ["iptables", "-A", "OUTPUT", "-p", "icmp", "-j", "DROP"],
+  ["ip6tables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"],
+  ["ip6tables", "-A", "OUTPUT", "-o", "lo", "-j", "RETURN"],
+  ["ip6tables", "-A", "OUTPUT", "-j", "DROP"]
+ ],
+ "build seal, DNS closed": [
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-o", "lo", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-d", "127.0.0.0/8", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-p", "tcp", "-j", "REDIRECT", "--to-ports", "{tport}"],
+  ["iptables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "ACCEPT"],
+  ["iptables", "-A", "OUTPUT", "-p", "udp", "--dport", "53", "-j", "DROP"],
+  ["iptables", "-A", "OUTPUT", "-o", "lo", "-j", "ACCEPT"],
+  ["iptables", "-A", "OUTPUT", "-p", "udp", "-j", "DROP"],
+  ["iptables", "-A", "OUTPUT", "-p", "icmp", "-j", "DROP"],
+  ["ip6tables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"],
+  ["ip6tables", "-A", "OUTPUT", "-o", "lo", "-j", "RETURN"],
+  ["ip6tables", "-A", "OUTPUT", "-j", "DROP"]
+ ],
+ "served seal": [
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-o", "lo", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-d", "127.0.0.0/8", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-p", "tcp", "-j", "REDIRECT", "--to-ports", "{tport}"],
+  ["iptables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "ACCEPT"],
+  ["iptables", "-A", "OUTPUT", "-o", "lo", "-j", "ACCEPT"],
+  ["<resolv.conf nameservers>"],
+  ["iptables", "-A", "OUTPUT", "-p", "udp", "-j", "DROP"],
+  ["iptables", "-A", "OUTPUT", "-p", "icmp", "-j", "DROP"],
+  ["ip6tables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"],
+  ["ip6tables", "-A", "OUTPUT", "-o", "lo", "-j", "RETURN"],
+  ["ip6tables", "-A", "OUTPUT", "-j", "DROP"]
+ ],
+ "ip6tables fails": [
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-o", "lo", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-d", "127.0.0.0/8", "-j", "RETURN"],
+  ["iptables", "-t", "nat", "-A", "OUTPUT", "-p", "tcp", "-j", "REDIRECT", "--to-ports", "{tport}"],
+  ["iptables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "ACCEPT"],
+  ["iptables", "-A", "OUTPUT", "-o", "lo", "-j", "ACCEPT"],
+  ["<resolv.conf nameservers>"],
+  ["iptables", "-A", "OUTPUT", "-p", "udp", "-j", "DROP"],
+  ["iptables", "-A", "OUTPUT", "-p", "icmp", "-j", "DROP"],
+  ["ip6tables", "-A", "OUTPUT", "-m", "mark", "--mark", "{mark}", "-j", "RETURN"]
+ ]
+}
