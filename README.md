@@ -1,12 +1,31 @@
 # Humanity's Last System
 
-How good are coding agents at building inference systems from scratch? Humanity's Last System
-(HLS) is an ultra-long-horizon agentic coding benchmark that answers that question. Each task gives
-an agent a live GPU sandbox, with up to 8 H200s and up to 36 hours, and asks it to build a serving
-system specialized to one model, one hardware platform and one production workload. HLS then
-deploys the agent's final commit in a fresh container, runs the task's timed workload against it,
-checks the outputs against a trusted reference, and scores its speed against a baseline. A server
-that fails the check scores zero.
+Steven&nbsp;Gao<sup>1</sup>, Rulin&nbsp;Shao<sup>1</sup>, Keisuke&nbsp;Kamahori<sup>1</sup>, Yuetai&nbsp;Li<sup>1</sup>,
+Yufei&nbsp;Gao<sup>1</sup>, Atindra&nbsp;Jha<sup>2</sup>, Junjie&nbsp;Oscar&nbsp;Yin<sup>1</sup>, Shihang&nbsp;Li<sup>1</sup>,
+Radha&nbsp;Poovendran<sup>1</sup>, Jure&nbsp;Leskovec<sup>2</sup>, Hannaneh&nbsp;Hajishirzi<sup>1</sup>,
+Pang&nbsp;Wei&nbsp;Koh<sup>1</sup>, Luke&nbsp;Zettlemoyer<sup>1</sup>, Stephanie&nbsp;Wang<sup>1</sup>, Baris&nbsp;Kasikci<sup>1</sup>
+
+<sup>1</sup>University&nbsp;of&nbsp;Washington, <sup>2</sup>Stanford&nbsp;University
+
+[![Blog post](https://img.shields.io/badge/blog-Introducing%20HLS-4b2e83)](https://hlsbench.com/blog/introducing-hls)
+[![X post](https://img.shields.io/badge/X-announcement-4b2e83?logo=x&logoColor=white)](https://x.com/ste_veng/status/2124939718362341696)
+[![Trajectories](https://img.shields.io/badge/trajectories-150%2B-4b2e83)](https://hlsbench.com/traces)
+[![License](https://img.shields.io/badge/license-Apache--2.0-4b2e83)](LICENSE)
+
+Would you bet that a coding agent could write an inference engine from scratch in 12 hours and
+beat vLLM? The best agents already can. Opus 5's servers passed verification and beat the
+production baseline in 71% of its runs, with speedups of up to 25.9× on speech recognition and
+4.9× on omni chat. The next best model did so in 24% of runs, and no model produced a correct
+server on every attempt.
+
+Humanity's Last System (HLS) is the ultra-long-horizon agentic coding benchmark behind those
+numbers. Each task gives an agent a live GPU sandbox, with up to 8 H200s and up to 36 hours, and
+asks it to build a serving system specialized to one model, one hardware platform and one
+production workload. HLS then deploys the agent's final commit in a fresh container, runs the
+task's timed workload against it, checks the outputs against a trusted reference, and scores its
+speed against a baseline. A server that fails the check scores zero.
+
+[![The HLS leaderboard. Opus 5 leads at 71.4% fast_1, the share of runs that pass verification and beat the production baseline, followed by Kimi K3 at 23.8%, Opus 4.8 at 19.0%, GLM 5.3 at 14.3%, GPT 5.6 Sol at 9.5% and GPT 5.5 at 0.0%.](docs/images/leaderboard.png)](https://hlsbench.com)
 
 The [introduction](https://hlsbench.com/blog/introducing-hls) describes the tasks, the verifiers
 and our results, and [hlsbench.com](https://hlsbench.com) has the leaderboard and over 150 agent
